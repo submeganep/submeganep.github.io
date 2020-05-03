@@ -1,4 +1,4 @@
-アイドルマスター ミリオンライブ！(Million Live) X 機械学習 (Machine Learning)
+アイドルマスター ミリオンライブ！(Million Live) x 機械学習 (Machine Learning) = ML^2
 
 # Products
 
