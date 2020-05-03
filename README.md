@@ -2,7 +2,8 @@
 
 # Products
 
-* [アイドルマスター ミリオンライブ！ 呼称表（β）](https://submeganep.github.io/koshou.html)
+* [アイドルマスター ミリオンライブ！ 呼称表（β）](https://submeganep.github.io/koshou.html
+![](koshou.gif)
     * マウスホバー（またはタップ）で呼称をインタラクティブ表示
     * AI（機械学習）の予測と異なる呼称に「！」マーク（キテる！）
     * ミリシタのオファーと異なる呼称に「＋」マーク（未実装）
