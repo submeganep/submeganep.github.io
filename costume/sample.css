@@ -1,0 +1,86 @@
+body {
+    /* background-color: lightblue; */
+    
+    font-family:
+        "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.costume_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.costume_item {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    /* align-content: center; */
+    /* align-content: flex-start; */
+    justify-items: flex-start;
+    background-color: white;
+    margin: 10px;
+    /* width: 280px; */
+    box-shadow : 5px 5px 5px 0px gray;
+}
+
+.idol_names {
+    text-align: center;
+    font-size: small;
+}
+.idol_name {
+    cursor : pointer;
+    font-size: small;
+    text-decoration: underline;
+}
+
+.costume_name {
+    text-align: center;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+.costume_image {
+    margin: auto;
+    cursor : pointer;
+    overflow: hidden;
+}
+.costume_image img {
+    display: block;
+    transition: 1.0s;
+}
+.costume_image img:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.costume_colors{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.costume_color{
+    width: 18px;
+    height: 18px;
+    margin: 1px;
+    cursor : pointer;
+}
+.costume_color:hover {
+    margin: -2px;
+    border: solid 2px black;
+}
+    
+
+.costume_description{
+    font-size: small;
+}
