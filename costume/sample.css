@@ -40,9 +40,9 @@ h1 {
     font-size: small;
 }
 .idol_name {
-    cursor : pointer;
+    /* cursor : pointer; */
     font-size: small;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .costume_name {
@@ -53,7 +53,7 @@ h1 {
 
 .costume_image {
     margin: auto;
-    cursor : pointer;
+    /* cursor : pointer; */
     overflow: hidden;
 }
 .costume_image img {
@@ -73,7 +73,7 @@ h1 {
     width: 18px;
     height: 18px;
     margin: 1px;
-    cursor : pointer;
+    /* cursor : pointer; */
 }
 .costume_color:hover {
     margin: -2px;

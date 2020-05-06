@@ -7,7 +7,7 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
 
         let names = $('<div class="idol_names"></div>');
         for (let name of data[key]['idol']) {
-            names.append('<span class="idol_name" id="' + name + '">' + name + '</span>');
+            names.append('<a href="#top" class="idol_name" id="' + name + '">' + name + '</a>');
             break;  // 多人数の場合に表示が横に広くなるのでとりえあえず一人だけに限定
         }
         if (data[key]['idol'].length > 1) {
@@ -16,14 +16,14 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
 
         let colors = $('<div class="costume_colors"></div>');
         for (let color of data[key]['mean']) {
-            colors.append('<div class="costume_color" style="background-color: ' + color + ';"></div>');
+            colors.append('<a href="#top"><div class="costume_color" style="background-color: ' + color + ';"></div></a>');
         }
 
         let item = $('<div class="costume_item"></div>');
         item.append('<span class="costume_name">' + data[key]['name'] + '</span>');
         // item.append('<span class="idol_name" id="' +  + '">' + data[key]['idol'] + '</span>');
         item.append(names);
-        item.append('<div class="costume_image" id="' + key + '"><img src="' + url_img + '"></div>');
+        item.append('<div class="costume_image" id="' + key + '"><a href="#top"><img src="' + url_img + '"></a></div>');
         item.append(colors);
         let description = data[key.split('_')[0]]['description'].replace(/\r?\n/g, '<br>');
         item.append('<span class="costume_description">' + description + '</span>');
