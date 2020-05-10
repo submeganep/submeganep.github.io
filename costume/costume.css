@@ -1,7 +1,4 @@
-
-
-
-.idol_container {
+#idol_container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -12,7 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 5px;
+    margin-top: 10px;
 }
 .idol_icon {
     overflow: hidden;
@@ -27,17 +24,24 @@
     width: 48px;
     height: 48px;
     margin: 1px;
-    /* vertical-align: bottom; */
 }
 
-.costume_container {
+#input_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#costume_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
 }
-
 .costume_item {
     display: flex;
     flex-direction: column;
@@ -50,7 +54,7 @@
 }
 .costume_name {
     font-weight: bold;
-    font-size: small;
+    font-size: 12px;
 }
 .idol_names {
     font-size: 12px;
@@ -67,7 +71,6 @@
 .costume_image img:hover {
     transform: scale(1.1, 1.1);
 }
-
 .costume_colors{
     display: flex;
     flex-direction: row;
@@ -83,7 +86,6 @@
     border-radius: 50%;
     transition: 0.2s;
 }
-
 .costume_description{
-    font-size: small;
+    font-size: 12px;
 }
