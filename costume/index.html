@@ -44,10 +44,48 @@
     <header></header>
 
     <h1>ミリシタ衣装検索（β）</h1>
+
+    <div id="setting_container">
+        <div>
+            類似基準：
+            <select id="sort_mode">
+                <option value="sort_by_color">色</option>
+                <option value="sort_by_shape">形</option>
+            </select>
+        </div>
+        <div>
+            最大表示数：
+            <input type="number" id="max_costumes" value=20 min=5>
+        </div>
+    </div>
     
     <div id="idol_container"></div>
+    
+    <div id="filter_container">
+        <div>
+            種類：
+            <label><input type="checkbox" id="type_const" checked>恒常SSR</label>
+            <label for="type_limit"><input type="checkbox" id="type_limit" checked>限定SSR</label>
+            <label for="type_fes"><input type="checkbox" id="type_fes" checked>FES</label>
+            <label for="type_pst"><input type="checkbox" id="type_pst" checked>PST</label>
+            <label for="type_sr"><input type="checkbox" id="type_sr" checked>SR</label>
+            <!-- <label for="type_other"><input type="checkbox" id="type_other" checked>その他</label> -->
+        </div>
+        <div>
+            期間：
+            <input type="date" id="date_begin" value="2017-06-29">
+            ～
+            <input type="date" id="date_end">
+        </div>
+        <div>
+            絞込：
+            <input type="button" id="button_ticket" value="セレチケ">
+            <input type="button" id="button_psp" value="PSP交換">
+            <input type="button" id="button_all" value="全選択">
+        </div>
+    </div>
 
-    <div id="input_container">
+    <div id="query_container">
         色を選択：
         <input type="text" id="picker">
     </div>
@@ -59,6 +97,7 @@
         <li>アイドルを選択して所持衣装を検索</li>
         <li>衣装画像を選択して類似衣装を検索</li>
         <li>色を選択して近い色を含む衣装を検索</li>
+        <li>種類や期間で検索結果を絞込</li>
     </ul>
 
     <h2>備考</h2>
@@ -81,6 +120,7 @@
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-05-25 絞込機能を追加，類似度の計算方法を修正，形による類似衣装検索を追加</li>
         <li>2020-05-11 β版リリース</li>
     </ul>
 
