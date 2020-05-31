@@ -1,124 +1,123 @@
 
-
-
-
-
-
-#idol_container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.idol_group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px;
-}
-.idol_icon {
-    overflow: hidden;
-}
-.idol_icon img {
-    transition: 0.2s;
-}
-.idol_icon img:hover {
-    transform: scale(1.2, 1.2);
-}
-.icon_image {
-    width: 48px;
-    height: 48px;
-    margin: 1px;
+#table_item {
+    table-layout: fixed;
+    width: 1000px;
+    height: 1000px;
+    font-size: 10px;
+    border-collapse: separate;
+    border-spacing: 1px;
 }
 
-#query_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-#filter_container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 360px;
-}
-
-#setting_container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    margin-top: 10px;
-}
-#sort_mode {
-    width: 50px;
-}
-#max_costumes {
-    width: 50px;
-}
-
-#costume_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-}
-.costume_item {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: white;
-    margin: 10px;
-    box-shadow : 5px 5px 5px 0px gray;
-}
-.costume_name {
+.cell {
+    /* width: 12px; */
+    /* height: 12px; */
     font-weight: bold;
-    font-size: 12px;
+    background-color: rgb(199,199,199);
+    text-align: center;
 }
-.costume_type {
-    font-size: 12px;
+.diag {
+    background-size: cover;
 }
-.idol_names {
-    font-size: 12px;
+.sei-san {
+    background-color: rgb(174,199,232);
+}
+.mei-san {
+    background-color: rgb(197,176,213);
+}
+.mei-chan {
+    background-color: rgb(158,218,229);
+}
+.mei {
+    background-color: rgb(219,219,141);
+}
+.aisho {
+    background-color: rgb(247,182,210);
+}
+.keisho {
+    background-color: rgb(196,156,148);
 }
 
-.costume_image {
-    margin: auto;
-    overflow: hidden;
+#table_container {
+    overflow: auto;
+    height: 75vh;
 }
-.costume_image img {
-    display: block;
-    transition: 0.2s;
-}
-.costume_image img:hover {
-    transform: scale(1.1, 1.1);
-}
-.costume_colors{
+
+#legend_container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
     justify-content: center;
 }
-.costume_color{
-    width: 18px;
-    height: 18px;
-    margin: 1px;
-    border-radius: 20%;
+.legend {
+    width: 16px;
+    height: 16px;
+    margin-left: 40px;
+    margin-right: 5px;
 }
-.costume_color:hover {
-    border-radius: 50%;
-    transition: 0.2s;
+
+/* https://qiita.com/orangain/items/6268b6528ab33b27f8f2 */
+#table_item tr:first-child th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    font-weight: normal;
+    height: 70px;
+    line-height: 12px;
+    vertical-align: bottom;
 }
-.costume_description{
+#table_item th:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    background-color: white;
+    font-weight: normal;
+    width: 70px;
+    text-align: right;
+}
+#table_item tr:first-child th:first-child {
+    z-index: 2;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*  */
+#koshou_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 360px;
+    margin: auto;
+}
+.koshou_item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+    margin-top: 10px;
+    padding: 5px;
+    /* box-shadow : 5px 5px 5px 0px gray; */
+    display: none;
+}
+div.block {
     font-size: 12px;
+    display: flex;
+    flex-direction: row;
+}
+div.term {
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+div.text {
+    font-size: 12px;
+    margin-left: 10px;
+}
+div.head {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
 }
