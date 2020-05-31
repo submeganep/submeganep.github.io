@@ -40,7 +40,7 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
             const datum = data[name1][name2];
             if (name1 == name2) {
                 let cell = $('<td class="cell diag" id="cell_' + i + '_' + j + '">' + '' + '</td>');
-                cell.css('background-image', 'url("../icon/2nd/' + name1 + '.png")');
+                // cell.css('background-image', 'url("https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/icon/2nd/' + name1 + '.png")');
                 row.append(cell);
             } else {
                 let c = '';
