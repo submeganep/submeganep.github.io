@@ -13,21 +13,21 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         row.append('<th id="to_' + i + '">' + name + '</th>');
         // 表示
         let item = $('<div class="koshou_item" id="item_' + i + '_' + i + '"></div>');
-        item.append('<div class="koshou_head">' + name + age + type + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">一人称</div>' + datum['一人称'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">P</div>' + datum['プロデューサー'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">ID</div>' + datum['ID'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">出身地</div>' + datum['出身地'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">誕生日</div>' + datum['誕生日'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">血液型</div>' + datum['血液型'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">利き手</div>' + datum['利き手'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">B-W-H</div>' + datum['B'] + '-' + datum['W'] + '-' + datum['H'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">身長</div>' + datum['身長'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">体重</div>' + datum['体重'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">趣味</div>' + datum['趣味'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">特技</div>' + datum['特技'] + '</div>');
-        item.append('<div class="koshou_block"><div class="koshou_term">好きなもの</div>' + datum['好きなもの'] + '</div>');
-        // item.append('<div class="koshou_block"><div class="koshou_term">CV</div>' + datum['CV'] + '</div>');
+        item.append('<div class="head">' + name + age + type + '</div>');
+        item.append('<div class="block"><div class="term">一人称</div>' + datum['一人称'] + '</div>');
+        item.append('<div class="block"><div class="term">P</div>' + datum['プロデューサー'] + '</div>');
+        item.append('<div class="block"><div class="term">ID</div>' + datum['ID'] + '</div>');
+        item.append('<div class="block"><div class="term">出身地</div>' + datum['出身地'] + '</div>');
+        item.append('<div class="block"><div class="term">誕生日</div>' + datum['誕生日'] + '</div>');
+        item.append('<div class="block"><div class="term">血液型</div>' + datum['血液型'] + '</div>');
+        item.append('<div class="block"><div class="term">利き手</div>' + datum['利き手'] + '</div>');
+        item.append('<div class="block"><div class="term">B-W-H</div>' + datum['B'] + '-' + datum['W'] + '-' + datum['H'] + '</div>');
+        item.append('<div class="block"><div class="term">身長</div>' + datum['身長'] + '</div>');
+        item.append('<div class="block"><div class="term">体重</div>' + datum['体重'] + '</div>');
+        item.append('<div class="block"><div class="term">趣味</div>' + datum['趣味'] + '</div>');
+        item.append('<div class="block"><div class="term">特技</div>' + datum['特技'] + '</div>');
+        item.append('<div class="block"><div class="term">好きなもの</div>' + datum['好きなもの'] + '</div>');
+        // item.append('<div class="block"><div class="term">CV</div>' + datum['CV'] + '</div>');
         $('#koshou_container').append(item);
     }
     $('#table_item').append(row);
@@ -53,19 +53,21 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                 let item = $('<div class="koshou_item" id="item_' + i + '_' + j + '"></div>');
                 const age1 = ' (' + data[name1][name1]['年齢'] + ')';
                 const age2 = ' (' + data[name2][name2]['年齢'] + ')';
-                item.append('<div class="koshou_head">' + name1 + age1 + ' → ' + name2 + age2 + '</div>');
-                item.append('<div class="koshou_block"><div class="koshou_term">呼称</div>' + datum['呼称（ミリシタ）'] + '</div>');
-                item.append('<div class="koshou_block"><div class="koshou_term">予測</div>' + datum['呼称（予測）'] + '</div>');
+                item.append('<div class="head">' + name1 + age1 + ' → ' + name2 + age2 + '</div>');
+                item.append('<div class="block"><div class="term">呼称</div>' + datum['呼称（ミリシタ）'] + '</div>');
+                item.append('<div class="block"><div class="term">予測</div>' + datum['呼称（予測）'] + '</div>');
                 if (datum['呼称（その他）'] != '') {
-                    item.append('<div class="koshou_block"><div class="koshou_term">他の呼称</div></div>');
-                    item.append('<div class="koshou_text">' + datum['呼称（その他）'].replace(/\r?\n/g, '<br>') + '</div>');
+                    item.append('<div class="block"><div class="term">他の呼称</div></div>');
+                    item.append('<div class="text">' + datum['呼称（その他）'].replace(/\r?\n/g, '<br>') + '</div>');
                 }
                 if (datum['オファー台詞'] != '') {
-                    item.append('<div class="koshou_block"><div class="koshou_term">オファー</div></div>');
-                    item.append('<div class="koshou_text">' + datum['オファー台詞'].replace(/\r?\n/g, '<br>') + '</div>');
+                    item.append('<div class="block"><div class="term">オファー</div></div>');
+                    item.append('<div class="text">' + datum['オファー台詞'].replace(/\r?\n/g, '<br>') + '</div>');
                 }
                 $('#koshou_container').append(item);
             }
+
+            
         }
         $('#table_item').append(row);
     }
