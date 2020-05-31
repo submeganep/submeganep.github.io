@@ -103,21 +103,21 @@
     /* box-shadow : 5px 5px 5px 0px gray; */
     display: none;
 }
-div.block {
+div.koshou_block {
     font-size: 12px;
     display: flex;
     flex-direction: row;
 }
-div.term {
+div.koshou_term {
     font-size: 12px;
     font-weight: bold;
     margin-right: 10px;
 }
-div.text {
+div.koshou_text {
     font-size: 12px;
     margin-left: 10px;
 }
-div.head {
+div.koshou_head {
     font-size: 12px;
     font-weight: bold;
     text-align: center;
