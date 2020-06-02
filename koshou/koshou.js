@@ -1,3 +1,42 @@
+// タッチ対応端末か否かを判定
+let touch = false;
+if(window.ontouchstart !== undefined && 0 < navigator.maxTouchPoints) {
+    touch = true;
+}
+
+// ピン留め
+let pin = {};
+if (localStorage.hasOwnProperty('pin')) {
+    pin = JSON.parse(localStorage.getItem('pin'));
+} else {
+    for (let i = 0; i < 52; i++) {
+        pin[i] = {};
+        for (let j = 0; j < 52; j++) {
+            pin[i][j] = false;
+        }
+    }
+}
+
+// いいね
+let like = {};
+if (localStorage.hasOwnProperty('like')) {
+    like = JSON.parse(localStorage.getItem('like'));
+} else {
+    for (let i = 0; i < 52; i++) {
+        like[i] = {};
+        for (let j = 0; j < 52; j++) {
+            like[i][j] = false;
+        }
+    }
+}
+
+// ページを離れる際にローカルストレージに保存
+window.onbeforeunload = function(){
+    localStorage.setItem('pin', JSON.stringify(pin));
+    localStorage.setItem('like', JSON.stringify(like));
+}
+
+// jsonを読込
 $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/koshou/koshou.json', function (data) {
     let keys = Object.keys(data);
     let names = data['names'];
@@ -28,6 +67,9 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         item.append('<div class="block"><div class="term">特技</div>' + datum['特技'] + '</div>');
         item.append('<div class="block"><div class="term">好きなもの</div>' + datum['好きなもの'] + '</div>');
         // item.append('<div class="block"><div class="term">CV</div>' + datum['CV'] + '</div>');
+        const like_icon = '<span class="material-icons" id="like_' + i + '_' + i + '">favorite_border</span>';
+        const close_icon = '<span class="material-icons" id="close_' + i + '_' + i + '">highlight_off</span>';
+        item.append('<div class="tail">' + like_icon + close_icon + '</div>');
         $('#koshou_container').append(item);
     }
     $('#table_item').append(row);
@@ -64,15 +106,65 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                     item.append('<div class="block"><div class="term">オファー</div></div>');
                     item.append('<div class="text">' + datum['オファー台詞'].replace(/\r?\n/g, '<br>') + '</div>');
                 }
+                const like_icon = '<span class="material-icons" id="like_' + i + '_' + j + '">favorite_border</span>';
+                const close_icon = '<span class="material-icons" id="close_' + i + '_' + j + '">highlight_off</span>';
+                item.append('<div class="tail" id="tail_' + i + '_' + j + '">' + like_icon + close_icon + '</div>');
                 $('#koshou_container').append(item);
             }
-
-            
         }
         $('#table_item').append(row);
     }
 
-    // 呼称表マウスオーバー
+    // 表示・非表示
+    function show(i, j) {
+        pin[i][j] = true;
+        $('#cell_' + i + '_' + j).animate({'border-radius': '100%'}, 500);
+        $('#item_' + i + '_' + j).fadeOut(500, function () {
+            $('#tail_' + i + '_' + j).css('display', 'flex');
+            $('#item_' + i + '_' + j).css({'position': 'static'});
+            $('#item_' + i + '_' + j).slideDown(500);
+        });
+    }
+    function hide(i, j) {
+        pin[i][j] = false;
+        $('#cell_' + i + '_' + j).animate({'border-radius': '0%'}, 500);
+        $('#item_' + i + '_' + j).slideUp(500);
+    }
+
+    // 状態を復元
+    for (let i = 0; i < 52; i++) {
+        for (let j = 0; j < 52; j++) {
+            if (like[i][j] == true) {
+                $('#like_' + i + '_' + j).text('favorite');
+            }
+            if (pin[i][j] == true) {
+                show(i, j);
+            }
+        }
+    }
+
+    // アイコンクリック
+    for (let i = 0; i < 52; i++) {
+        for (let j = 0; j < 52; j++) {
+            $('#close_' + i + '_' + j).on('click', function() {
+                hide(i, j);
+            });
+            $('#like_' + i + '_' + j).on('click', function() {
+                if (like[i][j] == false) {
+                    like[i][j] = true;
+                    $('#like_' + i + '_' + j).text('favorite');
+                } else {
+                    like[i][j] = false;
+                    $('#like_' + i + '_' + j).text('favorite_border');
+                }
+            });
+        }
+    }
+
+    // タッチ端末でセルが選択状態か否かを示すフラグ
+    let selected = false;
+
+    // 呼称表ホバー
     for (let i = 0; i < 52; i++) {
         $('#from_' + i + ',#to_' + i).hover(function() {
             $(this).css('background-color', 'lightgray');
@@ -80,26 +172,37 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
             $(this).css('background-color', 'white');
         });
         for (let j = 0; j < 52; j++) {
+            let item = '#item_' + i + '_' + j;
             $('#cell_' + i + '_' + j).hover(function() {
                 $('#from_' + i).css('background-color', 'lightgray');
                 $('#to_' + j).css('background-color', 'lightgray');
+                if (pin[i][j] == false) {
+                    const offset = $(this).offset();
+                    $(this).css({'border-radius': '100%'});
+                    $('#tail_' + i + '_' + j).hide();
+                    $(item).show();
+                    $(item).css({
+                        'position': 'absolute',
+                        'top': offset.top + 8,
+                    });
+                    if (touch != true) {
+                        $(item).css({'left': offset.left + 18});
+                    }
+                }
             }, function() {
                 $('#from_' + i).css('background-color', 'white');
                 $('#to_' + j).css('background-color', 'white');
+                if (pin[i][j] == false) {
+                    $(this).css({'border-radius': ''});
+                    $(item).hide();
+                    $(item).css({'position': 'static'});
+                }
+                selected = false;
             });
         }
     }
 
-
     // 呼称表クリック
-    function show(i, j) {
-        $('#item_' + i + '_' + j).slideDown(500);
-        $('#cell_' + i + '_' + j).animate({'border-radius': '100%'}, 500);
-    }
-    function hide(i, j) {
-        $('#item_' + i + '_' + j).slideUp(500);
-        $('#cell_' + i + '_' + j).animate({'border-radius': '0%'}, 500);
-    }
     for (let i = 0; i < 52; i++) {
         $('#from_' + i).on('click', function() {
             if ($(this).css('font-weight') == '700') {
@@ -129,10 +232,17 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         });
         for (let j = 0; j < 52; j++) {
             $('#cell_' + i + '_' + j).on('click', function() {
-                if ($(this).css('border-radius') == '100%') {
-                    hide(i, j);
+                if (pin[i][j] == false) {
+                    if (touch == true) {
+                        if (selected == true) {
+                            show(i, j);
+                        }
+                        selected = true;
+                    } else {
+                        show(i, j);
+                    }
                 } else {
-                    show(i, j);
+                    hide(i, j);
                 }
             });
         }

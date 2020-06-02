@@ -97,10 +97,13 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: whitesmoke;
+    background-color: rgba(244,244,244,0.9);
+    /* background-color: whitesmoke; */
     margin-top: 10px;
     padding: 5px;
     /* box-shadow : 5px 5px 5px 0px gray; */
+    max-width: 360px;
+    min-width: 360px;
     display: none;
 }
 div.block {
@@ -121,4 +124,12 @@ div.head {
     font-size: 12px;
     font-weight: bold;
     text-align: center;
+}
+div.tail {
+    font-size: 12px;
+    display: flex;
+    /* display: none; */
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
