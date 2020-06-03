@@ -43,12 +43,23 @@
     height: 60vh;
 }
 
+#mode_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    justify-content: center;
+}
+#mode_container label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 #legend_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding-top: 10px;
-    padding-bottom: 10px;
     justify-content: center;
 }
 .legend {

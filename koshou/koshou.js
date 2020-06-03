@@ -36,6 +36,7 @@ window.onbeforeunload = function(){
     localStorage.setItem('like', JSON.stringify(like));
 }
 
+
 // jsonを読込
 $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/koshou/koshou.json', function (data) {
     let keys = Object.keys(data);
@@ -85,11 +86,7 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                 // cell.css('background-image', 'url("https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/icon/2nd/' + name1 + '.png")');
                 row.append(cell);
             } else {
-                let c = '';
-                if (datum['label'] != '' & datum['label'] != datum['pred']) {
-                    c = '！'; 
-                }
-                let cell = $('<td class="cell ' + datum['label'] + '" id="cell_' + i + '_' + j + '">' + c + '</td>');
+                let cell = $('<td class="cell ' + datum['label'] + '" id="cell_' + i + '_' + j + '">' + '</td>');
                 row.append(cell);
                 // 表示
                 let item = $('<div class="koshou_item" id="item_' + i + '_' + j + '"></div>');
@@ -115,20 +112,88 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         $('#table_item').append(row);
     }
 
+    // セル表示更新
+    function update() {
+        const mode = $('input[name="mode"]:checked').val();
+        for (let i = 0; i < 52; i++) {
+            for (let j = 0; j < 52; j++) {
+                if (i == j) {
+                    continue;
+                }
+                let cell = $('#cell_' + i + '_' + j);
+                if (mode == 'pred') {
+                    const datum = data[names[i]][names[j]];
+                    if (datum['label'] != '' & datum['label'] != datum['pred']) {
+                        cell.text('！');
+                    } else {
+                        cell.text('');
+                    }
+                } else if (mode == 'like') {
+                    if (like[i][j] == true) {
+                        cell.text('♥');
+                    } else {
+                        cell.text('');
+                    }
+                } else if (mode == 'unit') {
+                    // ♪
+                }
+            }
+        }
+    }
+    update();
+    $('input[name="mode"]').change(function() {
+        update();
+    });
+
     // 表示・非表示
     function show(i, j) {
+        let cell = $('#cell_' + i + '_' + j);
+        let item = $('#item_' + i + '_' + j);
         pin[i][j] = true;
-        $('#cell_' + i + '_' + j).animate({'border-radius': '100%'}, 500);
-        $('#item_' + i + '_' + j).fadeOut(500, function () {
-            $('#tail_' + i + '_' + j).css('display', 'flex');
-            $('#item_' + i + '_' + j).css({'position': 'static'});
-            $('#item_' + i + '_' + j).slideDown(500);
-        });
+        cell.animate({'border-radius': '100%'}, 500);
+        item.hide();
+        item.css('position', 'static');
+        item.slideDown(500);
     }
     function hide(i, j) {
+        let cell = $('#cell_' + i + '_' + j);
+        let item = $('#item_' + i + '_' + j);
         pin[i][j] = false;
-        $('#cell_' + i + '_' + j).animate({'border-radius': '0%'}, 500);
-        $('#item_' + i + '_' + j).slideUp(500);
+        cell.animate({'border-radius': '0%'}, 500);
+        item.slideUp(500);
+    }
+
+    // ホバー
+    let hover = null;
+    function hover_on(i, j) {
+        let cell = $('#cell_' + i + '_' + j);
+        let item = $('#item_' + i + '_' + j);
+        $('#from_' + i).css('background-color', 'lightgray');
+        $('#to_' + j).css('background-color', 'lightgray');
+        if (pin[i][j] == false) {
+            const offset = cell.offset();
+            cell.css('border-radius', '100%');
+            // $('#tail_' + i + '_' + j).hide();
+            item.show();
+            item.css('position', 'absolute');
+            item.css('top', offset.top + 8);
+            if (touch != true) {
+                item.css('left', offset.left + 8);
+            }
+        }
+        hover = [i, j];
+    }
+    function hover_off(i, j) {
+        let cell = $('#cell_' + i + '_' + j);
+        let item = $('#item_' + i + '_' + j);
+        $('#from_' + i).css('background-color', 'white');
+        $('#to_' + j).css('background-color', 'white');
+        if (pin[i][j] == false) {
+            cell.css('border-radius', '');
+            item.hide();
+            item.css('position', 'static');
+        }
+        hover = null;
     }
 
     // 状態を復元
@@ -150,59 +215,48 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                 hide(i, j);
             });
             $('#like_' + i + '_' + j).on('click', function() {
+                const mode = $('input[name="mode"]:checked').val();
                 if (like[i][j] == false) {
                     like[i][j] = true;
                     $('#like_' + i + '_' + j).text('favorite');
+                    if (mode == 'like') {
+                        $('#cell_' + i + '_' + j).text('♥');
+                    }
                 } else {
                     like[i][j] = false;
                     $('#like_' + i + '_' + j).text('favorite_border');
+                    if (mode == 'like') {
+                        $('#cell_' + i + '_' + j).text('');
+                    }
                 }
             });
         }
-    }
+    }    
 
-    // タッチ端末でセルが選択状態か否かを示すフラグ
-    let selected = false;
-
-    // 呼称表ホバー
+    // 呼称表ヘッダホバー
     for (let i = 0; i < 52; i++) {
         $('#from_' + i + ',#to_' + i).hover(function() {
             $(this).css('background-color', 'lightgray');
         }, function() {
             $(this).css('background-color', 'white');
         });
-        for (let j = 0; j < 52; j++) {
-            let item = '#item_' + i + '_' + j;
-            $('#cell_' + i + '_' + j).hover(function() {
-                $('#from_' + i).css('background-color', 'lightgray');
-                $('#to_' + j).css('background-color', 'lightgray');
-                if (pin[i][j] == false) {
-                    const offset = $(this).offset();
-                    $(this).css({'border-radius': '100%'});
-                    $('#tail_' + i + '_' + j).hide();
-                    $(item).show();
-                    $(item).css({
-                        'position': 'absolute',
-                        'top': offset.top + 8,
-                    });
-                    if (touch != true) {
-                        $(item).css({'left': offset.left + 18});
-                    }
-                }
-            }, function() {
-                $('#from_' + i).css('background-color', 'white');
-                $('#to_' + j).css('background-color', 'white');
-                if (pin[i][j] == false) {
-                    $(this).css({'border-radius': ''});
-                    $(item).hide();
-                    $(item).css({'position': 'static'});
-                }
-                selected = false;
-            });
+    }
+    
+    // 呼称表セルホバー
+    if (touch == false) {
+        for (let i = 0; i < 52; i++) {
+            for (let j = 0; j < 52; j++) {
+                let item = $('#item_' + i + '_' + j);
+                $('#cell_' + i + '_' + j).hover(function() {
+                    hover_on(i, j);
+                }, function() {
+                    hover_off(i, j);
+                });
+            }
         }
     }
 
-    // 呼称表クリック
+    // 呼称表ヘッダクリック
     for (let i = 0; i < 52; i++) {
         $('#from_' + i).on('click', function() {
             if ($(this).css('font-weight') == '700') {
@@ -230,19 +284,35 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                 $(this).css('font-weight', '700');
             }
         });
+    }
+
+    // 呼称表セルクリック
+    for (let i = 0; i < 52; i++) {
         for (let j = 0; j < 52; j++) {
-            $('#cell_' + i + '_' + j).on('click', function() {
-                if (pin[i][j] == false) {
-                    if (touch == true) {
-                        if (selected == true) {
-                            show(i, j);
+            let cell = $('#cell_' + i + '_' + j);
+            cell.on('click', function() {
+                if (touch == true) {
+                    if (pin[i][j] == true) {
+                        hide(i, j);
+                    } else {
+                        if (hover === null) {
+                            hover_on(i, j);
+                        } else {
+                            if (hover[0] == i && hover[1] == j) {
+                                hover_off(hover[0], hover[1]);
+                                show(i, j);
+                            } else {
+                                hover_off(hover[0], hover[1]);
+                                hover_on(i, j);
+                            }
                         }
-                        selected = true;
+                    }
+                } else {
+                    if (pin[i][j] == true) {
+                        hide(i, j);
                     } else {
                         show(i, j);
                     }
-                } else {
-                    hide(i, j);
                 }
             });
         }
