@@ -139,8 +139,15 @@ div.head {
 div.tail {
     font-size: 12px;
     display: flex;
-    /* display: none; */
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
     align-items: center;
 }

@@ -103,9 +103,9 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                     item.append('<div class="block"><div class="term">オファー</div></div>');
                     item.append('<div class="text">' + datum['オファー台詞'].replace(/\r?\n/g, '<br>') + '</div>');
                 }
-                const like_icon = '<span class="material-icons" id="like_' + i + '_' + j + '">favorite_border</span>';
-                const close_icon = '<span class="material-icons" id="close_' + i + '_' + j + '">highlight_off</span>';
-                item.append('<div class="tail" id="tail_' + i + '_' + j + '">' + like_icon + close_icon + '</div>');
+                const like_icon = '<div class="icon" id="like_' + i + '_' + j + '"><span class="material-icons">favorite_border</span>いいね</div>';
+                const close_icon = '<div class="icon" id="close_' + i + '_' + j + '"><span class="material-icons">highlight_off</span>とじる</div>';
+                item.append('<div class="tail">' + like_icon + close_icon + '</div>');
                 $('#koshou_container').append(item);
             }
         }
@@ -124,7 +124,7 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                 if (mode == 'pred') {
                     const datum = data[names[i]][names[j]];
                     if (datum['label'] != '' & datum['label'] != datum['pred']) {
-                        cell.text('！');
+                        cell.text('❗');
                     } else {
                         cell.text('');
                     }
@@ -135,7 +135,8 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                         cell.text('');
                     }
                 } else if (mode == 'unit') {
-                    // ♪
+                    // '🎵'
+                    // '🎤'
                 }
             }
         }
@@ -173,7 +174,6 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         if (pin[i][j] == false) {
             const offset = cell.offset();
             cell.css('border-radius', '100%');
-            // $('#tail_' + i + '_' + j).hide();
             item.show();
             item.css('position', 'absolute');
             item.css('top', offset.top + 8);
@@ -200,7 +200,7 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
     for (let i = 0; i < 52; i++) {
         for (let j = 0; j < 52; j++) {
             if (like[i][j] == true) {
-                $('#like_' + i + '_' + j).text('favorite');
+                $('#like_' + i + '_' + j + ' span').text('favorite');
             }
             if (pin[i][j] == true) {
                 show(i, j);
@@ -213,18 +213,19 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         for (let j = 0; j < 52; j++) {
             $('#close_' + i + '_' + j).on('click', function() {
                 hide(i, j);
+                hover_off(i, j);
             });
             $('#like_' + i + '_' + j).on('click', function() {
                 const mode = $('input[name="mode"]:checked').val();
                 if (like[i][j] == false) {
                     like[i][j] = true;
-                    $('#like_' + i + '_' + j).text('favorite');
+                    $('#like_' + i + '_' + j + ' span').text('favorite');
                     if (mode == 'like') {
                         $('#cell_' + i + '_' + j).text('♥');
                     }
                 } else {
                     like[i][j] = false;
-                    $('#like_' + i + '_' + j).text('favorite_border');
+                    $('#like_' + i + '_' + j + ' span').text('favorite_border');
                     if (mode == 'like') {
                         $('#cell_' + i + '_' + j).text('');
                     }
