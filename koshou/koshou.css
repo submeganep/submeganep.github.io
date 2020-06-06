@@ -62,10 +62,16 @@
     padding-top: 10px;
     justify-content: center;
 }
-.legend {
+.legend_item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 280px;
+}
+.legend_cell {
     width: 16px;
     height: 16px;
-    margin-left: 40px;
+    margin-left: 20px;
     margin-right: 5px;
 }
 
@@ -108,13 +114,15 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: rgba(244,244,244,0.9);
+    background-color: rgba(244,244,244,0.95);
     /* background-color: whitesmoke; */
     margin-top: 10px;
+    margin-bottom: 5px;
     padding: 5px;
-    /* box-shadow : 5px 5px 5px 0px gray; */
+    box-shadow : 5px 5px 5px 0px gray;
     max-width: 360px;
     min-width: 360px;
+    font-size: 12px;
     display: none;
 }
 div.block {

@@ -45,18 +45,22 @@
     <h1>ミリシタ呼称表（β）</h1>
 
     <div id="mode_container">
-        <label><input type="radio" name="mode" value="like" checked>いいね</label>
-        <label><input type="radio" name="mode" value="pred">キてる</label>
-        <!-- <label><input type="radio" name="mode" value="unit">ユニット</label> -->
+        <label><input type="radio" name="mode" value="like" checked>いいね♥</label>
+        <label><input type="radio" name="mode" value="pred">キテる❗</label>
+        <label><input type="radio" name="mode" value="unit">ユニット🎤</label>
     </div>
 
     <div id="legend_container">
-        <div class="legend sei-san"></div>姓＋さん
-        <div class="legend mei-san"></div>名＋さん
-        <div class="legend mei-chan"></div>名＋ちゃん
-        <div class="legend mei"></div>名（呼び捨て）
-        <div class="legend aisho"></div>愛称
-        <div class="legend keisho"></div>敬称
+        <div class="legend_item">
+            <div class="legend_cell aisho"></div>愛称
+            <div class="legend_cell sei-san"></div>姓＋さん
+            <div class="legend_cell mei"></div>名（呼び捨て）
+        </div>
+        <div class="legend_item">
+            <div class="legend_cell keisho"></div>敬称
+            <div class="legend_cell mei-san"></div>名＋さん
+            <div class="legend_cell mei-chan"></div>名＋ちゃん
+        </div>
     </div>
 
     <div id="table_container">
@@ -67,9 +71,27 @@
     
     <h2>使い方</h2>
     <ul>
-        <li>呼ぶ側と呼ばれる側のアイドルが交差するマスを選択して呼称を表示</li>
-        <li>対角線上のマスを選択してアイドルのプロフィールを表示</li>
-        <li>呼ぶ側または呼ばれる側のアイドル名を選択して情報を一括表示</li>
+        <li>スマホ・タブレット
+            <ul>
+                <li>マスをタップして呼称やプロフィールなどの情報を表示</li>
+                <li>マスをもう一度タップして下側にピン留め／解除</li>
+                <li>呼ぶ側または呼ばれる側のアイドル名をタップして情報を一括表示・解除</li>
+            </ul>
+        </li>
+        <li>PC
+            <ul>
+                <li>ホバーで呼称やプロフィールなどの情報を表示</li>
+                <li>マスをクリックして下側にピン留め／解除</li>
+                <li>呼ぶ側または呼ばれる側のアイドル名をクリックして情報を一括表示／解除</li>
+            </ul>
+        </li>
+        <li>モード選択
+            <ul>
+                <li>いいね：いいねをクリックした呼称に「♥」を表示</li>
+                <li>キテる：AI（機械学習）の予想と異なる呼称に「❗」を表示</li>
+                <li>ユニット：これまでに組んだユニット数を表示 (LTP, LTH, LTD, LTF, MTG, MTW, TA, TB, TC)</li>
+            </ul>
+        </li>
     </ul>
 
     <h2>備考</h2>
@@ -80,7 +102,6 @@
                 <li>（時々投稿させていただいていますが，皆さんも情報をお持ちでしたら是非！）</li>
             </ul>
         </li>
-        <li>AI（機械学習）の予測と異なる呼称には「！」マーク（キテる！）を記載しています</li>
         <li>呼称はミリシタのオファー台詞を正とし，その他の呼称も可能な限り出典付きで列挙しています</li>
         <li>ミリラジ劇場における呼称はミリシタにおける呼称と大きく異なるものが多いため除外しています</li>
         <li>内容に誤りが含まれる可能性があるため予めご了承ください</li>
@@ -89,6 +110,8 @@
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-06-06 ユニット表示を追加</li>
+        <li>2020-06-04 いいね機能を追加</li>
         <li>2020-06-01 β版リリース</li>
     </ul>
 
