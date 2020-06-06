@@ -318,11 +318,11 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
                 }
                 if (datum['MTG'] != '') {
                     const mtg = datum['MTG'];
-                    units.push('[MTG' + mtg + '] ' + mtg_songs[mtg] + ' (' + mtg_units[mtg] + ')');
+                    units.push('[MTG' + mtg + '] ' + mtg_songs[mtg] + '<br>　　　　　(' + mtg_units[mtg] + ')');
                 }
                 if (datum['MTW'] != '') {
                     const mtw = datum['MTW'];
-                    units.push('[MTW' + mtw + '] ' + mtw_songs[mtw] + ' (' + mtw_units[mtw] + ')');
+                    units.push('[MTW' + mtw + '] ' + mtw_songs[mtw] + '<br>　　　　　(' + mtw_units[mtw] + ')');
                 }
                 if (datum['TA'] != '') {
                     const ta = datum['TA'];

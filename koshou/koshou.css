@@ -40,7 +40,16 @@
 
 #table_container {
     overflow: auto;
-    height: 60vh;
+    height: 50vh;
+    max-width: 1020px;
+    margin: auto;
+    resize: vertical;
+    
+}
+#table_spacer {
+    /* min-width: 1360px; */
+    /* max-width: 1360px; */
+    width: 1360px;
 }
 
 #mode_container {
