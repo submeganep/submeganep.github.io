@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ミリシタ相関図（β）</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/sanitize.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <link rel="stylesheet" href="./relations.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166007780-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-166007780-1');
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- vis.js -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <!-- header & hooter -->
+    <script>
+        $(function() {
+            $("header").load("../site/header.html");
+            $("footer").load("../site/footer.html");
+        });
+        </script>
+
+</head>
+<body>
+
+    <header></header>
+
+    <h1>ミリシタ相関図（β）</h1>
+
+    <div id="network"></div>
+    <script src="./relations.js"></script>
+
+    <h2>使い方</h2>
+    <ul>
+        <li>アイドルのアイコンを選択してキテる呼称を表示</li>
+        <li>アイドルのアイコンを掴んで配置を調整</li>
+    </ul>
+
+    <h2>備考</h2>
+    <ul>
+        <li><a href="../koshou/index.html">ミリシタ呼称表</a>においてAI（機械学習）の予測と異なるキテる呼称を表示しています</li>
+        <li>呼称はミリシタのオファー台詞を正としています</li>
+        <li>内容に誤りが含まれる可能性があるため予めご了承ください</li>
+    </ul>
+
+    <h2>更新履歴</h2>
+    <ul>
+        <li>2020-06-07 β版リリース</li>
+    </ul>
+
+    <footer></footer>
+
+</body>
+</html>
