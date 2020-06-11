@@ -40,7 +40,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u661f\u4e95\u7f8e\u5e0c": {
             "label": "mei",
@@ -61,7 +61,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u8429\u539f\u96ea\u6b69": {
             "label": "mei",
@@ -124,7 +124,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u6c34\u702c\u4f0a\u7e54": {
             "label": "mei",
@@ -670,7 +670,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5317\u6ca2\u5fd7\u4fdd": {
             "label": "mei-chan",
@@ -1113,7 +1113,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5982\u6708\u5343\u65e9": {
             "\u4e00\u4eba\u79f0": "\u79c1",
@@ -1155,7 +1155,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u8429\u539f\u96ea\u6b69": {
             "label": "sei-san",
@@ -1218,7 +1218,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u6c34\u702c\u4f0a\u7e54": {
             "label": "sei-san",
@@ -1764,7 +1764,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5317\u6ca2\u5fd7\u4fdd": {
             "label": "mei",
@@ -2207,7 +2207,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5982\u6708\u5343\u65e9": {
             "label": "mei-san",
@@ -2228,7 +2228,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u661f\u4e95\u7f8e\u5e0c": {
             "\u4e00\u4eba\u79f0": "\u30df\u30ad",
@@ -2312,7 +2312,7 @@
             "MTW": "03",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u6c34\u702c\u4f0a\u7e54": {
             "label": "aisho",
@@ -2858,7 +2858,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5317\u6ca2\u5fd7\u4fdd": {
             "label": "mei",
@@ -5489,7 +5489,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5982\u6708\u5343\u65e9": {
             "label": "mei",
@@ -5510,7 +5510,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u661f\u4e95\u7f8e\u5e0c": {
             "label": "mei",
@@ -5531,7 +5531,7 @@
             "MTW": "03",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u8429\u539f\u96ea\u6b69": {
             "label": "mei",
@@ -6140,7 +6140,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5317\u6ca2\u5fd7\u4fdd": {
             "label": "mei",
@@ -8168,7 +8168,7 @@
             "rule": "college == False",
             "score": 0.9761904761904762,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u8def\u5b50\uff08\u307f\u3061\u3053\uff09",
-            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u4f34\u7530\u8def\u5b50\uff08\u8981\u51fa\u5178\uff09\n\u30ed\u30b3\uff08\u8981\u51fa\u5178\uff09\n\u307f\u3061\u3053\uff08\u8981\u51fa\u5178\uff09",
+            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u4f34\u7530\u8def\u5b50\uff08STANDING ALIVE\u7b2c2\u8a71\uff09\n\u30ed\u30b3\uff08\u8981\u51fa\u5178\uff09\n\u307f\u3061\u3053\uff08\u8981\u51fa\u5178\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u30ed\u30b3",
             "\u30aa\u30d5\u30a1\u30fc\u53f0\u8a5e": "\u4f11\u61a9\u4e2d\u306b\u3001\u8def\u5b50\u304b\u3089\u97f3\u697d\u306e\u3058\u3083\u3093\u308b\u3092\u6559\u308f\u308a\u307e\u3057\u305f\u3002\n\u3067\u3059\u304c\u3001\u308f\u304b\u3063\u305f\u3088\u3046\u306a\u3001\u308f\u304b\u3089\u306a\u3044\u3088\u3046\u306a\u2026\u2026\u3002\n\u3044\u30fc\u3067\u3043\u3048\u3080\uff1f\u3000\u306f\u3066\u3002",
             "LTP": "",
@@ -13567,7 +13567,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u7bb1\u5d0e\u661f\u68a8\u82b1": {
             "label": "mei",
@@ -13588,7 +13588,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u91ce\u3005\u539f\u831c": {
             "label": "",
@@ -14113,7 +14113,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u5317\u4e0a\u9e97\u82b1": {
             "label": "mei",
@@ -14155,7 +14155,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u30b8\u30e5\u30ea\u30a2": {
             "label": "mei",
@@ -16414,7 +16414,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u6625\u9999\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u6625\u9999\u3055\u3093",
@@ -16435,7 +16435,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u5343\u65e9\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u5343\u65e9\u3055\u3093",
@@ -16477,7 +16477,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u96ea\u6b69\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u96ea\u6b69\u3055\u3093",
@@ -16519,7 +16519,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u771f\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u771f\u3055\u3093",
@@ -16561,7 +16561,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (18) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u8cb4\u97f3\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u8cb4\u97f3\u3055\u3093",
@@ -16582,7 +16582,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (19) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u5f8b\u5b50\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u5f8b\u5b50\u3055\u3093",
@@ -16603,7 +16603,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (21) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u3042\u305a\u3055\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u3042\u305a\u3055\u3055\u3093",
@@ -16666,7 +16666,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u97ff\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u97ff\u3055\u3093",
@@ -16750,7 +16750,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (18) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u7434\u8449\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u7434\u8449\u3055\u3093",
@@ -16771,7 +16771,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u30a8\u30ec\u30ca\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u30a8\u30ec\u30ca\u3055\u3093",
@@ -16792,7 +16792,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (18) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u7f8e\u5948\u5b50\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u7f8e\u5948\u5b50\u3055\u3093",
@@ -16813,7 +16813,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u6075\u7f8e\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u6075\u7f8e\u3055\u3093",
@@ -16834,7 +16834,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (19) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u307e\u3064\u308a\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u307e\u3064\u308a\u3055\u3093",
@@ -16876,7 +16876,7 @@
             "label": "mei-chan",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u831c\u3061\u3083\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u831c\u3055\u3093\uff08\u8981\u51fa\u5178\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u831c\u3055\u3093",
@@ -16960,7 +16960,7 @@
             "label": "mei-chan",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u7d17\u4ee3\u5b50\u3061\u3083\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u7d17\u4ee3\u5b50\u3055\u3093",
@@ -16978,10 +16978,10 @@
             "TC": ""
         },
         "\u677e\u7530\u4e9c\u5229\u6c99": {
-            "label": "mei-chan",
+            "label": "",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u4e9c\u5229\u6c99\u3061\u3083\u3093\uff08\u8981\u51fa\u5178\uff09\n\u4e9c\u5229\u6c99\u3055\u3093\uff08\u8981\u51fa\u5178\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u4e9c\u5229\u6c99\u3055\u3093",
@@ -17002,7 +17002,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u6d77\u7f8e\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u6d77\u7f8e\u3055\u3093",
@@ -17107,7 +17107,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (19) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u6b69\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u6b69\u3055\u3093",
@@ -17170,7 +17170,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u5948\u7dd2\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u5948\u7dd2\u3055\u3093",
@@ -17191,7 +17191,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (21) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u5343\u9db4\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u5343\u9db4\u3055\u3093",
@@ -17212,7 +17212,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (24) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u3053\u306e\u307f\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u3053\u306e\u307f\u3055\u3093",
@@ -17254,7 +17254,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (22) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u98a8\u82b1\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u98a8\u82b1\u3055\u3093",
@@ -17275,7 +17275,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u7f8e\u4e5f\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u7f8e\u4e5f\u3055\u3093",
@@ -17296,7 +17296,7 @@
             "label": "mei-chan",
             "pred": "mei-san",
             "rule": "age (18) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u306e\u308a\u5b50\u3061\u3083\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u306e\u308a\u5b50\u3055\u3093\uff08\u8981\u51fa\u5178\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u306e\u308a\u5b50\u3055\u3093",
@@ -17317,7 +17317,7 @@
             "label": "mei-chan",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u745e\u5e0c\u3061\u3083\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u745e\u5e0c\u3055\u3093",
@@ -17338,7 +17338,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u53ef\u6190\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u53ef\u6190\u3055\u3093",
@@ -17359,7 +17359,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (23) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u8389\u7dd2\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u8389\u7dd2\u3055\u3093",
@@ -17401,7 +17401,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (20) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u9e97\u82b1\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u9e97\u82b1\u3055\u3093",
@@ -17443,7 +17443,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (16) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u30b8\u30e5\u30ea\u30a2\u3055\u3093\uff08\u8981\u51fa\u5178\uff09\n\u30b8\u30e5\u30ea\u30a2\u30fc\u30ce\uff08LTP06\u3001\u30d0\u30ec\u30f3\u30bf\u30a4\u30f3\uff09\n\u30b8\u30e5\u30ea\u30a2\u30ca\uff08\u8981\u51fa\u5178\uff09\n\u30b8\u30e5\u30ea\u30a2\u30f3\uff08\u8981\u51fa\u5178\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u30b8\u30e5\u30ea\u30a2\u3055\u3093",
@@ -17464,7 +17464,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (17) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u7d2c\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u7d2c\u3055\u3093",
@@ -17485,7 +17485,7 @@
             "label": "mei-san",
             "pred": "mei-san",
             "rule": "age (23) > 15.5",
-            "score": 0.8387096774193549,
+            "score": 0.8666666666666667,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u6b4c\u7e54\u3055\u3093",
             "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u6b4c\u7e54\u3055\u3093",
@@ -19079,7 +19079,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u671b\u6708\u674f\u5948": {
             "label": "mei",
@@ -19289,7 +19289,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u821e\u6d5c\u6b69": {
             "label": "mei",
@@ -19394,7 +19394,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u99ac\u5834\u3053\u306e\u307f": {
             "label": "mei",
@@ -19688,7 +19688,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         }
     },
     "\u4f50\u7af9\u7f8e\u5948\u5b50": {
@@ -22151,7 +22151,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u6625\u65e5\u672a\u6765": {
             "label": "mei-chan",
@@ -22340,7 +22340,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u91ce\u3005\u539f\u831c": {
             "label": "mei-chan",
@@ -22865,7 +22865,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u5317\u4e0a\u9e97\u82b1": {
             "label": "mei-chan",
@@ -22907,7 +22907,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u30b8\u30e5\u30ea\u30a2": {
             "label": "mei-chan",
@@ -23245,7 +23245,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u6625\u65e5\u672a\u6765": {
             "label": "mei-san",
@@ -23413,7 +23413,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u7bb1\u5d0e\u661f\u68a8\u82b1": {
             "\u4e00\u4eba\u79f0": "\u308f\u305f\u3057",
@@ -23959,7 +23959,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u5317\u4e0a\u9e97\u82b1": {
             "label": "mei-san",
@@ -24001,7 +24001,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u30b8\u30e5\u30ea\u30a2": {
             "label": "mei-san",
@@ -24444,7 +24444,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u4f50\u7af9\u7f8e\u5948\u5b50": {
             "label": "mei-chan",
@@ -24759,7 +24759,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u821e\u6d5c\u6b69": {
             "label": "aisho",
@@ -24864,7 +24864,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u99ac\u5834\u3053\u306e\u307f": {
             "label": "aisho",
@@ -25158,7 +25158,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         }
     },
     "\u671b\u6708\u674f\u5948": {
@@ -26787,7 +26787,7 @@
             "rule": "",
             "score": 1.0,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u30e6\u30ea\u30b3",
-            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u30e6\u30ea\u30b3\u3055\u3093\uff08\u8981\u51fa\u5178\uff09",
+            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u30e6\u30ea\u30b3\u3055\u3093\uff08\u30e1\u30a4\u30f3\u30b3\u30df\u30e5\u7b2c10\u8a71\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u30e6\u30ea\u30b3",
             "\u30aa\u30d5\u30a1\u30fc\u53f0\u8a5e": "",
             "LTP": "",
@@ -27860,7 +27860,7 @@
             "rule": "age (15) > 14.5",
             "score": 0.9411764705882353,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u30ed\u30b3\u3061\u3083\u3093",
-            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "",
+            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u30ed\u30b3\u3055\u3093\uff08\u30e1\u30a4\u30f3\u30b3\u30df\u30e5\u7b2c10\u8a71\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u30ed\u30b3\u3055\u3093",
             "\u30aa\u30d5\u30a1\u30fc\u53f0\u8a5e": "\u4eca\u65e5\u306e\u30b5\u30a4\u30f3\u4f1a\u3001\u9014\u4e2d\u304b\u3089\u30ed\u30b3\u3061\u3083\u3093\u306e\u500b\u5c55\u307f\u305f\u3044\u306b\u306a\u3063\u3066\n\u307e\u3057\u305f\u3002\u30a2\u30fc\u30c8\u9b42\u306b\u706b\u304c\u7740\u3044\u3061\u3083\u3063\u305f\u307f\u305f\u3044\u3067\u3001\u4e00\u679a\u66f8\u304f\u306e\u306b\n\u4f55\u5206\u3082\u2026\u2026\u3002\u3067\u3082\u3001\u30d5\u30a1\u30f3\u306e\u4eba\u305f\u3061\u306f\u559c\u3093\u3067\u3044\u307e\u3057\u305f\uff01",
             "LTP": "",
@@ -30552,7 +30552,7 @@
             "rule": "age (11) <= 20.5",
             "score": 0.8409090909090909,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u6843\u5b50\u3061\u3083\u3093\u30bb\u30f3\u30d1\u30a4",
-            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u6843\u5b50\u3061\u3083\u3093\uff08PSL\u7de8\u30ea\u30b3\u30c3\u30bf\u7b2c1\u8a71\uff09",
+            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u6843\u5b50\u3061\u3083\u3093\uff08PST HOME,SWEET FRIENDSHIP \u7b2c2\u8a71\u3001PSL\u7de8 \u30ea\u30b3\u30c3\u30bf \u7b2c1\u8a71\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u6843\u5b50\u3061\u3083\u3093",
             "\u30aa\u30d5\u30a1\u30fc\u53f0\u8a5e": "\u30b9\u30bf\u30c3\u30d5\u3055\u3093\u306b\u63e1\u624b\u4f1a\u306e\u69d8\u5b50\u3092\u64ae\u5f71\u3057\u3066\u3082\u3089\u3063\u305f\u3093\u3067\u3059\n\u3051\u3069\u2026\u2026\u306a\u3093\u3068\u6843\u5b50\u3061\u3083\u3093\u30bb\u30f3\u30d1\u30a4\u3001\u63e1\u624b\u306e\u6642\u9593\u306b\u307b\u307c\n\u30ba\u30ec\u304c\u306a\u3044\u3093\u3067\u3059\uff01\u3000\u3053\u308c\u305e\u795e\u696d\u2026\u2026\uff01\u3000\u3055\u3059\u304c\u3067\u3059\uff01",
             "LTP": "",
@@ -33933,7 +33933,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u5982\u6708\u5343\u65e9": {
             "label": "mei-san",
@@ -33954,7 +33954,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u661f\u4e95\u7f8e\u5e0c": {
             "label": "mei-san",
@@ -33975,7 +33975,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u8429\u539f\u96ea\u6b69": {
             "label": "mei-san",
@@ -34038,7 +34038,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "03"
+            "TC": "02"
         },
         "\u6c34\u702c\u4f0a\u7e54": {
             "label": "keisho",
@@ -35384,7 +35384,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u4f50\u7af9\u7f8e\u5948\u5b50": {
             "label": "mei-san",
@@ -35489,7 +35489,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u671b\u6708\u674f\u5948": {
             "label": "mei",
@@ -35749,7 +35749,7 @@
             "rule": "age (14) <= 14.5",
             "score": 1.0,
             "\u547c\u79f0\uff08\u30df\u30ea\u30b7\u30bf\uff09": "\u53ef\u5948",
-            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u77e2\u5439\u3055\u3093\uff08\u767d\u71b1\uff01\u30a2\u30a4\u30c9\u30eb\u30e6\u30cb\u30c3\u30c8\u30c8\u30fc\u30ca\u30e1\u30f3\u30c8\u3001\u6050\u6016\uff01\u30a2\u30a4\u30c9\u30eb\u30c9\u30ad\u30c9\u30ad\u809d\u3060\u3081\u3057\uff09",
+            "\u547c\u79f0\uff08\u305d\u306e\u4ed6\uff09": "\u77e2\u5439\u3055\u3093\uff08\u30e1\u30a4\u30f3\u30b3\u30df\u30e5\u7b2c15\u8a71\u3001\u767d\u71b1\uff01\u30a2\u30a4\u30c9\u30eb\u30e6\u30cb\u30c3\u30c8\u30c8\u30fc\u30ca\u30e1\u30f3\u30c8\u3001\u6050\u6016\uff01\u30a2\u30a4\u30c9\u30eb\u30c9\u30ad\u30c9\u30ad\u809d\u3060\u3081\u3057\uff09",
             "\u547c\u79f0\uff08\u4e88\u6e2c\uff09": "\u53ef\u5948",
             "\u30aa\u30d5\u30a1\u30fc\u53f0\u8a5e": "\u79c1\u306b\u30b2\u30fc\u30e0\u30a4\u30d9\u30f3\u30c8\u306e\u30aa\u30d5\u30a1\u30fc\u3063\u3066\u3001\u610f\u5916\u3067\u3057\u305f\u3002\u3000\u78ba\u304b\u306b\u5f1f\u3068\u5c11\u3057\u30b2\u30fc\u30e0\u3092\u3059\u308b\u3053\u3068\u3082\u3042\u308a\u307e\u3059\u304c\u2026\u2026\u3002\u3000\u53ef\u5948\u306f\u97f3\u30b2\u30fc\u304c\u4e0a\u624b\u306a\u3093\u3067\u3059\u3088\u306d\u3002\u3000\u3061\u3087\u3063\u3068\u9a5a\u304d\u307e\u3057\u305f\u3002",
             "LTP": "",
@@ -35804,7 +35804,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u99ac\u5834\u3053\u306e\u307f": {
             "label": "",
@@ -36098,7 +36098,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         }
     },
     "\u821e\u6d5c\u6b69": {
@@ -40854,7 +40854,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u4f50\u7af9\u7f8e\u5948\u5b50": {
             "label": "mei",
@@ -40959,7 +40959,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u671b\u6708\u674f\u5948": {
             "label": "mei",
@@ -41169,7 +41169,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u821e\u6d5c\u6b69": {
             "label": "mei",
@@ -41568,7 +41568,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         }
     },
     "\u99ac\u5834\u3053\u306e\u307f": {
@@ -50595,7 +50595,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u6625\u65e5\u672a\u6765": {
             "label": "mei",
@@ -50763,7 +50763,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u7bb1\u5d0e\u661f\u68a8\u82b1": {
             "label": "mei",
@@ -50784,7 +50784,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u91ce\u3005\u539f\u831c": {
             "label": "mei",
@@ -51351,7 +51351,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u30b8\u30e5\u30ea\u30a2": {
             "label": "mei",
@@ -52783,7 +52783,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u6625\u65e5\u672a\u6765": {
             "label": "mei-san",
@@ -52951,7 +52951,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u7bb1\u5d0e\u661f\u68a8\u82b1": {
             "label": "mei",
@@ -52972,7 +52972,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u91ce\u3005\u539f\u831c": {
             "label": "mei-san",
@@ -53497,7 +53497,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "02"
+            "TC": "01"
         },
         "\u5317\u4e0a\u9e97\u82b1": {
             "label": "mei-san",
@@ -56170,7 +56170,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u4f50\u7af9\u7f8e\u5948\u5b50": {
             "label": "mei-chan",
@@ -56275,7 +56275,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u671b\u6708\u674f\u5948": {
             "label": "mei-chan",
@@ -56485,7 +56485,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u821e\u6d5c\u6b69": {
             "label": "mei-chan",
@@ -56590,7 +56590,7 @@
             "MTW": "",
             "TA": "",
             "TB": "",
-            "TC": "01"
+            "TC": "03"
         },
         "\u99ac\u5834\u3053\u306e\u307f": {
             "label": "mei-san",
