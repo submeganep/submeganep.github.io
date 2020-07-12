@@ -232,14 +232,14 @@ $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/mas
         url_search += '&src=typed_query';
 
         let item = $('<div class="costume_item"></div>');
-        item.append('<a class="costume_name" id="' + key + '">' + data[key]['name'] + '</a>');
+        item.append('<span class="costume_name">' + data[key]['name'] + '</span>');
         item.append(names);
         item.append('<span class="costume_type">' + data[key]['type'] + ' / ' + data[key]['datetime'].split('T')[0] + '</span>');
-        item.append('<div class="costume_image"><a href="' + url_search + '" target="_blank"><img src="' + costume_img + '"></a></div>');
+        item.append('<div class="costume_image"><a id="' + key + '"><img src="' + costume_img + '"></a></div>');
         item.append(colors);
         let description = data[key.split('_v')[0]]['description'].replace(/\r?\n/g, '<br>');
         item.append('<span class="costume_description">' + description + '</span>');
-        // icons.append('<div class="costume_icon"><a href="' + url_search + '" target="_blank"><i class="fas fa-search"></i>検索</a></div>');
+        icons.append('<div class="costume_icon"><a href="' + url_search + '" target="_blank"><i class="fas fa-search"></i>検索</a></div>');
         icons.append('<div class="costume_icon"><a href="' + url_tweet + '" target="_blank"><i class="far fa-comment"></i>投稿</a></div>');
         const star_icon = (star.includes(key)) ? 'fas' : 'far';
         const like_icon = (like.includes(key)) ? 'fas' : 'far';
