@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="./costume.css">
 
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/05526ef7b0.js" crossorigin="anonymous"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166007780-1"></script>
     <script>
@@ -26,6 +32,10 @@
     <!-- spectrum -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+
+    <!-- sumoselect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/sumoselect.min.css">
     
     <!-- header & hooter -->
     <script>
@@ -35,7 +45,7 @@
         });
         </script>
     
-    <!--  -->
+    <!-- java script -->
     <script src="./costume.js"></script>
 
 </head>
@@ -46,58 +56,99 @@
     <h1>ミリシタ衣装検索（β）</h1>
 
     <div id="setting_container">
-        <div>
+        <div class="row"><i class="fas fa-cog"></i>設定</div>
+        <div class="row">
+            最大表示数：
+            <input type="number" id="max_costumes" value=20 min=5>
+        </div>
+        <div class="row">
             類似基準：
             <select id="sort_mode">
                 <option value="sort_by_color">色</option>
                 <option value="sort_by_shape">形</option>
             </select>
         </div>
-        <div>
-            最大表示数：
-            <input type="number" id="max_costumes" value=20 min=5>
-        </div>
     </div>
     
-    <div id="idol_container"></div>
-    
     <div id="filter_container">
-        <div>
-            種類：
-            <label><input type="checkbox" id="type_const" checked>恒常SSR</label>
-            <label for="type_limit"><input type="checkbox" id="type_limit" checked>限定SSR</label>
-            <label for="type_fes"><input type="checkbox" id="type_fes" checked>FES</label>
-            <label for="type_pst"><input type="checkbox" id="type_pst" checked>PST</label>
-            <label for="type_sr"><input type="checkbox" id="type_sr" checked>SR</label>
-            <!-- <label for="type_other"><input type="checkbox" id="type_other" checked>その他</label> -->
+        <div class="row"><i class="fas fa-filter"></i>絞込</div>
+        <div class="row">
+            <div class="button" id="button_ticket">セレチケ</div>
+            <div class="button" id="button_ticket2">限定セレチケ</div>
+            <div class="button" id="button_psp">PSP交換</div>
+            <div class="button" id="button_reset">絞込解除</div>
         </div>
-        <div>
-            期間：
+        <div class="row">
+            <input type="checkbox" id="unstar" checked><label for="unstar">未所持</label>
+            <input type="checkbox" id="star" checked><label for="star">所持</label>
+        </div>
+        <div class="row">
+            <input type="checkbox" id="normal" checked><label for="normal">ノーマル</label>
+            <input type="checkbox" id="another" checked><label for="another">アナザー</label>
+            <input type="checkbox" id="another2" checked><label for="another2">アナザー2</label>
+        </div>
+        <div class="row">
+            <input type="checkbox" id="type_const" checked><label for="type_const">恒常SSR</label>
+            <input type="checkbox" id="type_limit" checked><label for="type_limit">限定SSR</label>
+            <input type="checkbox" id="type_fes" checked><label for="type_fes">FES限定</label>
+            <input type="checkbox" id="type_pst" checked><label for="type_pst">PST</label>
+            <input type="checkbox" id="type_sr" checked><label for="type_sr">SR</label>
+        </div>
+        <div class="row">
             <input type="date" id="date_begin" value="2017-06-29">
             ～
             <input type="date" id="date_end">
         </div>
-        <div>
-            絞込：
-            <input type="button" id="button_ticket" value="セレチケ">
-            <input type="button" id="button_psp" value="PSP交換">
-            <input type="button" id="button_all" value="全選択">
+    </div>
+
+    <div id="search_container">
+        <div class="row"><i class="fas fa-search"></i>検索</div>
+        <div class="row"><select multiple="multiple" id="select_idols"></select></div>
+        <div class="row">
+            <div class="button search_mode" id="button_all">全衣装</div>
+            <div class="button search_mode" id="button_like">いいね</div>
+            <div class="button search_mode" id="button_costume" style="display: none;"></div>
+            <input type="text" id="picker">
+        </div>
+        <div class="row">
         </div>
     </div>
 
-    <div id="query_container">
-        色を選択：
-        <input type="text" id="picker">
-    </div>
-
     <div id="costume_container"></div>
+
+    <!-- <a href="https://twitter.com/search?q=%23%E3%83%9F%E3%83%AA%E3%82%B7%E3%82%BF&src=typed_query&f=live">twitter</a> -->
     
     <h2>使い方</h2>
     <ul>
-        <li>アイドルを選択して所持衣装を検索</li>
-        <li>衣装画像を選択して類似衣装を検索</li>
-        <li>色を選択して近い色を含む衣装を検索</li>
-        <li>種類や期間で検索結果を絞込</li>
+        <li>
+            絞込
+            <ul>
+                <li>「セレチケ」：セレクションチケットで交換できる衣装に絞込</li>
+                <li>「限定セレチケ」：プラチナセレクションチケットで交換できる衣装に絞込</li>
+                <li>「PSP交換」：プラチナスターピースで交換できる衣装に絞込</li>
+                <li>「絞込解除」：絞込を解除</li>
+            </ul>
+        </li>
+        <li>
+            検索
+            <ul>
+                <li>「全衣装」：全衣装を検索</li>
+                <li>「いいね」：お気に入り衣装を検索</li>
+                <li>パレット：色を含む衣装を検索</li>
+            </ul>
+        </li>
+        <li>
+            衣装カード
+            <ul>
+                <li>アイドル名：そのアイドルの衣装を検索</li>
+                <li>衣装名：その衣装に似た衣装を検索</li>
+                <li>色アイコン：その色を含む衣装を検索</li>
+                <li>衣装画像：その衣装の画像や話題をtwitterで検索</li>
+                <li>「投稿」：その衣装の画像や話題をtwitterへ投稿</li>
+                <li>「所持」：その衣装を所持しているか否かを変更</li>
+                <li>「いいね」：その衣装がお気に入りか否かを変更</li>
+            </ul>
+        </li>
     </ul>
 
     <h2>備考</h2>
@@ -107,11 +158,18 @@
                 <li>素晴らしいサービスの提供に感謝申し上げます</li>
             </ul>
         </li>
-        <li>カードと紐づいていない以下の衣装情報は収集できていないため検索結果に含まれません
+        <li>○○○○P＠おやじーずファンクラブ会長 (<a href="https://twitter.com/kaityo_20130720">@kaityo_20130720</a>) 様から提供いただいた衣装着用画像をミリシタ衣装画像 (<a href="https://twitter.com/mltd_costume">@mltd_costume</a>) で投稿しています
+            <ul>
+                <li>衣装画像をタップしてご確認いただけます</li>
+                <li>投稿間隔は不定期で未投稿の衣装も存在することをご了承ください</li>
+            </ul>
+        </li>
+        <li>以下の衣装は検索結果に含まれません
             <ul>
                 <li>ドロップ衣装，購入衣装，周年衣装などの共通衣装</li>
                 <li>イベントptランキング報酬のアイドル以外のユニット衣装</li>
                 <li>レッスンウェア，ツアーライブ衣装，感謝祭衣装などのリハーサル衣装</li>
+                <li>制服シリーズ，ミリクロ</li>
             </ul>
         </li>
         <li>衣装情報を収集して画像処理してから更新しているため最新の衣装が検索できるまでにタイムラグがあることをご了承ください</li>
@@ -120,6 +178,7 @@
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-07-12 twitter検索・投稿機能を追加，所持・いいね機能を追加，絞込項目を追加</li>
         <li>2020-05-25 絞込機能を追加，類似度の計算方法を修正，形による類似衣装検索を追加</li>
         <li>2020-05-11 β版リリース</li>
     </ul>
