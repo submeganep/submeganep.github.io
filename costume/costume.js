@@ -21,20 +21,20 @@ function convertToLab(color) {
 
 // いいね
 let like = [];
-if (localStorage.hasOwnProperty('like')) {
-    like = JSON.parse(localStorage.getItem('like'));
+if (localStorage.hasOwnProperty('like_20200712')) {
+    like = JSON.parse(localStorage.getItem('like_20200712'));
 }
 
 // 所持
 let star = [];
-if (localStorage.hasOwnProperty('star')) {
-    star = JSON.parse(localStorage.getItem('star'));
+if (localStorage.hasOwnProperty('star_20200712')) {
+    star = JSON.parse(localStorage.getItem('star_20200712'));
 }
 
 // ページを離れる際にローカルストレージに保存
 window.onbeforeunload = function(){
-    localStorage.setItem('like', JSON.stringify(like));
-    localStorage.setItem('star', JSON.stringify(star));
+    localStorage.setItem('like_20200712', JSON.stringify(like));
+    localStorage.setItem('star_20200712', JSON.stringify(star));
 }
 
 $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/costume/costume.json', function (data) {
