@@ -38,7 +38,7 @@ window.onbeforeunload = function(){
 }
 
 $.getJSON('https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/costume/costume.json', function (data) {
-    let keys = Object.keys(data);
+    let keys = Object.keys(data).reverse();
     let indices = [];
     for (let i = 0; i < keys.length; ++i) {
         indices.push(i);
