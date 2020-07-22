@@ -46,6 +46,8 @@
         </script>
     
     <!-- java script -->
+    <script src="./data.js"></script>
+    <script src="./feature.js"></script>
     <script src="./costume.js"></script>
 
 </head>
@@ -55,28 +57,52 @@
 
     <h1>ミリシタ衣装検索（β）</h1>
 
-    <div id="setting_container">
-        <div class="row"><i class="fas fa-cog"></i>設定</div>
+    <div id="idol_container"></div>
+
+    <div id="search_container">
+        <div class="row"><i class="fas fa-search"></i>検索</div>
+        <div class="row">色を選択：<input type="text" id="picker"></div>
         <div class="row">
-            最大表示数：
-            <input type="number" id="max_costumes" value=20 min=5>
+            <!-- <div class="button search_mode" id="button_all"><i class="fas fa-tshirt"></i> 全衣装</div> -->
+            <div class="button search_mode" id="button_all"><i class="fas fa-undo"></i> 全衣装</div>
+            <div class="button search_mode" id="button_like"><i class="fas fa-heart"></i> いいね</div>
         </div>
         <div class="row">
-            類似基準：
+            <div class="button search_mode" id="button_s4u">曲名</div>
+            <div class="button search_mode" id="button_luminous">発光</div>
+            <div class="button search_mode" id="button_swimwear">水着</div>
+            <div class="button search_mode" id="button_uniform">制服</div>
+            <div class="button search_mode" id="button_japanese">和風</div>
+            <div class="button search_mode" id="button_crossdress">男装</div>
+            <!-- <div class="button search_mode" id="button_hairchange">髪型変更</div> -->
+        </div>
+        <div class="row">
+            <div class="button search_mode" id="button_animal">アニマル</div>
+            <div class="button search_mode" id="button_winter">ウィンター</div>
+            <div class="button search_mode" id="button_wedding">ウェディング</div>
+            <div class="button search_mode" id="button_fantasy">ファンタジー</div>
+        </div>
+        <!-- <div class="row">
+            <div class="button search_mode" id="button_hat">帽子</div>
+            <div class="button search_mode" id="button_minihat">ミニ帽子</div>
+        </div> -->
+        <div class="row">
+            <div class="button search_mode" id="button_costume" style="display: none;"></div>
             <select id="sort_mode">
-                <option value="sort_by_color">色</option>
-                <option value="sort_by_shape">形</option>
+                <option value="sort_by_color">に色が似た衣装</option>
+                <option value="sort_by_shape">に形が似た衣装</option>
             </select>
         </div>
     </div>
     
     <div id="filter_container">
         <div class="row"><i class="fas fa-filter"></i>絞込</div>
+        <div class="row"><select multiple="multiple" id="select_idols"></select></div>
         <div class="row">
             <div class="button" id="button_ticket">セレチケ</div>
             <div class="button" id="button_ticket2">限定セレチケ</div>
             <div class="button" id="button_psp">PSP交換</div>
-            <div class="button" id="button_reset">絞込解除</div>
+            <div class="button" id="button_reset"><i class="fas fa-trash-alt"></i> 絞込解除</div>
         </div>
         <div class="row">
             <input type="checkbox" id="unstar" checked><label for="unstar">未所持</label>
@@ -101,40 +127,37 @@
         </div>
     </div>
 
-    <div id="search_container">
-        <div class="row"><i class="fas fa-search"></i>検索</div>
-        <div class="row"><select multiple="multiple" id="select_idols"></select></div>
-        <div class="row">
-            <div class="button search_mode" id="button_all">全衣装</div>
-            <div class="button search_mode" id="button_like">いいね</div>
-            <div class="button search_mode" id="button_costume" style="display: none;"></div>
-            <input type="text" id="picker">
-        </div>
-        <div class="row">
-        </div>
+    <div id="setting_container">
+        <!-- <div class="row"><i class="fas fa-cog"></i>設定</div> -->
+        <!-- <div class="row">最大表示数：<input type="number" id="max_costumes" value=20 min=1></div> -->
     </div>
 
+    <div id="costume_header"></div>
     <div id="costume_container"></div>
-
-    <!-- <a href="https://twitter.com/search?q=%23%E3%83%9F%E3%83%AA%E3%82%B7%E3%82%BF&src=typed_query&f=live">twitter</a> -->
+    <div id="costume_footer">
+        <div class="row"><input type="number" id="max_costumes" value=20 min=1></div>
+        <div class="button" id="button_add">追加表示</div>
+    </div>
     
     <h2>使い方</h2>
     <ul>
         <li>
+            検索
+            <ul>
+                <li>色を選択：パレットで選択した色を含む衣装を検索</li>
+                <li>「全衣装」：全衣装を検索</li>
+                <li>「いいね」：お気に入り衣装を検索</li>
+                <li>「曲名」「発光」など：その特徴を持つ衣装を検索</li>
+            </ul>
+        </li>
+        <li>
             絞込
             <ul>
+                <li>アイドルを選択：アイドルで絞込</li>
                 <li>「セレチケ」：セレクションチケットで交換できる衣装に絞込</li>
                 <li>「限定セレチケ」：プラチナセレクションチケットで交換できる衣装に絞込</li>
                 <li>「PSP交換」：プラチナスターピースで交換できる衣装に絞込</li>
                 <li>「絞込解除」：絞込を解除</li>
-            </ul>
-        </li>
-        <li>
-            検索
-            <ul>
-                <li>「全衣装」：全衣装を検索</li>
-                <li>「いいね」：お気に入り衣装を検索</li>
-                <li>パレット：パレットで選択した色を含む衣装を検索</li>
             </ul>
         </li>
         <li>
@@ -158,12 +181,12 @@
                 <li>素晴らしいサービスの提供に感謝申し上げます</li>
             </ul>
         </li>
-        <!-- <li>○○○○P＠おやじーずファンクラブ会長 (<a href="https://twitter.com/kaityo_20130720">@kaityo_20130720</a>) 様から提供いただいた衣装着用画像をミリシタ衣装画像 (<a href="https://twitter.com/mltd_costume">@mltd_costume</a>) で投稿しています
+        <li>○○○○P＠おやじーずファンクラブ会長 (<a href="https://twitter.com/kaityo_20130720" target="_blank">@kaityo_20130720</a>) 様から提供いただいた衣装着用画像をミリシタ衣装画像 (<a href="https://twitter.com/mltdcostume" target="_blank">@mltdcostume</a>) で投稿しています
             <ul>
                 <li>衣装カードの「検索」からご確認いただけます</li>
                 <li>投稿間隔は不定期で未投稿の衣装も存在することをご了承ください</li>
             </ul>
-        </li> -->
+        </li>
         <li>以下の衣装は検索結果に含まれません
             <ul>
                 <li>ドロップ衣装，購入衣装，周年衣装などの共通衣装</li>
@@ -173,11 +196,12 @@
             </ul>
         </li>
         <li>衣装情報を収集して画像処理してから更新しているため最新の衣装が検索できるまでにタイムラグがあることをご了承ください</li>
-        <li>不具合・ご意見・ご要望などございましたら作者 (<a href="https://twitter.com/submeganep">@submeganep</a>) までご連絡ください</li>
+        <li>不具合・ご意見・ご要望などございましたら作者 (<a href="https://twitter.com/submeganep" target="_blank">@submeganep</a>) までご連絡ください</li>
     </ul>
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-07-22 検索・絞込のUIを修正，特徴検索機能を追加</li>
         <li>2020-07-12 twitter検索・投稿機能を追加，所持・いいね機能を追加，絞込項目を追加</li>
         <li>2020-05-25 絞込機能を追加，類似度の計算方法を修正，形による類似衣装検索を追加</li>
         <li>2020-05-11 β版リリース</li>

@@ -1,3 +1,31 @@
+#idol_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.idol_group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+.idol_icon {
+    overflow: hidden;
+}
+.idol_icon img {
+    transition: 0.2s;
+}
+.idol_icon img:hover {
+    transform: scale(1.2, 1.2);
+}
+.icon_image {
+    width: 48px;
+    height: 48px;
+    margin: 1px;
+}
+
 /* #idol_container {
     display: flex;
     flex-direction: column;
@@ -31,7 +59,8 @@
     margin-top: 10px;
 }
 #sort_mode {
-    width: 50px;
+    padding: 2px;
+    display: none;
 }
 #max_costumes {
     width: 50px;
@@ -45,6 +74,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 360px;
+    /* width: 300px; */
 }
 
 #search_container {
@@ -55,13 +85,15 @@
     margin-left: auto;
     margin-right: auto;
     width: 360px;
+    /* width: 300px; */
 }
 
 .row {
     margin-top: 4px;
 }
 .SumoSelect {
-    width: 360px !important;
+    /* width: 360px !important; */
+    width: 300px !important;
 }
 div.picker_replacer {
     padding: 0px;
@@ -74,7 +106,7 @@ div.picker_container {
 
 .button {
     display: inline-block;
-    padding: 1px 5px;
+    padding: 2px 5px;
     justify-content: center;
 	text-decoration: none;
 	color: black;
@@ -98,6 +130,22 @@ input[type=checkbox] + label:before {
 }
 input[type=checkbox] + label:before { content: "\f096"; }
 input[type=checkbox]:checked + label:before { content: "\f046"; } */
+
+#costume_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#costume_footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
 
 #costume_container {
     display: flex;
