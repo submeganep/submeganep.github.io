@@ -6,8 +6,8 @@ if(window.ontouchstart !== undefined && 0 < navigator.maxTouchPoints) {
 
 // ピン留め
 let pin = {};
-if (localStorage.hasOwnProperty('pin')) {
-    pin = JSON.parse(localStorage.getItem('pin'));
+if (localStorage.hasOwnProperty('koshou_pin_20200723')) {
+    pin = JSON.parse(localStorage.getItem('koshou_pin_20200723'));
 } else {
     for (let i = 0; i < 52; i++) {
         pin[i] = {};
@@ -19,8 +19,8 @@ if (localStorage.hasOwnProperty('pin')) {
 
 // いいね
 let like = {};
-if (localStorage.hasOwnProperty('like')) {
-    like = JSON.parse(localStorage.getItem('like'));
+if (localStorage.hasOwnProperty('koshou_like_20200723')) {
+    like = JSON.parse(localStorage.getItem('koshou_like_20200723'));
 } else {
     for (let i = 0; i < 52; i++) {
         like[i] = {};
@@ -32,8 +32,8 @@ if (localStorage.hasOwnProperty('like')) {
 
 // ページを離れる際にローカルストレージに保存
 window.onbeforeunload = function(){
-    localStorage.setItem('pin', JSON.stringify(pin));
-    localStorage.setItem('like', JSON.stringify(like));
+    localStorage.setItem('koshou_pin_20200723', JSON.stringify(pin));
+    localStorage.setItem('koshou_like_20200723', JSON.stringify(like));
 }
 
 // ユニット曲などの情報
