@@ -1,0 +1,117 @@
+
+
+
+#description {
+    font-size: 16px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#result {
+    font-size: 16px;
+    text-align: center;
+}
+.attribute {
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.pr {
+    color: #ff2284;
+}
+.fa {
+    color: #005eff;
+}
+.an {
+    color: #ffbb00;
+}
+
+#display_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+#network {
+    width: 360px;
+    height: 300px;
+    border: black solid 1px;
+}
+#idol {
+    width: 360px;
+    height: 300px;
+    border: black solid 1px;
+    padding: 5px;
+
+    background-repeat: no-repeat;
+    background-position: 100% 10%;
+}
+.idol_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    /* font-weight: bold; */
+}
+.idol_name {
+    font-weight: bold;
+}
+.color {
+    border: black solid 1px;
+    width: 16px;
+    height: 16px;
+}
+table td {
+    padding-right: 10px;
+}
+table td:nth-of-type(1) {
+    font-weight: bold;
+}
+
+
+#questions_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+.question_container {
+    margin: 5px;
+    background-color: pink;
+    border: 1px solid gray;
+}
+.question_container.selected {
+    background-color: white;
+}
+.question_text {
+    /* font-size: 16px; */
+    text-align: center;
+    margin-top: 10px;
+}
+.answer_button {
+    display: inline-block;
+    margin: 10px;
+    width: 80px;
+    text-align: center;
+
+    justify-content: center;
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+.answer_button:hover {
+    background-color: gray;
+    color: white;
+}
+.answer_button.selected {
+    background-color: gray;
+    color: white;
+}
