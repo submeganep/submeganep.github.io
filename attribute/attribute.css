@@ -46,7 +46,13 @@
     padding: 5px;
 
     background-repeat: no-repeat;
-    background-position: 100% 10%;
+    background-position: 100% 20%;
+
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .idol_header {
     display: flex;

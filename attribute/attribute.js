@@ -80,7 +80,7 @@ function displayIdol(name, nodes, edges) {
     table.append('<tr><td>好きなもの</td><td>' + idol['好きなもの'] + '</td></tr>');
     table.append('<tr><td>身長 / 体重</td><td>' + idol['身長'] + 'cm / ' + idol['体重'] + 'kg</td></tr>');
     table.append('<tr><td>スリーサイズ</td><td>' + idol['B'] + '-' + idol['W'] + '-' + idol['H'] + '</td></tr>');
-    table.append('<tr><td>ID</td><td>' + idol['ID'] + '</td></tr>');
+    // table.append('<tr><td>ID</td><td>' + idol['ID'] + '</td></tr>');
     table.append('<tr><td>CV</td><td>' + idol['CV'] + '</td></tr>');
     $('#idol').append(table);
     
@@ -288,9 +288,11 @@ $(function(){
     nodes.push({
         id: 'Pr',
         label: 'Princess',
-        color: '#ff2284',
+        // shape: 'dot',
+        // color: '#ff2284',
+        color: 'white',
         font: {
-            color: 'white',
+            color: '#ff2284',
             size: 30,
         },
         borderWidth: 0,
@@ -302,9 +304,11 @@ $(function(){
     nodes.push({
         id: 'Fa',
         label: 'Fairy',
-        color: '#005eff',
+        // shape: 'dot',
+        // color: '#005eff',
+        color: 'white',
         font: {
-            color: 'white',
+            color: '#005eff',
             size: 30,
         },
         borderWidth: 0,
@@ -316,9 +320,11 @@ $(function(){
     nodes.push({
         id: 'An',
         label: 'Angel',
-        color: '#ffbb00',
+        // shape: 'dot',
+        // color: '#ffbb00',
+        color: 'white',
         font: {
-            color: 'white',
+            color: '#ffbb00',
             size: 30,
         },
         borderWidth: 0,
@@ -353,8 +359,9 @@ $(function(){
     let network = new vis.Network(container, data, options);
 
     // 背景画像
-	network.on('beforeDrawing', function(ctx) {		
-        ctx.drawImage(document.getElementById('triangle'), -405, -540);
+	network.on('beforeDrawing', function(ctx) {
+        ctx.drawImage(document.getElementById('triangle'), -402, -460);
+        // ctx.drawImage(document.getElementById('triangle'), -402, -454);
     });
 
     // ノード選択
@@ -363,12 +370,12 @@ $(function(){
         if (idol_names.includes(id)) {
             displayIdol(id, nodes, edges);
         }
-        else {
-            let name = id.split('_')[0];
-            if (idol_names.includes(name)) {
-                displayIdol(name, nodes, edges);
-            }
-        }
+        // else {
+        //     let name = id.split('_')[0];
+        //     if (idol_names.includes(name)) {
+        //         displayIdol(name, nodes, edges);
+        //     }
+        // }
     });
 
     // 設問
