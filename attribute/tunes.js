@@ -820,7 +820,8 @@ let tunes = {
     "\u30a4\u30f3\u30f4\u30a3\u30f3\u30b7\u30d6\u30eb\u30fb\u30b8\u30e3\u30b9\u30c6\u30a3\u30b9": {
         "unit_name": "\u30de\u30a4\u30c6\u30a3\u30fc\u30bb\u30fc\u30e9\u30fc\u30ba",
         "idol_names": [
-            "\u4f0a\u5439\u7ffc"
+            "\u4f0a\u5439\u7ffc",
+            "\u9ad8\u5742\u6d77\u7f8e"
         ],
         "url": "http://www.youtube.com/embed/VjbsQEiF9oc?controls=1&modestbranding=1&start=&end="
     },
@@ -1066,70 +1067,80 @@ let tunes = {
     "Dreamscape": {
         "unit_name": "",
         "idol_names": [
-            "\u6c38\u5409\u6634"
+            "\u6c38\u5409\u6634",
+            "\u798f\u7530\u306e\u308a\u5b50"
         ],
         "url": "http://www.youtube.com/embed/npitUrwx7b0?controls=1&modestbranding=1&start=0&end="
     },
     "Emergence Vibe": {
         "unit_name": "",
         "idol_names": [
-            "\u5cf6\u539f\u30a8\u30ec\u30ca"
+            "\u5cf6\u539f\u30a8\u30ec\u30ca",
+            "\u661f\u4e95\u7f8e\u5e0c"
         ],
         "url": "http://www.youtube.com/embed/VPp6_wOSjJY?controls=1&modestbranding=1&start=92&end="
     },
     "Beat the World!!!": {
         "unit_name": "",
         "idol_names": [
-            "\u83ca\u5730\u771f"
+            "\u83ca\u5730\u771f",
+            "\u821e\u6d5c\u6b69"
         ],
         "url": "http://www.youtube.com/embed/VPp6_wOSjJY?controls=1&modestbranding=1&start=0&end=92"
     },
     "\u30b8\u30e3\u30f3\u30b0\u30eb\u2606\u30d1\u30fc\u30c6\u30a3\u30fc": {
         "unit_name": "",
         "idol_names": [
-            "\u5927\u795e\u74b0"
+            "\u5927\u795e\u74b0",
+            "\u53cc\u6d77\u771f\u7f8e"
         ],
         "url": "http://www.youtube.com/embed/xwU0GKZ1rkQ?controls=1&modestbranding=1&start=&end="
     },
     "Understand? Understand!": {
         "unit_name": "",
         "idol_names": [
-            "\u9ad8\u5742\u6d77\u7f8e"
+            "\u9ad8\u5742\u6d77\u7f8e",
+            "\u7530\u4e2d\u7434\u8449"
         ],
         "url": "http://www.youtube.com/embed/vcuW6vdJxB0?controls=1&modestbranding=1&start=118&end="
     },
     "\u305f\u3057\u304b\u306a\u8db3\u8de1": {
         "unit_name": "",
         "idol_names": [
-            "\u4e09\u6d66\u3042\u305a\u3055"
+            "\u4e09\u6d66\u3042\u305a\u3055",
+            "\u767e\u702c\u8389\u7dd2"
         ],
         "url": "http://www.youtube.com/embed/CDJRhawL4gw?controls=1&modestbranding=1&start=0&end="
     },
     "\u79d8\u5bc6\u306e\u30e1\u30e2\u30ea\u30fc\u30ba": {
         "unit_name": "",
         "idol_names": [
-            "\u56db\u6761\u8cb4\u97f3"
+            "\u56db\u6761\u8cb4\u97f3",
+            "\u8c4a\u5ddd\u98a8\u82b1"
         ],
         "url": "http://www.youtube.com/embed/oRd6zPMqe74?controls=1&modestbranding=1&start=87&end="
     },
     "\u591c\u306b\u8f1d\u304f\u661f\u5ea7\u306e\u3088\u3046\u306b": {
         "unit_name": "",
         "idol_names": [
-            "\u677e\u7530\u4e9c\u5229\u6c99"
+            "\u677e\u7530\u4e9c\u5229\u6c99",
+            "\u6a2a\u5c71\u5948\u7dd2"
         ],
         "url": "http://www.youtube.com/embed/pS4VahfOIN0?controls=1&modestbranding=1&start=117&end="
     },
     "fruity love": {
         "unit_name": "",
         "idol_names": [
-            "\u91ce\u3005\u539f\u831c"
+            "\u91ce\u3005\u539f\u831c",
+            "\u30ed\u30b3"
         ],
         "url": "http://www.youtube.com/embed/qrhRBFkye5k?controls=1&modestbranding=1&start=&end="
     },
     "\u201cYour\u201d HOME TOWN": {
         "unit_name": "",
         "idol_names": [
-            "\u6728\u4e0b\u3072\u306a\u305f"
+            "\u6728\u4e0b\u3072\u306a\u305f",
+            "\u53cc\u6d77\u4e9c\u7f8e"
         ],
         "url": "http://www.youtube.com/embed/pS4VahfOIN0?controls=1&modestbranding=1&start=0&end=117"
     },
@@ -1145,105 +1156,120 @@ let tunes = {
     "Melody in scape": {
         "unit_name": "",
         "idol_names": [
-            "\u4f50\u7af9\u7f8e\u5948\u5b50"
+            "\u4f50\u7af9\u7f8e\u5948\u5b50",
+            "\u9ad8\u5c71\u7d17\u4ee3\u5b50"
         ],
         "url": "http://www.youtube.com/embed/aPYIBMgi7cc?controls=1&modestbranding=1&start=88&end="
     },
     "little trip around the world": {
         "unit_name": "",
         "idol_names": [
-            "\u30a8\u30df\u30ea\u30fc"
+            "\u30a8\u30df\u30ea\u30fc",
+            "\u6c34\u702c\u4f0a\u7e54"
         ],
         "url": "http://www.youtube.com/embed/07I9PzC_geg?controls=1&modestbranding=1&start=0&end="
     },
     "G\u2661F": {
         "unit_name": "",
         "idol_names": [
-            "\u79cb\u6708\u5f8b\u5b50"
+            "\u79cb\u6708\u5f8b\u5b50",
+            "\u7be0\u5bae\u53ef\u6190"
         ],
         "url": "http://www.youtube.com/embed/qEAdbiri03g?controls=1&modestbranding=1&start=0&end=101"
     },
     "HELLO\uff0cYOUR ANGEL\u266a": {
         "unit_name": "",
         "idol_names": [
-            "\u5929\u7a7a\u6a4b\u670b\u82b1"
+            "\u5929\u7a7a\u6a4b\u670b\u82b1",
+            "\u4e2d\u8c37\u80b2"
         ],
         "url": "http://www.youtube.com/embed/qEAdbiri03g?controls=1&modestbranding=1&start=101&end="
     },
     "\u6df1\u5c64\u30de\u30fc\u30e1\u30a4\u30c9": {
         "unit_name": "",
         "idol_names": [
-            "\u4f0a\u5439\u7ffc"
+            "\u4f0a\u5439\u7ffc",
+            "\u6211\u90a3\u8987\u97ff"
         ],
         "url": "http://www.youtube.com/embed/aPYIBMgi7cc?controls=1&modestbranding=1&start=0&end=88"
     },
     "Decided": {
         "unit_name": "",
         "idol_names": [
-            "\u5fb3\u5ddd\u307e\u3064\u308a"
+            "\u5fb3\u5ddd\u307e\u3064\u308a",
+            "\u99ac\u5834\u3053\u306e\u307f"
         ],
         "url": "http://www.youtube.com/embed/Ctpr3DbnZEo?controls=1&modestbranding=1&start=0&end="
     },
     "Smiling Crescent": {
         "unit_name": "",
         "idol_names": [
-            "\u7bb1\u5d0e\u661f\u68a8\u82b1"
+            "\u7bb1\u5d0e\u661f\u68a8\u82b1",
+            "\u5bae\u5c3e\u7f8e\u4e5f"
         ],
         "url": "http://www.youtube.com/embed/8yczNOxFnFY?controls=1&modestbranding=1&start=0&end="
     },
     "Cut. Cut. Cut.": {
         "unit_name": "",
         "idol_names": [
-            "\u5468\u9632\u6843\u5b50"
+            "\u5468\u9632\u6843\u5b50",
+            "\u771f\u58c1\u745e\u5e0c"
         ],
         "url": "http://www.youtube.com/embed/vIRFFSUnxZI?controls=1&modestbranding=1&start=0&end=97"
     },
     "Persona Voice": {
         "unit_name": "",
         "idol_names": [
-            "\u4e8c\u968e\u5802\u5343\u9db4"
+            "\u4e8c\u968e\u5802\u5343\u9db4",
+            "\u8429\u539f\u96ea\u6b69"
         ],
         "url": "http://www.youtube.com/embed/vIRFFSUnxZI?controls=1&modestbranding=1&start=98&end="
     },
     "\u30a2\u30e9\u30a4\u30d6\u30d5\u30a1\u30af\u30bf\u30fc": {
         "unit_name": "",
         "idol_names": [
-            "\u5982\u6708\u5343\u65e9"
+            "\u5982\u6708\u5343\u65e9",
+            "\u6700\u4e0a\u9759\u9999"
         ],
         "url": "http://www.youtube.com/embed/tyEKWvF7lfI?controls=1&modestbranding=1&start=0&end="
     },
     "piece of cake": {
         "unit_name": "",
         "idol_names": [
-            "\u5317\u4e0a\u9e97\u82b1"
+            "\u5317\u4e0a\u9e97\u82b1",
+            "\u5317\u6ca2\u5fd7\u4fdd"
         ],
         "url": "http://www.youtube.com/embed/6EBlEhSMrZU?controls=1&modestbranding=1&start=98&end="
     },
     "Eternal Spiral": {
         "unit_name": "",
         "idol_names": [
-            "\u9ad8\u69fb\u3084\u3088\u3044"
+            "\u9ad8\u69fb\u3084\u3088\u3044",
+            "\u77e2\u5439\u53ef\u5948"
         ],
         "url": "http://www.youtube.com/embed/8bqWDBTHRTA?controls=1&modestbranding=1&start=108&end="
     },
     "\u30a8\u30b9\u30b1\u30fc\u30d7": {
         "unit_name": "",
         "idol_names": [
-            "\u30b8\u30e5\u30ea\u30a2"
+            "\u30b8\u30e5\u30ea\u30a2",
+            "\u6240\u6075\u7f8e"
         ],
         "url": "http://www.youtube.com/embed/6EBlEhSMrZU?controls=1&modestbranding=1&start=0&end=98"
     },
     "\u6210\u9577Chu\u2192LOVER!!": {
         "unit_name": "",
         "idol_names": [
-            "\u671b\u6708\u674f\u5948"
+            "\u671b\u6708\u674f\u5948",
+            "\u4e03\u5c3e\u767e\u5408\u5b50"
         ],
         "url": "http://www.youtube.com/embed/KFMW3VdhgB4?controls=1&modestbranding=1&start=&end="
     },
     "\u30cf\u30eb\u30ab\u30ca\u30df\u30e9\u30a4": {
         "unit_name": "",
         "idol_names": [
-            "\u5929\u6d77\u6625\u9999"
+            "\u5929\u6d77\u6625\u9999",
+            "\u6625\u65e5\u672a\u6765"
         ],
         "url": "http://www.youtube.com/embed/khtfRhMDxTI?controls=1&modestbranding=1&start=0&end="
     },
