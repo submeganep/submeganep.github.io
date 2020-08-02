@@ -132,8 +132,9 @@ function displayIdol(name, nodes, edges) {
             $('#tunes_container').append(tune_container);
 
             $('#tune_' + i).on('click', function() {
-                $('#player_' + i).append('<iframe src="' + tune['url'] + '" id="ytplayer" type="text/html" width="320" height="180" frameborder="0"></iframe>');
-                // $('#player_' + i).append('<iframe src="' + tune['url'] + '" width="320" height="180" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>');
+                let url = tune['url'].replace('http://', 'https://');
+                console.log(url);
+                $('#player_' + i).append('<iframe src="' + url + '" id="ytplayer" type="text/html" width="320" height="180" frameborder="0"></iframe>');
             });
         }
     }
