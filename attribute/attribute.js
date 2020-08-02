@@ -31,30 +31,30 @@ for (let i = 0; i < idol_names.length; i++) {
 // アイドル詳細表示
 function displayIdol(name, nodes, edges) {
 
-    // グラフのアイコンを拡大する
+    // アイコンを拡大する
+    let x = params['idol'][name]['x'];
+    let y = params['idol'][name]['y'];    
     for (let i = 0; i < idol_names.length; i++) {
         nodes.update({
             id: idol_names[i],
-            size: 25,
-            shadow: false,
+            hidden: false,
         });
     }
     nodes.update({
         id: name,
-        size: 75,
-        shadow: true,
+        hidden: true,
     });
-
-    // エッジの長さを短くする
-    for (let i = 0; i < idol_names.length; i++) {
-        edges.update({
-            id: idol_names[i] + '_edge',
-            legth: 100,  // 長さが戻らないっぽい
-        });
-    }
-    edges.update({
-        id: name + '_edge',
-        length: 1,
+    nodes.remove('selected');
+    nodes.add({
+        id: 'selected',
+        shape: 'image',
+        image: './icon/' + name + '.png',
+        size: 75,
+        mass: 10,
+        shadow: true,
+        fixed: true,
+        x: x,
+        y: y,
     });
 
     // アイドルのプロフィールを表示
@@ -92,26 +92,27 @@ function displayIdol(name, nodes, edges) {
 
     // プロフィール
     let table = $('<table></table>');
-    table.append('<tr><td>年齢</td><td>' + idol['年齢'] + '歳</td></tr>');
-    table.append('<tr><td>誕生日</td><td>' + idol['誕生日'] + '</td></tr>');
-    table.append('<tr><td>出身地</td><td>' + idol['出身地'] + '</td></tr>');
-    table.append('<tr><td>血液型</td><td>' + idol['血液型'] + '型</td></tr>');
-    table.append('<tr><td>利き手</td><td>' + idol['利き手'] + '</td></tr>');
     table.append('<tr><td>趣味</td><td>' + idol['趣味'] + '</td></tr>');
     table.append('<tr><td>特技</td><td>' + idol['特技'] + '</td></tr>');
     table.append('<tr><td>好きなもの</td><td>' + idol['好きなもの'] + '</td></tr>');
     table.append('<tr><td>身長 / 体重</td><td>' + idol['身長'] + 'cm / ' + idol['体重'] + 'kg</td></tr>');
     table.append('<tr><td>スリーサイズ</td><td>' + idol['B'] + '-' + idol['W'] + '-' + idol['H'] + '</td></tr>');
-    // table.append('<tr><td>ID</td><td>' + idol['ID'] + '</td></tr>');
+    table.append('<tr><td>血液型</td><td>' + idol['血液型'] + '型</td></tr>');
+    table.append('<tr><td>利き手</td><td>' + idol['利き手'] + '</td></tr>');
+    table.append('<tr><td>出身地</td><td>' + idol['出身地'] + '</td></tr>');
+    table.append('<tr><td>誕生日</td><td>' + idol['誕生日'] + '</td></tr>');
+    table.append('<tr><td>年齢</td><td>' + idol['年齢'] + '歳</td></tr>');
     table.append('<tr><td>属性</td><td>' + idol['PrFaAn'] + ' / ' + idol['VoDaVi'] + '</td></tr>');
     table.append('<tr><td>CV</td><td>' + idol['CV'] + '</td></tr>');
     table.append('<tr><td>検索</td><td>' + search + '</td></tr>');
     $('#idol_container').append(table);
 
     // 背景
-    // $('#idol_container').css('background-image', 'url(./icon/' + name + '.png)');
+    // idol['ID']  // 03みたいなIDを背景右上に表示するとカッコいいかも
+    $('#idol_container').css('background-image', 'url(./standing/' + name + '.png)');
 
     // 楽曲
+    $('#tunes_header').text('▼ ' + name + 'の楽曲（楽曲名を選択して視聴）');
     $('#tunes_container').empty();
     for (let i = 0; i < tune_names.length; i++) {
         let tune_name = tune_names[i];
@@ -132,9 +133,10 @@ function displayIdol(name, nodes, edges) {
             $('#tunes_container').append(tune_container);
 
             $('#tune_' + i).on('click', function() {
-                let url = tune['url'].replace('http://', 'https://');
-                console.log(url);
-                $('#player_' + i).append('<iframe src="' + url + '" id="ytplayer" type="text/html" width="320" height="180" frameborder="0"></iframe>');
+                if (!($('#player_' + i + ' iframe').length)) {
+                    let url = tune['url'].replace('http://', 'https://');
+                    $('#player_' + i).append('<iframe src="' + url + '" id="ytplayer" type="text/html" width="320" height="180" frameborder="0"></iframe>');
+                }
             });
         }
     }
@@ -148,24 +150,28 @@ function diagnose(nodes, edges) {
     let fa = params['coef']['Fa'][questions.length];
     let an = params['coef']['An'][questions.length];
     for (let i = 0; i < questions.length; i++) {
-        if ($('#q_' + i).hasClass('selected')) {
-            if ($('#yes_' + i).hasClass('selected')) {
-                pr += params['coef']['Pr'][i];
-                fa += params['coef']['Fa'][i];
-                an += params['coef']['An'][i];
-            }
-            if ($('#no_' + i).hasClass('selected')) {
-                pr += params['coef']['Pr'][i + questions.length];
-                fa += params['coef']['Fa'][i + questions.length];
-                an += params['coef']['An'][i + questions.length];
-            }
-        } else {
+        if ($('#yes_' + i).hasClass('selected')) {
+            pr += params['coef']['Pr'][i];
+            fa += params['coef']['Fa'][i];
+            an += params['coef']['An'][i];
+        }
+        else if ($('#no_' + i).hasClass('selected')) {
+            pr += params['coef']['Pr'][i + questions.length];
+            fa += params['coef']['Fa'][i + questions.length];
+            an += params['coef']['An'][i + questions.length];
+        }
+        else if ($('#neutral_' + i).hasClass('selected')) {
+        }
+        else {
+            $('#result').text((i + 1) + ' / ' + questions.length);
             return;
         }
     }
-    if (pr + fa + an == 0) {  // 何もわからん場合
+    if (pr + fa + an == 0) {  // 全て「どちらでもない」場合
         $('#result').empty();
         $('#idol_container').empty();
+        $('#idol_container').css('background', '');
+        $('#tunes_header').text('');
         return;
     }
     pr = 1 / (1 + Math.exp(-pr));
@@ -195,11 +201,11 @@ function diagnose(nodes, edges) {
         attr_text = 'あなたは' + attr + '属性かもしれないです';
     }
     let detail_text = '';
-    detail_text += '(';
+    // detail_text += '(';
     detail_text += '<span class="attribute pr">Princess ' + Math.round(pr * 100) + '%</span>';
     detail_text += '<span class="attribute fa">Fairy ' + Math.round(fa * 100) + '%</span>';
     detail_text += '<span class="attribute an">Angel ' + Math.round(an * 100) + '%</span>';
-    detail_text += ')';
+    // detail_text += ')';
     $('#result').empty();
     $('#result').append('<div>' + attr_text + '</div>');
     $('#result').append('<div>' + detail_text + '</div>');
@@ -417,24 +423,25 @@ $(function(){
             $('#yes_' + i).addClass('selected');
             $('#no_' + i).removeClass('selected');
             $('#neutral_' + i).removeClass('selected');
-            $('#q_' + i).addClass('selected');
+            $('#q_' + (i + 1)).show();
             diagnose(nodes, edges);
         });
         $('#neutral_' + i).on('click', function () {
             $('#neutral_' + i).addClass('selected');
             $('#yes_' + i).removeClass('selected');
             $('#no_' + i).removeClass('selected');
-            $('#q_' + i).addClass('selected');
+            $('#q_' + (i + 1)).show();
             diagnose(nodes, edges);
         });
         $('#no_' + i).on('click', function () {
             $('#no_' + i).addClass('selected');
             $('#yes_' + i).removeClass('selected');
             $('#neutral_' + i).removeClass('selected');
-            $('#q_' + i).addClass('selected');
+            $('#q_' + (i + 1)).show();
             diagnose(nodes, edges);
         });
     }
+    $('#q_0').show();
 
     // // 設問の初期状態（動作確認用）
     // for (let i = 0; i < questions.length; i++) {
