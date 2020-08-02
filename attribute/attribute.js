@@ -423,25 +423,25 @@ $(function(){
             $('#yes_' + i).addClass('selected');
             $('#no_' + i).removeClass('selected');
             $('#neutral_' + i).removeClass('selected');
-            $('#q_' + (i + 1)).show();
+            $('#q_' + (i + 1)).slideDown(400);
             diagnose(nodes, edges);
         });
         $('#neutral_' + i).on('click', function () {
             $('#neutral_' + i).addClass('selected');
             $('#yes_' + i).removeClass('selected');
             $('#no_' + i).removeClass('selected');
-            $('#q_' + (i + 1)).show();
+            $('#q_' + (i + 1)).slideDown(400);
             diagnose(nodes, edges);
         });
         $('#no_' + i).on('click', function () {
             $('#no_' + i).addClass('selected');
             $('#yes_' + i).removeClass('selected');
             $('#neutral_' + i).removeClass('selected');
-            $('#q_' + (i + 1)).show();
+            $('#q_' + (i + 1)).slideDown(400);
             diagnose(nodes, edges);
         });
     }
-    $('#q_0').show();
+    $('#q_0').slideDown(400);
 
     // // 設問の初期状態（動作確認用）
     // for (let i = 0; i < questions.length; i++) {
