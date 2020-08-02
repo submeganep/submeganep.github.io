@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="./attribute.css">
 
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;900&display=swap" rel="stylesheet">
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166007780-1"></script>
     <script>
@@ -36,8 +39,8 @@
     
     <!--  -->
     <script src="./params.js"></script>
+    <script src="./tunes.js"></script>
     <script src="./attribute.js"></script>
-
 </head>
 <body>
 
@@ -45,24 +48,24 @@
 
     <h1>ミリシタ属性診断（β）</h1>
 
-    <div id="description">
-        <div>全ての設問に答えるとあなたの属性 ( <span class="pr">Princess</span> / <span class="fa">Fairy</span> / <span class="an">Angel</span> ) とあなたに似たアイドルが分かります</div>
-        <div>※診断結果やアイドルの属性配置はAI（機械学習）が算出した非公式のものであり，公式の見解とは異なることを予めご了承ください</div>
-    </div>
-
-    <div id="questions_container"></div>
-
-    <div id="result"></div>
-
     <div id="display_container">
-        <div id="network"></div>
-        <div id="idol">
-            <div>← アイドルのアイコンを選択するとここにプロフィールが表示されます</div>
+        <div id="description">
+            <div>全ての設問に答えるとあなたのミリシタ属性とあなたに似たアイドルが分かります</div>
+            <div>※診断結果やアイドルの属性配置はAI（機械学習）が算出した非公式のものであり，公式の見解とは異なることを予めご了承ください</div>
         </div>
+
+        <div id="questions_container"></div>
+
+        <div id="result"></div>
+
+        <div id="network"></div>
+
+        <div id="idol_container"></div>
+
+        <div id="tunes_container"></div>
     </div>
 
     <img id="triangle" src="./triangle.png"  style="display: none;">
-
     
     <h2>備考</h2>
     <ul>
@@ -76,12 +79,23 @@
                 <li>いただいた設問を参考に後日「はい」「いいえ」「どちらでもない」の三択に変更予定です</li>
             </ul>
         </li>
-        <li>診断結果のツイート機能を後日実装予定です</li>
+        <li>今後の対応予定
+            <ul>
+                <li>診断結果のツイート機能</li>
+                <li>アイドル詳細表示でミリシタの3Dモデル画像を表示</li>
+                <li>楽曲歌唱ユニットに一部抜け・誤りがあるためその修正</li>
+                <li>現状は「いいえ」のデータが無く結果が不適切なためその修正</li>
+                <li>選択したアイドルのアイコンが最前面に表示されない場合があるためその修正</li>
+                <li>UIの改善</li>
+            </ul>
+        </li>
+        
         <li>ご意見・ご要望などございましたら作者 (<a href="https://twitter.com/submeganep" target="_blank">@submeganep</a>) までご連絡ください</li>
     </ul>
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-08-02 楽曲視聴機能を追加，デザインを修正</li>
         <li>2020-08-01 β版リリース</li>
     </ul>
 

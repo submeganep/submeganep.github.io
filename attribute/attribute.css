@@ -1,5 +1,10 @@
 
 
+#display_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
 
 #description {
     font-size: 16px;
@@ -26,57 +31,94 @@
     color: #ffbb00;
 }
 
-#display_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-}
 #network {
-    width: 360px;
-    height: 300px;
-    border: black solid 1px;
+    height: 50vh;
+    border: 1px solid gray;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* background-color: whitesmoke; */
 }
-#idol {
-    width: 360px;
-    height: 300px;
-    border: black solid 1px;
-    padding: 5px;
 
-    background-repeat: no-repeat;
-    background-position: 100% 20%;
+#idol_container {
+    /* border: black solid 1px; */
 
-    
+    min-width: 320px; 
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* background-repeat: no-repeat;
+    background-position: 100% 0%;
+    background-size: 80px; */
+
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 }
-.idol_header {
+.idol_name {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: white;
+    text-shadow:
+        1px 1px 0px black, -1px -1px 0px black,
+        -1px 1px 0px black, 1px -1px 0px black,
+        0px 1px 0px black,  0px -1px 0px black,
+        -1px 0px 0px black, 1px 0px 0px black;
+}
+.idol_eng {
+    font-size: 16px;
+    /* font-weight: bold; */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.idol_introduction {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+/* table td {
+    padding-right: 10px;
+} */
+table td:nth-of-type(1) {
+    font-weight: bold;
+    width: 80px;
+}
+table td:nth-of-type(2) {
+    width: 240px;
+}
+
+#tunes_container {
+    /* border: black solid 1px; */
+
+    min-width : 320px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
+}
+.tune_container {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 5px;
+    padding-bottom: 5px;
+	background-color: whitesmoke;
+}
+.tune_name {
+    padding-top: 5px;
     font-size: 16px;
-    /* font-weight: bold; */
-}
-.idol_name {
     font-weight: bold;
 }
-.color {
-    border: black solid 1px;
-    width: 16px;
-    height: 16px;
-}
-table td {
-    padding-right: 10px;
-}
-table td:nth-of-type(1) {
-    font-weight: bold;
-}
+
 
 
 #questions_container {
@@ -85,9 +127,10 @@ table td:nth-of-type(1) {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 5px;
+    margin-top: 10px;
 }
 .question_container {
+    width: 320px;
     margin: 5px;
     background-color: pink;
     border: 1px solid gray;
@@ -96,17 +139,23 @@ table td:nth-of-type(1) {
     background-color: white;
 }
 .question_text {
-    /* font-size: 16px; */
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
+}
+.button_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 .answer_button {
     display: inline-block;
-    margin: 10px;
-    width: 80px;
+    margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 80px;
     text-align: center;
-
-    justify-content: center;
 	text-decoration: none;
 	color: black;
 	background-color: whitesmoke;
