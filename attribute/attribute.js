@@ -134,7 +134,8 @@ function displayIdol(name, nodes, edges) {
 
             $('#tune_' + i).on('click', function() {
                 if (!($('#player_' + i + ' iframe').length)) {
-                    let url = tune['url'].replace('http://', 'https://');
+                    let url = tune['url'];
+                    // let url = tune['url'].replace('http://', 'https://');
                     $('#player_' + i).append('<iframe src="' + url + '" id="ytplayer" type="text/html" width="320" height="180" frameborder="0"></iframe>');
                 }
             });
