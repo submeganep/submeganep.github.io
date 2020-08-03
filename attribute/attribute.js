@@ -112,8 +112,8 @@ function displayIdol(name, nodes, edges) {
     $('#idol_container').css('background-image', 'url(./standing/' + name + '.png)');
 
     // 楽曲
-    $('#tunes_header').text('▼ ' + name + 'の楽曲（楽曲名を選択して視聴）');
     $('#tunes_container').empty();
+    $('#tunes_container').append('<div class="container_header">▼ ' + name + 'の楽曲（楽曲名を選択して視聴）</div>')
     for (let i = 0; i < tune_names.length; i++) {
         let tune_name = tune_names[i];
         let tune = tunes[tune_name];
@@ -164,12 +164,11 @@ function diagnose(nodes, edges) {
         else if ($('#neutral_' + i).hasClass('selected')) {
         }
         else {
-            $('#result').text((i + 1) + ' / ' + questions.length);
             return;
         }
     }
     if (pr + fa + an == 0) {  // 全て「どちらでもない」場合
-        $('#result').empty();
+        $('#result_container').empty();
         $('#idol_container').empty();
         $('#idol_container').css('background', '');
         $('#tunes_header').text('');
@@ -207,9 +206,10 @@ function diagnose(nodes, edges) {
     detail_text += '<span class="attribute fa">Fairy ' + Math.round(fa * 100) + '%</span>';
     detail_text += '<span class="attribute an">Angel ' + Math.round(an * 100) + '%</span>';
     // detail_text += ')';
-    $('#result').empty();
-    $('#result').append('<div>' + attr_text + '</div>');
-    $('#result').append('<div>' + detail_text + '</div>');
+    $('#result_container').empty();
+    $('#result_container').append('<div class="container_header">▼ 診断結果</div>')
+    $('#result_container').append('<div>' + attr_text + '</div>');
+    $('#result_container').append('<div>' + detail_text + '</div>');
 
     // 設問への回答が最も似ているアイドル
     let idol_similar = '';
@@ -245,7 +245,7 @@ function diagnose(nodes, edges) {
             idol_nearest = name;
         }
     }
-    $('#result').append('<div>あなたは <a id="link_' + idol_similar + '">' + idol_similar + '</a> に似ています</div>');
+    $('#result_container').append('<div>あなたは <a id="link_' + idol_similar + '">' + idol_similar + '</a> に似ています</div>');
     $('#link_' + idol_similar).on('click', function() {
         displayIdol(idol_similar, nodes, edges);
     });
@@ -260,6 +260,26 @@ function diagnose(nodes, edges) {
         y: y,
     });
 
+}
+
+function click_button(i) {
+    $('#yes_' + i).removeClass('selected');
+    $('#no_' + i).removeClass('selected');
+    $('#neutral_' + i).removeClass('selected');
+    let next = $('#q_' + (i + 1));
+    // 次の設問を開く
+    if (next.is(':hidden')) {
+        next.slideDown(400);
+        $('html,body').animate({scrollTop: next.offset().top}, 400);
+        $('#progress_bar').val(i + 2);
+        $('#progress_text').text((i + 2) + ' / ' + questions.length);
+    }
+    // 全ての設問に回答
+    if (i + 1 == questions.length) {
+        $('#progress_container').hide();
+        $('html,body').animate({scrollTop: $('#result_container').offset().top}, 400);
+        // $('#network').show();
+    }
 }
 
 // HTMLの読み込みが全て完了した後に実行
@@ -380,6 +400,7 @@ $(function(){
         edges: edges
     };
     let options = {
+        clickToUse: true,
         nodes: {
         },
         edges: {
@@ -421,36 +442,32 @@ $(function(){
         $('#questions_container').append(q);
         // クリック
         $('#yes_' + i).on('click', function () {
+            click_button(i);
             $('#yes_' + i).addClass('selected');
-            $('#no_' + i).removeClass('selected');
-            $('#neutral_' + i).removeClass('selected');
-            $('#q_' + (i + 1)).slideDown(400);
             diagnose(nodes, edges);
         });
         $('#neutral_' + i).on('click', function () {
+            click_button(i);
             $('#neutral_' + i).addClass('selected');
-            $('#yes_' + i).removeClass('selected');
-            $('#no_' + i).removeClass('selected');
-            $('#q_' + (i + 1)).slideDown(400);
             diagnose(nodes, edges);
         });
         $('#no_' + i).on('click', function () {
+            click_button(i);
             $('#no_' + i).addClass('selected');
-            $('#yes_' + i).removeClass('selected');
-            $('#neutral_' + i).removeClass('selected');
-            $('#q_' + (i + 1)).slideDown(400);
             diagnose(nodes, edges);
         });
     }
-    $('#q_0').slideDown(400);
 
-    // // 設問の初期状態（動作確認用）
-    // for (let i = 0; i < questions.length; i++) {
-    //     $('#no_' + i).addClass('selected');
-    //     $('#yes_' + i).removeClass('selected');
-    //     $('#q_' + i).addClass('selected');
-    // }
-    // diagnose(nodes, edges);
+    // 開始ボタン
+    $('#start_button').on('click', function () {
+        $('#start_button').hide();
+        $('#q_0').slideDown(400);
+        $('html,body').animate({scrollTop: $('#q_0').offset().top}, 400);
+
+        
+        $('#progress_container').append('<div id="progress_text">1 / ' + questions.length + '</div>');
+        $('#progress_container').append('<progress id="progress_bar" min="0" max="' + questions.length + '" value="1"></progress>');
+    });
 
     
 });
