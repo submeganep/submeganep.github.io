@@ -112,8 +112,9 @@ function displayIdol(name, nodes, edges) {
     $('#idol_container').css('background-image', 'url(./standing/' + name + '.png)');
 
     // 楽曲
+    $('#tunes_header').empty();
+    $('#tunes_header').append('<div class="container_header">▼ ' + name + 'の楽曲（楽曲名を選択して視聴）</div>')
     $('#tunes_container').empty();
-    $('#tunes_container').append('<div class="container_header">▼ ' + name + 'の楽曲（楽曲名を選択して視聴）</div>')
     for (let i = 0; i < tune_names.length; i++) {
         let tune_name = tune_names[i];
         let tune = tunes[tune_name];
@@ -184,32 +185,28 @@ function diagnose(nodes, edges) {
     let {x, y} = getPosition(pr, fa, an);
 
     // 属性
-    let attr = '';
     let max_score = Math.max(pr, fa, an);
+    let result_summary = '';
+    let result_detail = '';
+    let result_percent = '';
     if (pr == max_score){
-        attr = '<span class="attribute pr">Princess</span>';
+        result_summary = 'あたなはどこからどうみても<span class="attribute pr">Princess</span>です！';
+        result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
     } else if (fa == max_score) {
-        attr = '<span class="attribute fa">Fairy</span>';
+        result_summary = 'あなたは周囲の人から<span class="attribute fa">Fairy</span>だと思われています！';
+        result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
     } else {
-        attr = '<span class="attribute an">Angel</span>';
+        result_summary = 'あなたは<span class="attribute an">Angel</span>っぽいところがあるみたいですね～！';
+        result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
     }
-    // let attr_text = 'あなたは' + attr + '属性です';
-    let attr_text = '';
-    if (max_score >= 0.5) {
-        attr_text = 'あなたは' + attr + '属性っぽいです';
-    } else {
-        attr_text = 'あなたは' + attr + '属性かもしれないです';
-    }
-    let detail_text = '';
-    // detail_text += '(';
-    detail_text += '<span class="attribute pr">Princess ' + Math.round(pr * 100) + '%</span>';
-    detail_text += '<span class="attribute fa">Fairy ' + Math.round(fa * 100) + '%</span>';
-    detail_text += '<span class="attribute an">Angel ' + Math.round(an * 100) + '%</span>';
-    // detail_text += ')';
+    result_percent += '<span class="attribute pr">Princess ' + Math.round(pr * 100) + '%</span>';
+    result_percent += '<span class="attribute fa">Fairy ' + Math.round(fa * 100) + '%</span>';
+    result_percent += '<span class="attribute an">Angel ' + Math.round(an * 100) + '%</span>';
     $('#result_container').empty();
     $('#result_container').append('<div class="container_header">▼ 診断結果</div>')
-    $('#result_container').append('<div>' + attr_text + '</div>');
-    $('#result_container').append('<div>' + detail_text + '</div>');
+    $('#result_container').append('<div id="result_summary">' + result_summary + '</div>');
+    $('#result_container').append('<div id="result_percent">' + result_percent + '</div>');
+    $('#result_container').append('<div id="result_detail">' + result_detail + '</div>');
 
     // 設問への回答が最も似ているアイドル
     let idol_similar = '';
@@ -245,7 +242,7 @@ function diagnose(nodes, edges) {
             idol_nearest = name;
         }
     }
-    $('#result_container').append('<div>あなたは <a id="link_' + idol_similar + '">' + idol_similar + '</a> に似ています</div>');
+    $('#result_container').append('<div id="result_idol">似ているアイドルは <a id="link_' + idol_similar + '">' + idol_similar + '</a> です</div>');
     $('#link_' + idol_similar).on('click', function() {
         displayIdol(idol_similar, nodes, edges);
     });
