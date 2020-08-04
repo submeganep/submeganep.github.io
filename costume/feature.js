@@ -256,6 +256,8 @@ let feature = {
         "010azu0064"
     ],
     "crossdress": [
+        "033sih0213_v",
+        "033sih0213",
         "007ior0144_v",
         "007ior0144",
         "037nao0144_v",
