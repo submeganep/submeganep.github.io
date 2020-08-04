@@ -89,19 +89,12 @@
 }
 
 .row {
-    margin-top: 4px;
+    /* margin-top: 4px; */
+    margin: 2px;
 }
-.SumoSelect {
-    /* width: 360px !important; */
-    width: 300px !important;
-}
-div.picker_replacer {
-    padding: 0px;
-    border: none;
-    background-color: white;
-}
-div.picker_container {
-    border: gray 1px solid;
+
+#color_picker {
+    height: 28px;
 }
 
 .button {
@@ -122,14 +115,6 @@ div.picker_container {
     background-color: gray;
     color: white;
 }
-
-/* input[type=checkbox] { display:none; }
-input[type=checkbox] + label:before {
-    font-family: FontAwesome;
-    display: inline-block;
-}
-input[type=checkbox] + label:before { content: "\f096"; }
-input[type=checkbox]:checked + label:before { content: "\f046"; } */
 
 #costume_header {
     display: flex;

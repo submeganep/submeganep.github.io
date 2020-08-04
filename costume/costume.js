@@ -33,7 +33,7 @@ let costumes = [];
 for (let i = 0; i < keys.length; ++i) {
     indices.push(i);
 }
-let costume_key = '';
+// let costume_key = '';
 
 // カラーコードをLab*に変換
 function convertToLab(color) {
@@ -63,7 +63,7 @@ function displayCostume(key) {
     let names = $('<div class="idol_names"></div>');
 
     for (let name of data[key]['idol']) {
-        names.append('<a class="idol_name" id="' + name + '">' + name + '</a>');
+        names.append('<a class="idol_name" id="' + name + '_' + key + '">' + name + '</a>');
         break;  // 多人数の場合に表示が横に広くなるのでとりえあえず一人だけに限定
     }
     if (data[key]['idol'].length > 1) {
@@ -74,7 +74,7 @@ function displayCostume(key) {
 
     let colors = $('<div class="costume_colors"></div>');
     for (let color of data[key]['color']) {
-        colors.append('<a><div class="costume_color" style="background-color: ' + color + ';" id="' + color.slice(1) + '"></div></a>');
+        colors.append('<a><div class="costume_color" style="background-color: ' + color + ';" id="' + color.slice(1) + '_' + key + '"></div></a>');
     }
 
     let icons = $('<div class="costume_icons"></div>');
@@ -116,21 +116,21 @@ function displayCostume(key) {
 
     // クリック時の挙動
     $('#' + key).on('click', function() {
-        $('#select_idols')[0].sumo.selectAll();
+        $('#select_idols').multipleSelect('checkAll');
         displaySimilarCostumes(key);
         $('html, body').animate({scrollTop:$('#search_container').offset().top});
 
-        costume_key = key;
+        // costume_key = key;
     });
     for (let color of data[key]['color']) {
-        $('#' + color.slice(1)).on('click', function() {
-            $('#select_idols')[0].sumo.selectAll();
+        $('#' + color.slice(1) + '_' + key).on('click', function() {
+            $('#select_idols').multipleSelect('checkAll');
             displayColorCostumes(color);
             $('html, body').animate({scrollTop:$('#search_container').offset().top});
         });
     }
     for (let name of data[key]['idol']) {
-        $('#' + name).on('click', function() {
+        $('#' + name + '_' + key).on('click', function() {
             displayIdolCostumes(name);
             $('html, body').animate({scrollTop:$('#filter_container').offset().top});
         });
@@ -139,6 +139,11 @@ function displayCostume(key) {
         const index = like.indexOf(key);
         if (index == -1) {
             like.push(key);
+            ga('send', 'event', {
+                'eventCategory': 'koshou',
+                'eventAction': 'like_clicked_20200724',
+                'eventLabel': key,
+            });
         } else {
             like.splice(index, 1);
         }
@@ -168,10 +173,10 @@ function filterCostumes() {
     for (let i of indices) {
 
         // 未実装衣装をスキップ
-        if (keys[i] == '033sih0213') {
+        if (keys[i] == '043nor0193') {
             continue;
         }
-        if (keys[i] == '033sih0213_v') {
+        if (keys[i] == '043nor0193_v') {
             continue;
         }
 
@@ -310,9 +315,28 @@ function displayAllCostumes() {
     }
     $('.search_mode').removeClass('selected');
     $('#button_all').addClass('selected');
-    $('#button_costume').hide();
-    $('#sort_mode').hide();
-    $('#picker').spectrum('set', '');
+    $('#select_feature').multipleSelect('uncheckAll');
+    $('#select_costume').multipleSelect('uncheckAll');
+    $('#color_picker').minicolors('value', '');
+    displayCostumes();
+}
+
+function displayRandomCostumes() {
+    indices = [];
+    for (let i = 0; i < keys.length; ++i) {
+        indices.push(i);
+    }
+    for (let i = indices.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let tmp = indices[i];
+        indices[i] = indices[j];
+        indices[j] = tmp;
+    }
+    $('.search_mode').removeClass('selected');
+    $('#button_random').addClass('selected');
+    $('#select_feature').multipleSelect('uncheckAll');
+    $('#select_costume').multipleSelect('uncheckAll');
+    $('#color_picker').minicolors('value', '');
     displayCostumes();
 }
 
@@ -325,9 +349,9 @@ function displayLikeCostumes() {
     }
     $('.search_mode').removeClass('selected');
     $('#button_like').addClass('selected');
-    $('#button_costume').hide();
-    $('#sort_mode').hide();
-    $('#picker').spectrum('set', '');
+    $('#select_feature').multipleSelect('uncheckAll');
+    $('#select_costume').multipleSelect('uncheckAll');
+    $('#color_picker').minicolors('value', '');
     displayCostumes();
 }
 
@@ -339,30 +363,26 @@ function displayFeatureCostumes(key) {
         }
     }
     $('.search_mode').removeClass('selected');
-    $('#button_' + key).addClass('selected');
-    $('#button_costume').hide();
-    $('#sort_mode').hide();
-    $('#picker').spectrum('set', '');
+    $('#select_costume').multipleSelect('uncheckAll');
+    $('#color_picker').minicolors('value', '');
     displayCostumes();
 }
 
 function displayIdolCostumes(idol) {
-    $('#select_idols')[0].sumo.unSelectAll();
-    $('#select_idols')[0].sumo.selectItem(idol);
-    $('#button_costume').hide();
-    $('#sort_mode').hide();
-    $('#picker').spectrum('set', '');
+    $('#select_idols').multipleSelect('uncheckAll');
+    $('#select_idols').multipleSelect('check', idol);
+    $('#select_feature').multipleSelect('uncheckAll');
+    $('#select_costume').multipleSelect('uncheckAll');
+    $('#color_picker').minicolors('value', '');
     displayAllCostumes();
 }
 
 function displaySimilarCostumes(key) {
-    indices = data[key][$('#sort_mode').val()]
+    indices = data[key][$('#select_sort').val()]
     $('.search_mode').removeClass('selected');
-    $('#button_costume').text(data[key]['name']);
-    $('#button_costume').addClass('selected');
-    $('#button_costume').show();
-    $('#sort_mode').show();
-    $('#picker').spectrum('set', '');
+    $('#select_feature').multipleSelect('uncheckAll');
+    $('#select_costume').multipleSelect('check', key);
+    $('#color_picker').minicolors('value', '');
     displayCostumes();
 }
 
@@ -384,8 +404,9 @@ function displayColorCostumes(color) {
     indices.sort(function (a, b) { return min_dists[a] < min_dists[b] ? -1 : min_dists[a] > min_dists[b] ? 1 : 0; });
 
     $('.search_mode').removeClass('selected');
-    $('#button_costume').hide();
-    $('#picker').spectrum('set', color);
+    $('#select_feature').multipleSelect('uncheckAll');
+    $('#select_costume').multipleSelect('uncheckAll');
+    $('#color_picker').minicolors('value', color);
     displayCostumes();
 }
 
@@ -402,21 +423,50 @@ $(function(){
     }
 
     // カラーピッカー
-    $("#picker").spectrum({
-        preferredFormat: 'hex',
-        showInput: true,
-        showInitial: true,
-        allowEmpty: true,
-        color: '',
-        chooseText: 'OK',
-        cancelText: 'キャンセル',
-        change: function(color) {
+    $('#color_picker').minicolors({
+        letterCase: 'uppercase',
+        theme: 'default',
+        // theme: 'bootstrap',
+        hide: function() {
+            let color = this.value;
             if (color != null) {
-                displayColorCostumes(color.toHexString());
+                displayColorCostumes(color);
             }
         },
-        containerClassName: 'picker_container',
-        replacerClassName: 'picker_replacer',
+    });
+
+    // 特徴
+    $('#select_feature').multipleSelect({
+        placeholder: '特徴から検索',
+        onClick: function (view) {
+            let key = view['value'];
+            if (key) {
+                key = key.slice(8);
+                if (key in feature) {
+                    displayFeatureCostumes(key);
+                }
+            }
+        },
+    });
+
+    // 衣装
+    for (let i = keys.length - 1; i >= 0; i--) {
+        let key = keys[i];
+        $('#select_costume').append('<option selected value="' + key + '">' + data[key]['name'] + '</option>');
+    }
+    $('#select_costume').multipleSelect({
+        filter: true,
+        placeholder: '衣装名から検索',
+        onClick: function (view) {
+            let key = view['value'];
+            displaySimilarCostumes(key);
+        },
+    });
+    $('#select_sort').multipleSelect({
+        onClick: function (view) {
+            let key = $('#select_costume').val();
+            displaySimilarCostumes(key);
+        },
     });
 
     // アイドルリスト
@@ -431,36 +481,57 @@ $(function(){
     // }
 
     // アイドル選択
-    for (let name of idol_names) {
-        $('#select_idols').append('<option selected value="' + name + '">' + name + '</option>');
+    for (let i = 0; i < 4; i++) {
+        let optgroup = $('<optgroup label="' + type_names[i] + '"></optgroup>');
+        for (let name of names_list[i]) {
+            optgroup.append('<option selected value="' + name + '">' + name + '</option>');
+        }
+        $('#select_idols').append(optgroup);
     }
-    $('#select_idols').SumoSelect({
-        placeholder: '0人を選択中',
-        csvDispCount: 5,
-        captionFormat:'{0}人を選択中', 
-        captionFormatAllSelected:'アイドルを選択',
-        selectAll: true,
-        search: true,
-        searchText: 'アイドル名を検索',
-        noMatch: '"{0}" は見つかりません',
-        locale: ['OK', 'キャンセル', '全選択／解除'],
-        okCancelInMulti: true,
-        triggerChangeCombined: true,
-        forceCustomRendering: true,
+    $('#select_idols').multipleSelect({
+        filter: true,
+        multiple: true,
+        multipleWidth: 100,
+        width: 320,
+        // dropWidth: 300,
+        displayTitle: true,
+        minimumCountSelected: 3,
+        placeholder: 'アイドルを選択して下さい',
+        formatSelectAll () {
+            return '全選択／解除';
+        },
+        formatAllSelected () {
+            return '全員を選択中';
+        },
+        formatCountSelected (count, total) {
+            return count + '人を選択中'
+        },
+        formatNoMatchesFound () {
+            return '見つかりませんでした'
+        },
+        styler: function (row) {
+            if (row.type === 'optgroup') {
+                for (let i = 0; i < 4; i++) {
+                    if (row.label == type_names[i]) {
+                        return 'color: white; background-color: ' + type_colors[i] + ';'
+                    }
+                }
+            }
+        },
     });
-    
+
     // アイドルアイコン
     for (let i = 0; i < 4; i++) {
         let names = names_list[i];
         let group = $('<div class="idol_group" style="border-left: solid 10px ' + type_colors[i] + ';"></div>');
         for (let name of names) {
             let icon_img = 'https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/icon/3rd/' + name + '.png';
-            let icon = $('<div class="idol_icon" id="' + name + '"><a><img class="icon_image" src="' + icon_img + '" title="' + name + '"></a></div>');
+            let icon = $('<div class="idol_icon ' + name + '"><a><img class="icon_image" src="' + icon_img + '" title="' + name + '"></a></div>');
             group.append(icon);
         }
         $('#idol_container').append(group);
         for (let name of names) {
-            $('#' + name).on('click', function() {
+            $('.' + name).on('click', function() {
                 displayIdolCostumes(name);
                 $('html, body').animate({scrollTop:$('#filter_container').offset().top});
             });
@@ -474,12 +545,6 @@ $(function(){
     $('#filter_container input').on('change', function() {
         displayCostumes();
     });
-    $('#select_idols').on('change', function() {
-        displayCostumes();
-    })
-    $('#sort_mode').on('change', function() {
-        displaySimilarCostumes(costume_key);
-    });
     
     // 検索ボタン
     $('#button_all').on('click', function() {
@@ -488,11 +553,9 @@ $(function(){
     $('#button_like').on('click', function() {
         displayLikeCostumes();
     });
-    for (let key of Object.keys(feature)) {
-        $('#button_' + key).on('click', function() {
-            displayFeatureCostumes(key);
-        });
-    }
+    $('#button_random').on('click', function() {
+        displayRandomCostumes();
+    });
 
     // 絞込ボタン
     $('#button_ticket').on('click', function() {
