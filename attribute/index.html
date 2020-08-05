@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ミリシタ属性診断（β）</title>
+    <title>ミリシタ属性診断</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
     <!-- CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/sanitize.css">
-    <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="./attribute.css">
 
     <!-- Font -->
@@ -23,51 +27,108 @@
     gtag('config', 'UA-166007780-1');
     </script>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <!-- vis.js -->
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-
-    <!-- header & hooter -->
-    <script>
-        $(function() {
-            $("header").load("../site/header.html");
-            $("footer").load("../site/footer.html");
-        });
-    </script>
     
-    <!--  -->
+    <!-- JavaScript -->
+    <script src="../site/common.js"></script>
     <script src="./params.js"></script>
     <script src="./tunes.js"></script>
     <script src="./attribute.js"></script>
 </head>
 <body>
 
-    <header></header>
+    <h1></h1>
 
-    <h1>ミリシタ属性診断（β）</h1>
+    <div class="container">
 
-    <div id="display_container">
-        <div id="description">
-            <div class="container_header" style="font-size: 16px; font-weight: bold;">設問に答えるとあなたのミリシタ属性が分かる</div>
-            <diV id="start_button">診断を開始する</diV>
-            <div>※診断結果やアイドルの属性配置は<br>AI（機械学習）が算出した非公式のものであり<br>公式の見解とは異なることを予めご了承ください</div>
+        <!-- 設問 -->
+        <div id="questions_container" class="carousel slide" data-ride="carousel" data-interval="false">
+            <ol class="carousel-indicators">
+                <li data-target="#questions_container" data-slide-to="0" class="active"></li>
+            </ol>
+            <div class="carousel-inner text-center d-flex align-items-center pb-4 bg-light" id="questions_inner">
+                <div class="carousel-item active">
+                    <div><b>設問に答えて自分のミリシタ属性を知ろう</b></div>
+                    <button type="button" class="btn btn-outline-dark m-2" id="start_button">
+                        診断を開始する
+                    </button>
+                    <div style="line-height: 1rem;">
+                        <small>
+                            ※診断結果やアイドルの属性配置は
+                            <br>
+                            AI（機械学習）が算出した非公式のものであり
+                            <br>
+                            公式の見解とは異なることを予めご了承ください
+                        </small>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div id="questions_container"></div>
+        <!-- 属性 -->
+        <div class="text-center" id="attr_container">
+            <div class="d-flex justify-content-center">
+                <div id="bar_pr" style="width: 33.3333%; height: 10px;"></div>
+                <div id="bar_fa" style="width: 33.3333%; height: 10px;"></div>
+                <div id="bar_an" style="width: 33.3333%; height: 10px;"></div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="pr">Princess <span id="result_pr">33</span>%</div>
+                <div class="fa">Fairy <span id="result_fa">33</span>%</div>
+                <div class="an">Angel <span id="result_an">33</span>%</div>
+            </div>
+        </div>
 
-        <div id="progress_container"></div>
+        <!-- 結果 -->
+        <div class="text-center" id="result_container">
+            <div id="result_summary"></div>
+            <div id="result_detail"></div>
+            <div id="result_idol">そんなあなたに似たアイドルは…</div>
+        </div>
 
-        <div id="result_container"></div>
+        <!-- マップ -->
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6" id="network_container">
+                <div id="network"></div>
+            </div>
+            <div class="col-12 col-lg-6" id="network_description">
+                枠内を選択することでマップの拡大・縮小や移動ができます<br>アイドルのアイコンを選ぶとここにプロフィールが表示されます
+            </div>
+            <div class="col-12 col-lg-6" id="idol_container">
+                <div id="idol_eng"></div>
+                <div id="idol_name"></div>
+                <div id="idol_introduction"></div>
+                <div class="row">
+                    <div class="col" id="idol_profile">
+                        <table class="table table-sm table-hover" id="profile_table">
+                            <tr><th>趣味</th><td id="趣味"></td></tr>
+                            <tr><th>特技</th><td id="特技"></td></tr>
+                            <tr><th>好きなもの</th><td id="好きなもの"></td></tr>
+                            <tr><th>身長 / 体重</th><td id="身長体重"></td></tr>
+                            <tr><th>スリーサイズ</th><td id="スリーサイズ"></td></tr>
+                            <tr><th>血液型</th><td id="血液型"></td></tr>
+                            <tr><th>利き手</th><td id="利き手"></td></tr>
+                            <tr><th>出身地</th><td id="出身地"></td></tr>
+                            <tr><th>誕生日</th><td id="誕生日"></td></tr>
+                            <tr><th>年齢</th><td id="年齢"></td></tr>
+                            <tr><th>属性</th><td id="属性"></td></tr>
+                            <tr><th>CV</th><td id="CV"></td></tr>
+                            <tr><th>検索</th><td id="検索"></td></tr>
+                            <!-- <tr><td></td><td id=""></td></tr> -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- <div class="container_header">▼ 属性マップ<br>（拡大・縮小やアイドル選択が可能）</div> -->
-        <div id="network"></div>
-
-        <div id="idol_container"></div>
-
-        <div id="tunes_header"></div>
-        <div id="tunes_container"></div>
+        <!-- 楽曲 -->
+        <div id="tunes_container">
+            <div class="text-center mt-2" id="tunes_header">
+                <b><span id="tunes_idol"></span> が歌うミリオンライブ！の楽曲</b>
+            </div>
+            <div class="row" id="tunes_items"></div>
+        </div>
     </div>
 
     <img id="triangle" src="./triangle.png"  style="display: none;">
@@ -98,7 +159,7 @@
 
     <h2>更新履歴</h2>
     <ul>
-        <li>2020-08-02 楽曲視聴機能を追加，デザインを修正</li>
+        <li>2020-08-02 楽曲視聴機能を追加</li>
         <li>2020-08-01 β版リリース</li>
     </ul>
 

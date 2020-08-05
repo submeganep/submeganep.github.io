@@ -1,163 +1,86 @@
-#display_container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
 
-.container_header {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 10px;
-}
 
-#description {
-    text-align: center;
+#questions_inner {
+    height: 200px;
 }
-#start_button {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    width: 320px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid gray;
-    cursor: pointer;
+.carousel-indicators li{
+    background-color: lightgray;
 }
-#start_button:hover {
+.carousel-indicators .active {
     background-color: gray;
-    color: white;
-}
-#start_button.selected {
-    background-color: gray;
-    color: white;
 }
 
-#questions_container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-}
-.question_container {
-    width: 320px;
-    margin: 5px;
-    background-color: whitesmoke;
-    border: 1px solid gray;
-    display: none;
-}
-.question_text {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 5px;
-}
-.button_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-}
-.answer_button {
-    display: inline-block;
-    margin: 5px;
-    padding: 5px;
-    min-width: 80px;
-    text-align: center;
-	text-decoration: none;
-	color: black;
-	background-color: white;
-    border: 1px solid gray;
-    cursor: pointer;
-}
-.answer_button:hover {
-    background-color: gray;
-    color: white;
-}
-.answer_button.selected {
-    background-color: gray;
-    color: white;
-}
-
-#progress_container {
-    margin-top: 10px;
-    text-align: center;
-}
-
-#result_container {
-    margin-top: 10px;
-    text-align: center;
-    width: 360px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.attribute {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 900;
-    padding-left: 5px;
-    padding-right: 5px;
-}
 .pr {
     color: #ff2284;
+    font-weight: bold;
 }
 .fa {
     color: #005eff;
+    font-weight: bold;
 }
 .an {
     color: #ffbb00;
+    font-weight: bold;
+}
+#bar_pr {
+    background-color: #ff2284;
+}
+#bar_fa {
+    background-color: #005eff;
+}
+#bar_an {
+    background-color: #ffbb00;
+}
+
+#result_container {
+    display: none;
 }
 #result_summary {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
+    margin-top: 0.5rem;
 }
 #result_percent {
-    font-size: 14px;
+    font-size: 1rem;
 }
 #result_detail {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 #result_idol {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
+    margin-top: 0.5rem;
 }
 
 #network {
     height: 50vh;
-    /* border: 1px solid gray; */
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    /* background-color: whitesmoke; */
-
-    /* display: none; */
+    border: gray 1px solid;
+}
+#network_container {
+    margin-top: 1rem;
 }
 
 #idol_container {
-    /* border: black solid 1px; */
+    display: none;
 
-    width: 320px; 
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    min-width: 320px;
+    /* width: 320px; */
 
     background-repeat: no-repeat;
-    background-position: 150px 100%;
+    background-position: 100% 100%;
     background-size: 200px;
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
 }
-.idol_name {
+
+#idol_eng {
+    font-size: 16px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    text-align: center;
+}
+#idol_name {
     font-size: 40px;
     font-weight: bold;
     font-family: 'M PLUS Rounded 1c', sans-serif;
+    text-align: center;
     color: white;
     text-shadow:
         1px 1px 0px black, -1px -1px 0px black,
@@ -165,62 +88,25 @@
         0px 1px 0px black,  0px -1px 0px black,
         -1px 0px 0px black, 1px 0px 0px black;
 }
-.idol_eng {
-    font-size: 16px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-}
-.idol_introduction {
+#idol_introduction {
     font-size: 20px;
     font-weight: bold;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     text-align: center;
-    margin-bottom: 10px;
 }
-/* table td {
-    padding-right: 10px;
-} */
-table td:nth-of-type(1) {
-    font-weight: bold;
-    width: 80px;
+#idol_profile {
+    font-size: 12px;
 }
-table td:nth-of-type(2) {
-    width: 240px;
+#idol_profile table td, #profile_table th {
+    border: none;
+}
+#idol_profile table tr td:nth-child(1) {
+    width: 25%;
+}
+#idol_profile table tr td:nth-child(2) {
+    width: 75%;
 }
 
-#tunes_header {
-    padding-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-}
 #tunes_container {
-    /* border: black solid 1px; */
-
-    /* min-width : 320px;
-    margin-left: 20px;
-    margin-right: 20px; */
-    min-width : 330px;
-    margin-left: 15px;
-    margin-right: 15px;
-    
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-}
-.tune_container {
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 5px;
-    padding-bottom: 5px;
-	background-color: whitesmoke;
-}
-.tune_name {
-    padding-top: 5px;
-    font-size: 16px;
-    font-weight: bold;
+    display: none;
 }
