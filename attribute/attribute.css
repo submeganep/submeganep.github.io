@@ -12,15 +12,12 @@
 
 .pr {
     color: #ff2284;
-    font-weight: bold;
 }
 .fa {
     color: #005eff;
-    font-weight: bold;
 }
 .an {
     color: #ffbb00;
-    font-weight: bold;
 }
 #bar_pr {
     background-color: #ff2284;
@@ -35,26 +32,18 @@
 #result_container {
     display: none;
 }
-#result_summary {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
+/* #result_summary {
 }
 #result_percent {
-    font-size: 1rem;
 }
 #result_detail {
-    font-size: 0.75rem;
 }
 #result_idol {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
-}
+} */
 
 #network {
     height: 50vh;
-    border: gray 1px solid;
+    border: lightgray 1px solid;
 }
 #network_container {
     margin-top: 1rem;

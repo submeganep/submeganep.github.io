@@ -10,7 +10,8 @@ const radius = 500;
 
 // 配置座標を算出する関数
 function getPosition(pr, fa, an) {
-    let x = (fa - an) * sin60;
+    let x = (an - fa) * sin60;
+    // let x = (fa - an) * sin60;
     let y = (fa + an) * cos60 - pr;
     x = Math.ceil(x * radius);
     y = Math.ceil(y * radius);
@@ -78,6 +79,8 @@ function displayIdol(name, nodes, edges) {
     search += '<a href="https://dic.nicovideo.jp/a/' + name_niconico + '" target="_blank">ニコニコ大百科</a>';
     search += '<br>';
     search += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">ピクシブ百科事典</a>';
+    search += '<br>';
+    search += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">ミリシタDB</a>';
     $('#趣味').text(idol['趣味']);
     $('#特技').text(idol['特技']);
     $('#好きなもの').text(idol['好きなもの']);
@@ -90,7 +93,7 @@ function displayIdol(name, nodes, edges) {
     $('#年齢').text(idol['年齢'] + '歳');
     $('#属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
     $('#CV').text(idol['CV']);
-    $('#検索').html(search);
+    $('#外部リンク').html(search);
 
     // 背景
     // idol['ID']  // 03みたいなIDを背景右上に表示するとカッコいいかも
@@ -195,6 +198,7 @@ function updateResult(pr, fa, an) {
         result_summary = 'あなたは <span class="attribute an">Angel</span> っぽいところがあるみたいですね～！';
         result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
     }
+    result_detail = '<small>' + result_detail + '</small>';
     $('#result_summary').html(result_summary);
     $('#result_detail').html(result_detail);
     $('#result_container').slideDown(400);
@@ -344,8 +348,10 @@ $(function(){
         // color: '#ff2284',
         color: 'white',
         font: {
-            color: '#ff2284',
             size: 30,
+            color: '#ff2284',
+            strokeColor: '#ff2284',
+            strokeWidth: 1,
         },
         borderWidth: 0,
         chosen: false,
@@ -360,13 +366,15 @@ $(function(){
         // color: '#005eff',
         color: 'white',
         font: {
-            color: '#005eff',
             size: 30,
+            color: '#005eff',
+            strokeColor: '#005eff',
+            strokeWidth: 1,
         },
         borderWidth: 0,
         chosen: false,
         fixed: true,
-        x: radius * sin60,
+        x: -radius * sin60,
         y: radius * cos60,
     });
     nodes.push({
@@ -376,13 +384,15 @@ $(function(){
         // color: '#ffbb00',
         color: 'white',
         font: {
-            color: '#ffbb00',
             size: 30,
+            color: '#ffbb00',
+            strokeColor: '#ffbb00',
+            strokeWidth: 1,
         },
         borderWidth: 0,
         chosen: false,
         fixed: true,
-        x: -radius * sin60,
+        x: radius * sin60,
         y: radius * cos60,
     });
     nodes = new vis.DataSet(nodes);
@@ -411,6 +421,14 @@ $(function(){
     };
     let network = new vis.Network(container, data, options);
 
+    // ローディング
+    network.on("stabilizationProgress", function(params_) {
+        $('#network_load').text('ロード中 ' + Math.round(params_.iterations / params_.total * 100) + '%');
+    });
+    network.once("stabilizationIterationsDone", function() {
+        $('#network_load').empty();
+    });
+
     // 背景画像
 	network.on('beforeDrawing', function(ctx) {
         ctx.drawImage(document.getElementById('triangle'), -402, -460);
@@ -429,7 +447,7 @@ $(function(){
     for (let i = 0; i < questions.length; i++) {
 
         // カル―セル
-        let question = `<div class="pt-2 pb-2">Q${i + 1}. ${questions[i]}</div>`;
+        let question = `<div class="pt-2 pb-2 font-weight-bold">Q${i + 1}. ${questions[i]}</div>`;
         let answer = $(`<div class="btn-group btn-group-toggle" data-toggle="buttons" id="radio_${i}" />`);
         answer.append(`<label class="btn btn-outline-dark"><input type="radio" value="yes">はい</label>`);
         answer.append(`<label class="btn btn-outline-dark"><input type="radio" value="na">どちらでもない</label>`);
@@ -468,6 +486,10 @@ $(function(){
                 displayIdol(similar_idol, nodes, edges);
                 // スクロール
                 $('html,body').animate({scrollTop: $('#attr_container').offset().top}, 400);
+                // 開始ボタンの表示を変更
+                $('#start_button').text('回答を修正する');
+                // 属性の説明文を隠す
+                $('#attr_description').hide();
             }
             // 一度診断した後は回答を変更するごとに結果を変更
             else if ($('#result_container').is(':visible')) {
@@ -479,7 +501,7 @@ $(function(){
         });
     }
 
-    // 回答開始
+    // 開始ボタン
     $('#start_button').on('click', function () {
         $('#questions_container').carousel('next');
     });

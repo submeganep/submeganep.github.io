@@ -47,10 +47,16 @@
             <ol class="carousel-indicators">
                 <li data-target="#questions_container" data-slide-to="0" class="active"></li>
             </ol>
-            <div class="carousel-inner text-center d-flex align-items-center pb-4 bg-light" id="questions_inner">
+            <div class="carousel-inner text-center d-flex align-items-center bg-light" id="questions_inner">
                 <div class="carousel-item active">
-                    <div><b>設問に答えて自分のミリシタ属性を知ろう</b></div>
-                    <button type="button" class="btn btn-outline-dark m-2" id="start_button">
+                    <div class="font-weight-bold">
+                        <!-- 設問に答えて自分のミリシタ属性を知ろう -->
+                        質問に答えるとあなたのミリシタ属性と
+                        <br>
+                        <!-- <br class="d-inline d-sm-none"> -->
+                        あたなに似たアイドルが分かります
+                    </div>
+                    <button type="button" class="btn btn-lg btn-outline-dark m-2" id="start_button">
                         診断を開始する
                     </button>
                     <div style="line-height: 1rem;">
@@ -69,31 +75,45 @@
         <!-- 属性 -->
         <div class="text-center" id="attr_container">
             <div class="d-flex justify-content-center">
-                <div id="bar_pr" style="width: 33.3333%; height: 10px;"></div>
                 <div id="bar_fa" style="width: 33.3333%; height: 10px;"></div>
+                <div id="bar_pr" style="width: 33.3333%; height: 10px;"></div>
                 <div id="bar_an" style="width: 33.3333%; height: 10px;"></div>
             </div>
-            <div class="d-flex justify-content-between">
-                <div class="pr">Princess <span id="result_pr">33</span>%</div>
+            <div class="d-flex justify-content-between font-weight-bold">
                 <div class="fa">Fairy <span id="result_fa">33</span>%</div>
+                <div class="pr">Princess <span id="result_pr">33</span>%</div>
                 <div class="an">Angel <span id="result_an">33</span>%</div>
+            </div>
+        </div>
+        <div class="text-center" id="attr_description">
+            <div class="d-flex justify-content-between" style="line-height: 1rem;">
+                <div class="fa"><small>『妖精』<br class="d-inline d-sm-none">みたいに<br class="d-inline d-sm-none">神秘的</small></div>
+                <div class="pr"><small>『お姫様』<br class="d-inline d-sm-none">みたいに<br class="d-inline d-sm-none">カワイイ</small></div>
+                <div class="an"><small>『天使』<br class="d-inline d-sm-none">みたいに<br class="d-inline d-sm-none">自由</small></div>
             </div>
         </div>
 
         <!-- 結果 -->
         <div class="text-center" id="result_container">
-            <div id="result_summary"></div>
-            <div id="result_detail"></div>
-            <div id="result_idol">そんなあなたに似たアイドルは…</div>
+            <div id="result_summary" class="mt-2 font-weight-bold"></div>
+            <div id="result_detail" class="mt-1"></div>
+            <div id="result_idol" class="mt-2 font-weight-bold">そんなあなたに似たアイドルは…</div>
         </div>
 
         <!-- マップ -->
         <div class="row align-items-center">
             <div class="col-12 col-lg-6" id="network_container">
+                <div class="text-center" id="network_load">ロード中 0%</div>
                 <div id="network"></div>
             </div>
             <div class="col-12 col-lg-6" id="network_description">
-                枠内を選択することでマップの拡大・縮小や移動ができます<br>アイドルのアイコンを選ぶとここにプロフィールが表示されます
+                3属性を頂点とする三角形内に52人のアイドルを配置しています
+                <br>
+                質問に答えるとあなたの属性を表す★が移動します
+                <br>
+                枠内を選択することで拡大・縮小や移動ができます
+                <br>
+                アイドルのアイコンを選ぶとここにプロフィールが表示されます
             </div>
             <div class="col-12 col-lg-6" id="idol_container">
                 <div id="idol_eng"></div>
@@ -114,7 +134,7 @@
                             <tr><th>年齢</th><td id="年齢"></td></tr>
                             <tr><th>属性</th><td id="属性"></td></tr>
                             <tr><th>CV</th><td id="CV"></td></tr>
-                            <tr><th>検索</th><td id="検索"></td></tr>
+                            <tr><th>外部リンク</th><td id="外部リンク"></td></tr>
                             <!-- <tr><td></td><td id=""></td></tr> -->
                         </table>
                     </div>
@@ -124,10 +144,19 @@
 
         <!-- 楽曲 -->
         <div id="tunes_container">
-            <div class="text-center mt-2" id="tunes_header">
+            <div class="text-center font-weight-bold mt-4 mb-2 border-bottom border-secondary">
                 <b><span id="tunes_idol"></span> が歌うミリオンライブ！の楽曲</b>
             </div>
             <div class="row" id="tunes_items"></div>
+        </div>
+
+        <!-- 宣伝 -->
+        <div class="text-center">
+            <div class="text-center font-weight-bold mt-4 mb-2 border-bottom border-secondary">ミリシタに興味を持ったら…</div>
+            <div><a href="https://millionlive.idolmaster.jp/theaterdays/" target="_blank">公式Webサイト</a></div>
+            <div><a href="https://twitter.com/imasml_theater" target="_blank">公式Twitter</a></div>
+            <div><a href="https://app.adjust.com/nd8gvp?campaign=iOS&fallback=https://itunes.apple.com/jp/app/id1238569156?mt=8" target="_blank">App Store でダウンロード</a></div>
+            <div><a href="https://app.adjust.com/enxzjl?campaign=Android&fallback=https://play.google.com/store/apps/details?id=com.bandainamcoent.imas_millionlive_theaterdays" target="_blank">Google Play でダウンロード</a></div>
         </div>
     </div>
 
@@ -141,9 +170,6 @@
             </ul>
         </li>
         <li>ただいま<a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Q-LTRkwGI2WCZXnUDKS4wZbr7Lgpes763wzlnftXyPDYbA/viewform" target="_blank">Googleフォーム</a>で設問を募集しています
-            <ul>
-                <li>いただいた設問を参考に後日「はい」「いいえ」「どちらでもない」の三択に変更予定です</li>
-            </ul>
         </li>
         <li>アイドルの立ち絵画像は<a href="https://imas.gamedbs.jp/mlth/" target="_blank">ミリシタDB</a>よりお借りしました</li>
         <li>今後の対応予定
@@ -159,6 +185,7 @@
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-08-06 UIを改良</li>
         <li>2020-08-02 楽曲視聴機能を追加</li>
         <li>2020-08-01 β版リリース</li>
     </ul>
