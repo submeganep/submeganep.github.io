@@ -1,4 +1,3 @@
-
 let tune_names = Object.keys(tunes);
 let idol_names = Object.keys(params['idol']);
 let questions = params['question'];
@@ -61,47 +60,131 @@ function displayIdol(name, nodes, edges) {
     $('#idol_introduction').html(idol['ミリシタ紹介文'].replace(/\r?\n/g, '<br>'));
 
     // 表
-    let name_niconico = name;
-    let name_pixiv = name;
-    if (name == 'ロコ') {
-        name_niconico = 'ロコ%28アイドルマスター%29';
-        name_pixiv = '伴田路子';
-    }
-    else if (name == 'ジュリア') {
-        name_niconico += '%28アイドルマスター%29';
-        name_pixiv += '%28アイマス%29';
-    }
-    if (name == 'エミリー') {
-        name_niconico = 'エミリー%20スチュアート';
-        name_pixiv = 'エミリー・スチュアート';
-    }
-    let search = '';
-    search += '<a href="https://dic.nicovideo.jp/a/' + name_niconico + '" target="_blank">ニコニコ大百科</a>';
-    search += '<br>';
-    search += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">ピクシブ百科事典</a>';
-    search += '<br>';
-    search += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">ミリシタDB</a>';
-    $('#趣味').text(idol['趣味']);
-    $('#特技').text(idol['特技']);
-    $('#好きなもの').text(idol['好きなもの']);
+    $('#属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
+    // $('#イメージ').text(idol['イメージ']);
+    $('#年齢').text(idol['年齢'] + '歳');
+    $('#誕生日').text(idol['誕生日']);
+    // $('#星座').text(idol['星座']);
     $('#身長体重').text(idol['身長'] + 'cm / ' + idol['体重'] + 'kg');
     $('#スリーサイズ').text(idol['B'] + '-' + idol['W'] + '-' + idol['H']);
     $('#血液型').text(idol['血液型'] + '型');
     $('#利き手').text(idol['利き手']);
     $('#出身地').text(idol['出身地']);
-    $('#誕生日').text(idol['誕生日']);
-    $('#年齢').text(idol['年齢'] + '歳');
-    $('#属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
+    $('#趣味').text(idol['趣味']);
+    $('#特技').text(idol['特技']);
+    $('#好きなもの').text(idol['好きなもの']);
     $('#CV').text(idol['CV']);
-    $('#外部リンク').html(search);
 
     // 背景
-    // idol['ID']  // 03みたいなIDを背景右上に表示するとカッコいいかも
+    // idol['ID']  // 03みたいなIDを背景右上に表示するといいかも
     $('#idol_container').css('background-image', 'url(./standing/' + name + '.png)');
+
+    // 選択されたアイドル
+    $('.selected_idol').text(name);
+    let name_niconico = name;
+    let name_pixiv = name;
+    let name_wiki = name;
+    let id_fantasia = idol['ID'];
+    if (name == 'ロコ') {
+        name_niconico = 'ロコ%28アイドルマスター%29';
+        name_pixiv = '伴田路子';
+        name_wiki = '伴田路子%28ロコ%29';
+    }
+    else if (name == 'ジュリア') {
+        name_niconico += '%28アイドルマスター%29';
+        name_pixiv += '%28アイマス%29';
+    }
+    else if (name == 'エミリー') {
+        name_niconico = 'エミリー%20スチュアート';
+        name_pixiv = 'エミリー・スチュアート';
+        name_wiki = 'エミリー%20スチュアート';
+    }
+    if (idol['ID'] == 17) {
+        id_fantasia = 218;
+    }
+    else if (idol['ID'] > 17) {
+        id_fantasia--;
+    }
+    const story = {
+        '天海春香': 18,
+        '萩原雪歩': 26,
+        '菊地真': 27,
+        '我那覇響': 28,
+        '春日未来': 37,
+        '田中琴葉': 38,
+        '佐竹美奈子': 39,
+        '徳川まつり': 40,
+        '七尾百合子': 41,
+        '高山紗代子': 42,
+        '松田亜利沙': 43,
+        '高坂海美': 44,
+        '中谷育': 45,
+        'エミリー': 46,
+        '矢吹可奈': 47,
+        '横山奈緒': 48,
+        '福田のり子': 49,
+        '如月千早': 22,
+        '水瀬伊織': 29,
+        '四条貴音': 30,
+        '秋月律子': 31,
+        '最上静香': 50,
+        '所恵美': 51,
+        'ロコ': 52,
+        '天空橋朋花': 53,
+        '北沢志保': 54,
+        '舞浜歩': 55,
+        '二階堂千鶴': 56,
+        '真壁瑞希': 57,
+        '百瀬莉緒': 58,
+        '永吉昴': 59,
+        '周防桃子': 60,
+        'ジュリア': 61,
+        '白石紬': 62,
+        '星井美希': 23,
+        '高槻やよい': 32,
+        '三浦あずさ': 33,
+        '双海亜美': 34,
+        '双海真美': 35,
+        '伊吹翼': 63,
+        '島原エレナ': 64,
+        '箱崎星梨花': 65,
+        '野々原茜': 66,
+        '望月杏奈': 67,
+        '木下ひなた': 68,
+        '馬場このみ': 69,
+        '大神環': 70,
+        '豊川風花': 71,
+        '宮尾美也': 72,
+        '篠宮可憐': 73,
+        '北上麗花': 74,
+        '桜守歌織': 75,
+    };
+
+    // リンク
+    $('#links_items').empty();
+    let links = '';
+    links += '<a href="https://dic.nicovideo.jp/a/' + name_niconico + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">ニコニコ大百科</button></a>'
+    links += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">ピクシブ百科事典</button></a>';
+    links += '<a href="https://w.atwiki.jp/ml-story/pages/' + story[name] + '.html" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">ミリシタストーリーまとめ</button></a>';
+    links += '<a href="https://imasml-theater-wiki.gamerch.com/' + name + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">ミリシタ攻略まとめwiki</button></a>';
+    if (name != '白石紬' && name != '桜守歌織') {
+        links += '<a href="https://millionlive.info/?' + name_wiki + '" target="_blank">';
+        links += '<button type="button" class="btn btn-outline-dark m-2">ミリオンライブWiki</button></a>';
+    }
+    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">ミリシタDB</button></a>';
+    links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">Fantasia</button></a>';
+    links += '<a href="http://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-2">グリマス日和</button></a>';
+    $('#links_items').append(links);
 
     // 楽曲
     $('#tunes_items').empty();
-    $('#tunes_idol').text(name)
     for (let i = 0; i < tune_names.length; i++) {
         let tune_name = tune_names[i];
         let tune = tunes[tune_name];
@@ -128,6 +211,7 @@ function displayIdol(name, nodes, edges) {
     // 表示
     $('#network_description').hide();
     $('#idol_container').slideDown(400);
+    $('#links_container').slideDown(400);
     $('#tunes_container').slideDown(400);
 }
 
@@ -202,6 +286,13 @@ function updateResult(pr, fa, an) {
     $('#result_summary').html(result_summary);
     $('#result_detail').html(result_detail);
     $('#result_container').slideDown(400);
+
+    // ツイート
+    let tweet = '';
+    // tweet += '<a href="https://' + name + '" target="_blank">';
+    tweet += '<button type="button" class="btn btn-outline-dark m-2">診断結果をつぶやく</button>';
+    // tweet += '</a>';
+    $('#result_tweet').html(tweet);
 
     // 設問への回答が最も似ているアイドル
     let idol_similar = '';
@@ -456,7 +547,8 @@ $(function(){
         q.append(question);
         q.append(answer);
         $('#questions_container .carousel-inner').append(q);
-        $('#questions_container .carousel-indicators').append(`<li data-target="#questions_container" data-slide-to="${i + 1}"></li>`);
+        // $('#questions_container .carousel-indicators').append(`<li data-target="#questions_container" data-slide-to="${i + 1}"></li>`);
+        $('#questions_container .carousel-indicators').append(`<li data-target="#questions_container"></li>`);
 
         // 回答クリック
         $('#radio_' + i + ' input').on('click', function() {

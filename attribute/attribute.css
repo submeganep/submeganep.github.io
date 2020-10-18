@@ -96,6 +96,14 @@
     width: 75%;
 }
 
+#links_container {
+    display: none;
+}
+
 #tunes_container {
+    display: none;
+}
+
+#cartoons_container {
     display: none;
 }
