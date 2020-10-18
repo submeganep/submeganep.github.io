@@ -570,7 +570,7 @@ $(function(){
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2020-04-19');
+        $('#date_end').val('2020-09-18');
         displayCostumes();
     });
     $('#button_ticket2').on('click', function() {
