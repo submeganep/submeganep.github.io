@@ -266,6 +266,7 @@ function updateResult(pr, fa, an) {
     let min_score = Math.min(pr, fa, an);
     let result_summary;
     let result_detail;
+    let result_attribute = '';
     if (min_score === max_score) {
         result_summary = 'あたなはどの属性とも言えないです';
         result_detail = '「どちらでもない」ばかり選んでいませんか？';
@@ -273,26 +274,22 @@ function updateResult(pr, fa, an) {
     else if (pr === max_score) {
         result_summary = 'あたなはどこからどうみても <span class="attribute pr">Princess</span> です！';
         result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
+        result_attribute = 'Princess';
     }
     else if (fa === max_score) {
         result_summary = 'あなたは周囲の人から <span class="attribute fa">Fairy</span> だと思われています！';
         result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
+        result_attribute = 'Fairy';
     }
     else {
         result_summary = 'あなたは <span class="attribute an">Angel</span> っぽいところがあるみたいですね～！';
         result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
+        result_attribute = 'Angel';
     }
     result_detail = '<small>' + result_detail + '</small>';
     $('#result_summary').html(result_summary);
     $('#result_detail').html(result_detail);
     $('#result_container').slideDown(400);
-
-    // ツイート
-    let tweet = '';
-    // tweet += '<a href="https://' + name + '" target="_blank">';
-    tweet += '<button type="button" class="btn btn-outline-dark m-2">診断結果をつぶやく</button>';
-    // tweet += '</a>';
-    $('#result_tweet').html(tweet);
 
     // 設問への回答が最も似ているアイドル
     let idol_similar = '';
@@ -353,6 +350,18 @@ function updateResult(pr, fa, an) {
 
     // $('#result_idol').html('そんなあなたに似たアイドルは… ' + idol_similar);
     $('#result_idol').html('そんなあなたに似たアイドルは…');
+
+    // ツイート
+    if (result_attribute != '') {
+        let tweet = '';
+        tweet += '<a href="https://twitter.com/intent/tweet?';
+        tweet += 'text=あなたの属性は' + result_attribute + 'です．';
+        tweet += 'あなたは' + idol_similar + 'に似ています．';
+        tweet += '%20https://submeganep.github.io/attribute/';
+        tweet += '&hashtags=ミリシタ属性診断,ミリシタ,ミリオンライブ';
+        tweet += '" target="_blank"><button type="button" class="btn btn-outline-dark m-2">診断結果をtwitterでつぶやく</button></a>';
+        $('#result_tweet').html(tweet);
+    }
 
     return idol_similar;
 }
