@@ -50,12 +50,12 @@
             </ol>
             <div class="carousel-inner text-center d-flex align-items-center bg-light" id="questions_inner">
                 <div class="carousel-item active">
-                    <div class="font-weight-bold">
-                        <!-- 設問に答えて自分のミリシタ属性を知ろう -->
-                        質問に答えるとあなたのミリシタ属性と
+                    <div class="h5">
+                        質問に答えると
                         <br>
-                        <!-- <br class="d-inline d-sm-none"> -->
-                        あたなに似たアイドルが分かります
+                        あなたのミリシタ属性と
+                        <br>
+                        あなたに似たアイドルが分かります
                     </div>
                     <button type="button" class="btn btn-lg btn-outline-dark m-2" id="start_button">
                         診断を開始する
@@ -64,7 +64,7 @@
                         <small>
                             ※診断結果やアイドルの属性配置は
                             <br>
-                            AI（機械学習）が算出した非公式のものであり
+                            AIが算出した非公式のものであり
                             <br>
                             公式の見解とは異なることを予めご了承ください
                         </small>
@@ -95,49 +95,80 @@
         </div>
 
         <!-- 結果 -->
-        <div class="text-center" id="result_container">
-            <div id="result_summary" class="mt-2 font-weight-bold"></div>
-            <div id="result_detail" class="mt-1"></div>
-            <div id="result_tweet" class="mt-1"></div>
-            <div id="result_idol" class="mt-2 font-weight-bold">そんなあなたに似たアイドルは…</div>
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <div id="result_container" class="text-center rounded-lg">
+                    <div id="result_summary" class="m-2 pt-3 h5 font-weight-bold"></div>
+                    <div id="result_detail" class="m-2 pb-3"></div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 idol_container" id="result">
+                <div class="text-center">
+                    <div class="font-weight-bold">そんなあなたに似たアイドルは…</div>
+                    <div class="idol_eng"></div>
+                    <div class="idol_name h1 font-weight-bold"></div>
+                    <div class="idol_introduction h5 font-weight-bold"></div>
+                </div>
+                <div class="row">
+                    <div class="col idol_profile">
+                        <table class="table table-sm table-hover profile_table">
+                            <tr><th>属性</th><td class="属性"></td></tr>
+                            <tr><th>年齢</th><td class="年齢"></td></tr>
+                            <tr><th>誕生日</th><td class="誕生日"></td></tr>
+                            <tr><th>星座</th><td class="星座"></td></tr>
+                            <tr><th>身長 / 体重</th><td class="身長体重"></td></tr>
+                            <tr><th>スリーサイズ</th><td class="スリーサイズ"></td></tr>
+                            <tr><th>血液型</th><td class="血液型"></td></tr>
+                            <tr><th>利き手</th><td class="利き手"></td></tr>
+                            <tr><th>出身地</th><td class="出身地"></td></tr>
+                            <tr><th>趣味</th><td class="趣味"></td></tr>
+                            <tr><th>特技</th><td class="特技"></td></tr>
+                            <tr><th>好きなもの</th><td class="好きなもの"></td></tr>
+                            <!-- <tr><th>イメージ</th><td class="イメージ"></td></tr> -->
+                            <tr><th>CV</th><td class="CV"></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- ツイート -->
+        <!-- <div class="text-center">
+            <div id="result_tweet" class="mt-2"></div>
+        </div> -->
+        <div id="result_tweet" class="row mt-2"></div>
+
 
         <!-- マップ -->
         <div class="row align-items-center">
-            <div class="col-12 col-lg-6" id="network_container">
+            <div class="col-12 col-lg-6 mt-2 mb-2">
                 <div class="text-center" id="network_load">ロード中 0%</div>
                 <div id="network"></div>
             </div>
-            <div class="col-12 col-lg-6" id="network_description">
-                3属性を頂点とする三角形内に52人のアイドルを配置しています
-                <br>
-                質問に答えるとあなたの属性を表す★が移動します
-                <br>
-                枠内を選択することで拡大・縮小や移動ができます
-                <br>
-                アイドルのアイコンを選ぶとここにプロフィールが表示されます
-            </div>
-            <div class="col-12 col-lg-6" id="idol_container">
-                <div id="idol_eng"></div>
-                <div id="idol_name"></div>
-                <div id="idol_introduction"></div>
+            <div class="col-12 col-lg-6 idol_container" id="selected">
+                <div class="text-center">
+                    <div class="font-weight-bold">あなたが選んだアイドルは…</div>
+                    <div class="idol_eng"></div>
+                    <div class="idol_name h1 font-weight-bold"></div>
+                    <div class="idol_introduction h5 font-weight-bold"></div>
+                </div>
                 <div class="row">
-                    <div class="col" id="idol_profile">
-                        <table class="table table-sm table-hover" id="profile_table">
-                            <tr><th>属性</th><td id="属性"></td></tr>
-                            <tr><th>年齢</th><td id="年齢"></td></tr>
-                            <tr><th>誕生日</th><td id="誕生日"></td></tr>
-                            <!-- <tr><th>星座</th><td id="星座"></td></tr> -->
-                            <tr><th>身長 / 体重</th><td id="身長体重"></td></tr>
-                            <tr><th>スリーサイズ</th><td id="スリーサイズ"></td></tr>
-                            <tr><th>血液型</th><td id="血液型"></td></tr>
-                            <tr><th>利き手</th><td id="利き手"></td></tr>
-                            <tr><th>出身地</th><td id="出身地"></td></tr>
-                            <tr><th>趣味</th><td id="趣味"></td></tr>
-                            <tr><th>特技</th><td id="特技"></td></tr>
-                            <tr><th>好きなもの</th><td id="好きなもの"></td></tr>
-                            <!-- <tr><th>イメージ</th><td id="イメージ"></td></tr> -->
-                            <tr><th>CV</th><td id="CV"></td></tr>
+                    <div class="col idol_profile">
+                        <table class="table table-sm table-hover profile_table">
+                            <tr><th>属性</th><td class="属性"></td></tr>
+                            <tr><th>年齢</th><td class="年齢"></td></tr>
+                            <tr><th>誕生日</th><td class="誕生日"></td></tr>
+                            <tr><th>星座</th><td class="星座"></td></tr>
+                            <tr><th>身長 / 体重</th><td class="身長体重"></td></tr>
+                            <tr><th>スリーサイズ</th><td class="スリーサイズ"></td></tr>
+                            <tr><th>血液型</th><td class="血液型"></td></tr>
+                            <tr><th>利き手</th><td class="利き手"></td></tr>
+                            <tr><th>出身地</th><td class="出身地"></td></tr>
+                            <tr><th>趣味</th><td class="趣味"></td></tr>
+                            <tr><th>特技</th><td class="特技"></td></tr>
+                            <tr><th>好きなもの</th><td class="好きなもの"></td></tr>
+                            <!-- <tr><th>イメージ</th><td class="イメージ"></td></tr> -->
+                            <tr><th>CV</th><td class="CV"></td></tr>
                         </table>
                     </div>
                 </div>
@@ -146,41 +177,47 @@
 
         <!-- リンク -->
         <div id="links_container">
-            <div class="text-center font-weight-bold mt-4 mb-2 border-bottom border-secondary">
-                <b><span class="selected_idol"></span> に関する情報へのリンク</b>
+            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+                <span class="selected_idol"></span>に関する情報へのリンク
             </div>
-            <div class="row" id="links_items"></div>
+            <div class="row">
+                <div class="col" id="links_items"></div>
+            </div>
         </div>
 
         <!-- 楽曲 -->
         <div id="tunes_container">
-            <div class="text-center font-weight-bold mt-4 mb-2 border-bottom border-secondary">
-                <b><span class="selected_idol"></span> が歌うミリオンライブ！の楽曲</b>
+            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+                <span class="selected_idol"></span>が歌うミリオンライブ！の楽曲
             </div>
             <div class="row" id="tunes_items"></div>
         </div>
 
         <!-- 4コマ -->
         <div id="cartoons_container">
-            <div class="text-center font-weight-bold mt-4 mb-2 border-bottom border-secondary">
-                <b><span class="selected_idol"></span> が登場する公式4コマ漫画</b>
+            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+                <span class="selected_idol"></span>が登場する公式4コマ漫画
             </div>
             <div class="row" id="cartoons_items">
             </div>
         </div>
 
         <!-- 宣伝 -->
-        <div class="text-center">
-            <div class="text-center font-weight-bold mt-4 mb-2 border-bottom border-secondary">ミリシタに興味を持ったら…</div>
-            <div>
-                <a href="https://millionlive.idolmaster.jp/theaterdays/" target="_blank"><button type="button" class="btn btn-outline-dark w-50 m-2">公式Webサイト</button></a>
+        <div>
+            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+                ミリシタに興味を持ったら…
             </div>
-            <div>
-                <a href="https://twitter.com/imasml_theater" target="_blank"><button type="button" class="btn btn-outline-dark w-50 m-2">公式Twitter</button></a>
-            </div>
-            <div class="m-2"> 
-                <a href="https://app.adjust.com/nd8gvp?campaign=iOS&fallback=https://itunes.apple.com/jp/app/id1238569156?mt=8" target="_blank"><img src="./badge/app_store.png"></a>
-                <a href="https://app.adjust.com/enxzjl?campaign=Android&fallback=https://play.google.com/store/apps/details?id=com.bandainamcoent.imas_millionlive_theaterdays" target="_blank"><img src="./badge/google_play.png"></a>
+            <div class="text-center">
+                <div>
+                    <a href="https://millionlive.idolmaster.jp/theaterdays/" target="_blank"><button type="button" class="btn btn-outline-dark w-50 m-1">公式Webサイト</button></a>
+                </div>
+                <div>
+                    <a href="https://twitter.com/imasml_theater" target="_blank"><button type="button" class="btn btn-outline-dark w-50 m-1">公式Twitter</button></a>
+                </div>
+                <div class="m-2"> 
+                    <a href="https://app.adjust.com/nd8gvp?campaign=iOS&fallback=https://itunes.apple.com/jp/app/id1238569156?mt=8" target="_blank"><img src="./badge/app_store.png"></a>
+                    <a href="https://app.adjust.com/enxzjl?campaign=Android&fallback=https://play.google.com/store/apps/details?id=com.bandainamcoent.imas_millionlive_theaterdays" target="_blank"><img src="./badge/google_play.png"></a>
+                </div>
             </div>
         </div>
     </div>
@@ -194,8 +231,8 @@
                 <li><a href="https://live.erinn.biz/live.php?h365696947" target="_blank">ミリシタ属性診断ツール誰か作って</a></li>
             </ul>
         </li>
-        <li>ただいま<a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Q-LTRkwGI2WCZXnUDKS4wZbr7Lgpes763wzlnftXyPDYbA/viewform" target="_blank">Googleフォーム</a>で設問を募集しています
-        </li>
+        <!-- <li>ただいま<a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Q-LTRkwGI2WCZXnUDKS4wZbr7Lgpes763wzlnftXyPDYbA/viewform" target="_blank">Googleフォーム</a>で設問を募集しています
+        </li> -->
         <li>アイドルの立ち絵画像は<a href="https://imas.gamedbs.jp/mlth/" target="_blank">ミリシタDB</a>よりお借りしました</li>
         <li>今後の対応予定
             <ul>

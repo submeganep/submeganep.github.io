@@ -10,7 +10,6 @@ const radius = 500;
 // 配置座標を算出する関数
 function getPosition(pr, fa, an) {
     let x = (an - fa) * sin60;
-    // let x = (fa - an) * sin60;
     let y = (fa + an) * cos60 - pr;
     x = Math.ceil(x * radius);
     y = Math.ceil(y * radius);
@@ -18,7 +17,10 @@ function getPosition(pr, fa, an) {
 }
 
 // アイドル詳細表示
-function displayIdol(name, nodes, edges) {
+function displayIdol(name, nodes, edges, target_id) {
+
+    // 対象
+    target = '#' + target_id + '.idol_container';
 
     // アイコンをリセット
     for (let i = 0; i < idol_names.length; i++) {
@@ -31,10 +33,20 @@ function displayIdol(name, nodes, edges) {
 
     // アイドル名が空なら表示を隠して終了
     if (name === '') {
-        $('$idol_container').hide();
-        $('$tunes_container').show();
+        $(target).hide();
+        $('#tunes_container').hide();
         return;
     }
+
+    // 不要な表示を非表示
+    nodes.update({
+        id: 'anata',
+        hidden: true,
+    });
+    nodes.update({
+        id: 'description',
+        hidden: true,
+    });
 
     // アイコンを拡大
     nodes.update({
@@ -55,29 +67,29 @@ function displayIdol(name, nodes, edges) {
 
     // アイドルのプロフィールを表示
     let idol = params['idol'][name];
-    $('#idol_eng').text(idol['Given'] + ' ' + idol['Family']);
-    $('#idol_name').css({'color': idol['カラーコード']}).text(name);
-    $('#idol_introduction').html(idol['ミリシタ紹介文'].replace(/\r?\n/g, '<br>'));
+    $(target + ' .idol_eng').text(idol['Given'] + ' ' + idol['Family']);
+    $(target + ' .idol_name').css({'color': idol['カラーコード']}).text(name);
+    $(target + ' .idol_introduction').html(idol['ミリシタ紹介文'].replace(/\r?\n/g, '<br>'));
 
     // 表
-    $('#属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
-    // $('#イメージ').text(idol['イメージ']);
-    $('#年齢').text(idol['年齢'] + '歳');
-    $('#誕生日').text(idol['誕生日']);
-    // $('#星座').text(idol['星座']);
-    $('#身長体重').text(idol['身長'] + 'cm / ' + idol['体重'] + 'kg');
-    $('#スリーサイズ').text(idol['B'] + '-' + idol['W'] + '-' + idol['H']);
-    $('#血液型').text(idol['血液型'] + '型');
-    $('#利き手').text(idol['利き手']);
-    $('#出身地').text(idol['出身地']);
-    $('#趣味').text(idol['趣味']);
-    $('#特技').text(idol['特技']);
-    $('#好きなもの').text(idol['好きなもの']);
-    $('#CV').text(idol['CV']);
+    $(target + ' .属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
+    // $(target + ' .イメージ').text(idol['イメージ']);
+    $(target + ' .年齢').text(idol['年齢'] + '歳');
+    $(target + ' .誕生日').text(idol['誕生日']);
+    // $(target + ' .星座').text(idol['星座']);
+    $(target + ' .身長体重').text(idol['身長'] + 'cm / ' + idol['体重'] + 'kg');
+    $(target + ' .スリーサイズ').text(idol['B'] + '-' + idol['W'] + '-' + idol['H']);
+    $(target + ' .血液型').text(idol['血液型'] + '型');
+    $(target + ' .利き手').text(idol['利き手']);
+    $(target + ' .出身地').text(idol['出身地']);
+    $(target + ' .趣味').text(idol['趣味']);
+    $(target + ' .特技').text(idol['特技']);
+    $(target + ' .好きなもの').text(idol['好きなもの']);
+    $(target + ' .CV').text(idol['CV']);
 
     // 背景
     // idol['ID']  // 03みたいなIDを背景右上に表示するといいかも
-    $('#idol_container').css('background-image', 'url(./standing/' + name + '.png)');
+    $(target).css('background-image', 'url(./standing/' + name + '.png)');
 
     // 選択されたアイドル
     $('.selected_idol').text(name);
@@ -164,23 +176,23 @@ function displayIdol(name, nodes, edges) {
     $('#links_items').empty();
     let links = '';
     links += '<a href="https://dic.nicovideo.jp/a/' + name_niconico + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">ニコニコ大百科</button></a>'
+    links += '<button type="button" class="btn btn-outline-dark m-1">ニコニコ大百科</button></a>'
     links += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">ピクシブ百科事典</button></a>';
-    links += '<a href="https://w.atwiki.jp/ml-story/pages/' + story[name] + '.html" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">ミリシタストーリーまとめ</button></a>';
+    links += '<button type="button" class="btn btn-outline-dark m-1">ピクシブ百科事典</button></a>';
+    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタDB</button></a>';
+    // links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
+    // links += '<button type="button" class="btn btn-outline-dark m-1">Fantasia</button></a>';
+    links += '<a href="http://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1">グリマス日和</button></a>';
     links += '<a href="https://imasml-theater-wiki.gamerch.com/' + name + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">ミリシタ攻略まとめwiki</button></a>';
+    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタ攻略まとめwiki</button></a>';
     if (name != '白石紬' && name != '桜守歌織') {
         links += '<a href="https://millionlive.info/?' + name_wiki + '" target="_blank">';
-        links += '<button type="button" class="btn btn-outline-dark m-2">ミリオンライブWiki</button></a>';
+        links += '<button type="button" class="btn btn-outline-dark m-1">ミリオンライブWiki</button></a>';
     }
-    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">ミリシタDB</button></a>';
-    links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">Fantasia</button></a>';
-    links += '<a href="http://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-2">グリマス日和</button></a>';
+    links += '<a href="https://w.atwiki.jp/ml-story/pages/' + story[name] + '.html" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタストーリーまとめ</button></a>';
     $('#links_items').append(links);
 
     // 楽曲
@@ -209,10 +221,13 @@ function displayIdol(name, nodes, edges) {
     }
 
     // 表示
-    $('#network_description').hide();
-    $('#idol_container').slideDown(400);
+    $(target).slideDown(400);
     $('#links_container').slideDown(400);
     $('#tunes_container').slideDown(400);
+    if (target_id == 'result') {
+        console.log('hide selected idol container');
+        $('#selected.idol_container').hide();
+    }
 }
 
 // 予測
@@ -275,18 +290,20 @@ function updateResult(pr, fa, an) {
         result_summary = 'あたなはどこからどうみても <span class="attribute pr">Princess</span> です！';
         result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
         result_attribute = 'Princess';
+        $('#result_container').css('background', 'rgba(255,34,132,0.2)')
     }
     else if (fa === max_score) {
         result_summary = 'あなたは周囲の人から <span class="attribute fa">Fairy</span> だと思われています！';
         result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
         result_attribute = 'Fairy';
+        $('#result_container').css('background', 'rgba(0,94,255,0.2)')
     }
     else {
         result_summary = 'あなたは <span class="attribute an">Angel</span> っぽいところがあるみたいですね～！';
         result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
         result_attribute = 'Angel';
+        $('#result_container').css('background', 'rgba(255,187,0,0.2)')
     }
-    result_detail = '<small>' + result_detail + '</small>';
     $('#result_summary').html(result_summary);
     $('#result_detail').html(result_detail);
     $('#result_container').slideDown(400);
@@ -348,18 +365,19 @@ function updateResult(pr, fa, an) {
     //     }
     // }
 
-    // $('#result_idol').html('そんなあなたに似たアイドルは… ' + idol_similar);
-    $('#result_idol').html('そんなあなたに似たアイドルは…');
-
     // ツイート
     if (result_attribute != '') {
         let tweet = '';
-        tweet += '<a href="https://twitter.com/intent/tweet?';
+        tweet += '<div class="col-6 text-right" style="padding: 0;">診断結果をつぶやく</div>';
+        tweet += '<div class="col-6" style="padding: 0;">';
+        tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
         tweet += 'text=あなたの属性は' + result_attribute + 'です．';
         tweet += 'あなたは' + idol_similar + 'に似ています．';
-        tweet += '%20https://submeganep.github.io/attribute/';
         tweet += '&hashtags=ミリシタ属性診断,ミリシタ,ミリオンライブ';
-        tweet += '" target="_blank"><button type="button" class="btn btn-outline-dark m-2">診断結果をtwitterでつぶやく</button></a>';
+        tweet += '&url=https://submeganep.github.io/attribute/';
+        tweet += '" data-size="large" data-lang="ja">Tweet</a>';
+        tweet += '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+        tweet += '</div>';
         $('#result_tweet').html(tweet);
     }
 
@@ -388,11 +406,33 @@ $(function(){
     let nodes = [];
     let edges = [];
 
+    // 説明
+    nodes.push({
+        id: 'description',
+        label: [
+            '枠内を選択後に',
+            'アイコンを選ぶと',
+            'そのアイドルの',
+            'プロフィールが',
+            '表示されます',
+        ].join("\n"),
+        color: 'white',
+        shape: 'box',
+        font: {
+            size: 40,
+            color: 'black',
+        },
+        chosen: false,
+        fixed: true,
+        x: -radius * 2/3,
+        y: -radius * 3/4,
+    });
+
     // 星
     nodes.push({
         id: 'you',
         shape: 'star',
-        size: 75,
+        size: 50,
         // borderWidth: 0,
         color: '#56c7c3',
         opacity: 0.8,
@@ -401,11 +441,39 @@ $(function(){
         x: 0,
         y: 0,
     });
+    nodes.push({
+        id: 'anata',
+        label: 'あなた',
+        color: 'white',
+        font: {
+            size: 30,
+            color: '#56c7c3',
+            strokeColor: '#56c7c3',
+            strokeWidth: 1,
+        },
+        borderWidth: 0,
+        chosen: false,
+        fixed: true,
+        x: radius * sin60 * 2/3,
+        y: -radius * cos60 * 2/3,
+    });
+    edges.push({
+        id: 'you_edge',
+        from: 'anata',
+        to: 'you',
+        arrows: {
+            to: {enabled: false},
+        },
+        width: 3,
+        chosen: false,
+        color: '#56c7c3',
+    });
+
+    // アイドル
     for (let i = 0; i < idol_names.length; i++) {
         let name = idol_names[i];
         let x = params['idol'][name]['x'];
         let y = params['idol'][name]['y'];
-
         nodes.push({
             id: name + '_dot',
             size: 5,
@@ -420,14 +488,12 @@ $(function(){
             x: x,
             y: y,
         });
-
         nodes.push({
             id: name,
             shape: 'image',
             image: './icon/' + name + '.png',
             size: 25,
         });
-
         edges.push({
             id: name + '_edge',
             from: name,
@@ -440,12 +506,11 @@ $(function(){
             color: 'gray',
         });
     }
+
     // PrFaAn
     nodes.push({
         id: 'Pr',
         label: 'Princess',
-        // shape: 'dot',
-        // color: '#ff2284',
         color: 'white',
         font: {
             size: 30,
@@ -462,8 +527,6 @@ $(function(){
     nodes.push({
         id: 'Fa',
         label: 'Fairy',
-        // shape: 'dot',
-        // color: '#005eff',
         color: 'white',
         font: {
             size: 30,
@@ -480,8 +543,6 @@ $(function(){
     nodes.push({
         id: 'An',
         label: 'Angel',
-        // shape: 'dot',
-        // color: '#ffbb00',
         color: 'white',
         font: {
             size: 30,
@@ -532,14 +593,13 @@ $(function(){
     // 背景画像
 	network.on('beforeDrawing', function(ctx) {
         ctx.drawImage(document.getElementById('triangle'), -402, -460);
-        // ctx.drawImage(document.getElementById('triangle'), -402, -454);
     });
 
     // ノード選択
     network.on('selectNode', function(params_) {  // paramsが被るので一時的にparams_とした
         let id = params_.nodes[0];
         if (idol_names.includes(id)) {
-            displayIdol(id, nodes, edges);
+            displayIdol(id, nodes, edges, 'selected');
         }
     });
 
@@ -547,7 +607,7 @@ $(function(){
     for (let i = 0; i < questions.length; i++) {
 
         // カル―セル
-        let question = `<div class="pt-2 pb-2 font-weight-bold">Q${i + 1}. ${questions[i]}</div>`;
+        let question = `<div class="h5 pt-2 pb-2">Q${i + 1}. ${questions[i]}</div>`;
         let answer = $(`<div class="btn-group btn-group-toggle" data-toggle="buttons" id="radio_${i}" />`);
         answer.append(`<label class="btn btn-outline-dark"><input type="radio" value="yes">はい</label>`);
         answer.append(`<label class="btn btn-outline-dark"><input type="radio" value="na">どちらでもない</label>`);
@@ -584,20 +644,18 @@ $(function(){
                 // 結果を表示
                 let similar_idol = updateResult(pr, fa, an);
                 // 似たアイドルを表示
-                displayIdol(similar_idol, nodes, edges);
+                displayIdol(similar_idol, nodes, edges, 'result');
                 // スクロール
                 $('html,body').animate({scrollTop: $('#attr_container').offset().top}, 400);
                 // 開始ボタンの表示を変更
                 $('#start_button').text('回答を修正する');
-                // 属性の説明文を隠す
-                $('#attr_description').hide();
             }
             // 一度診断した後は回答を変更するごとに結果を変更
             else if ($('#result_container').is(':visible')) {
                 // 結果を表示
                 let similar_idol = updateResult(pr, fa, an);
                 // 似たアイドルを表示
-                displayIdol(similar_idol, nodes, edges);
+                displayIdol(similar_idol, nodes, edges, 'result');
             }
         });
     }
