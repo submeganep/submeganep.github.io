@@ -723,10 +723,9 @@ $(function(){
                     }
                 }
                 // イベントトラッキング
-                ga('send', 'event', {
-                    'eventCategory': 'ミリシタ属性診断',
-                    'eventAction': '20201024',
-                    'eventLabel': label,
+                gtag('event', '20201024', {
+                    'event_category': 'ミリシタ属性診断',
+                    'event_label': label,
                 });
             }
             // 一度診断した後は回答を変更するごとに結果を変更
