@@ -45,8 +45,7 @@
         <!-- 設問 -->
         <div id="questions_container" class="carousel slide" data-ride="carousel" data-interval="false">
             <ol class="carousel-indicators">
-                <!-- <li data-target="#questions_container" data-slide-to="0" class="active"></li> -->
-                <li data-target="#questions_container" class="active"></li>
+                <li data-target="#questions_container" data-slide-to="0" class="active" style="height: 10px;"></li>
             </ol>
             <div class="carousel-inner text-center d-flex align-items-center bg-light" id="questions_inner">
                 <div class="carousel-item active">
@@ -98,8 +97,8 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div id="result_container" class="text-center rounded-lg">
-                    <div id="result_summary" class="m-2 pt-3 h5 font-weight-bold"></div>
-                    <div id="result_detail" class="m-2 pb-3"></div>
+                    <div id="result_summary" class="m-2 pt-4 h5 font-weight-bold"></div>
+                    <div id="result_detail" class="m-2 pb-4"></div>
                 </div>
             </div>
             <div class="col-12 col-lg-6 idol_container" id="result">
@@ -124,7 +123,6 @@
                             <tr><th>趣味</th><td class="趣味"></td></tr>
                             <tr><th>特技</th><td class="特技"></td></tr>
                             <tr><th>好きなもの</th><td class="好きなもの"></td></tr>
-                            <!-- <tr><th>イメージ</th><td class="イメージ"></td></tr> -->
                             <tr><th>CV</th><td class="CV"></td></tr>
                         </table>
                     </div>
@@ -133,11 +131,10 @@
         </div>
 
         <!-- ツイート -->
-        <!-- <div class="text-center">
-            <div id="result_tweet" class="mt-2"></div>
-        </div> -->
-        <div id="result_tweet" class="row mt-2"></div>
-
+        <div id="tweet_container" class="text-center">
+            <div>診断結果をつぶやく</div>
+            <div id="tweet_button"></div>
+        </div>
 
         <!-- マップ -->
         <div class="row align-items-center">
@@ -167,7 +164,6 @@
                             <tr><th>趣味</th><td class="趣味"></td></tr>
                             <tr><th>特技</th><td class="特技"></td></tr>
                             <tr><th>好きなもの</th><td class="好きなもの"></td></tr>
-                            <!-- <tr><th>イメージ</th><td class="イメージ"></td></tr> -->
                             <tr><th>CV</th><td class="CV"></td></tr>
                         </table>
                     </div>
@@ -177,7 +173,7 @@
 
         <!-- リンク -->
         <div id="links_container">
-            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+            <div class="h5 text-center mt-4 mb-2 border-bottom border-secondary">
                 <span class="selected_idol"></span>に関する情報へのリンク
             </div>
             <div class="row">
@@ -187,15 +183,15 @@
 
         <!-- 楽曲 -->
         <div id="tunes_container">
-            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
-                <span class="selected_idol"></span>が歌うミリオンライブ！の楽曲
+            <div class="h5 text-center mt-4 mb-2 border-bottom border-secondary">
+                <span class="selected_idol"></span>が歌う楽曲
             </div>
             <div class="row" id="tunes_items"></div>
         </div>
 
         <!-- 4コマ -->
         <div id="cartoons_container">
-            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+            <div class="h5 text-center mt-4 mb-2 border-bottom border-secondary">
                 <span class="selected_idol"></span>が登場する公式4コマ漫画
             </div>
             <div class="row" id="cartoons_items">
@@ -204,7 +200,7 @@
 
         <!-- 宣伝 -->
         <div>
-            <div class="h6 text-center mt-4 mb-2 border-bottom border-secondary">
+            <div class="h5 text-center mt-4 mb-2 border-bottom border-secondary">
                 ミリシタに興味を持ったら…
             </div>
             <div class="text-center">
@@ -231,22 +227,13 @@
                 <li><a href="https://live.erinn.biz/live.php?h365696947" target="_blank">ミリシタ属性診断ツール誰か作って</a></li>
             </ul>
         </li>
-        <!-- <li>ただいま<a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Q-LTRkwGI2WCZXnUDKS4wZbr7Lgpes763wzlnftXyPDYbA/viewform" target="_blank">Googleフォーム</a>で設問を募集しています
-        </li> -->
         <li>アイドルの立ち絵画像は<a href="https://imas.gamedbs.jp/mlth/" target="_blank">ミリシタDB</a>よりお借りしました</li>
-        <li>今後の対応予定
-            <ul>
-                <li>診断結果のツイート機能</li>
-                <li>現状は「いいえ」のデータが無く結果が不適切なためその修正</li>
-                <li>UIの改善</li>
-            </ul>
-        </li>
-        
         <li>ご意見・ご要望などございましたら作者 (<a href="https://twitter.com/submeganep" target="_blank">@submeganep</a>) までご連絡ください</li>
     </ul>
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-10-24 3択回答に対応，ツイート機能を追加，UIを改良</li>
         <li>2020-08-06 UIを改良</li>
         <li>2020-08-02 楽曲視聴機能を追加</li>
         <li>2020-08-01 β版リリース</li>

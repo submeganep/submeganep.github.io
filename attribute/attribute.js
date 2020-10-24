@@ -67,16 +67,20 @@ function displayIdol(name, nodes, edges, target_id) {
 
     // アイドルのプロフィールを表示
     let idol = params['idol'][name];
+    let sei_mei = idol['姓'] + ' ' + idol['名'];
+    if (name === 'エミリー' | name === 'ロコ') {
+        sei_mei = name;
+    }
     $(target + ' .idol_eng').text(idol['Given'] + ' ' + idol['Family']);
-    $(target + ' .idol_name').css({'color': idol['カラーコード']}).text(name);
+    $(target + ' .idol_name').css({'color': idol['カラーコード']}).text(sei_mei);
     $(target + ' .idol_introduction').html(idol['ミリシタ紹介文'].replace(/\r?\n/g, '<br>'));
 
     // 表
-    $(target + ' .属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
-    // $(target + ' .イメージ').text(idol['イメージ']);
+    $(target + ' .属性').text(idol['PrFaAn']);
+    // $(target + ' .属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
     $(target + ' .年齢').text(idol['年齢'] + '歳');
     $(target + ' .誕生日').text(idol['誕生日']);
-    // $(target + ' .星座').text(idol['星座']);
+    $(target + ' .星座').text(idol['星座']);
     $(target + ' .身長体重').text(idol['身長'] + 'cm / ' + idol['体重'] + 'kg');
     $(target + ' .スリーサイズ').text(idol['B'] + '-' + idol['W'] + '-' + idol['H']);
     $(target + ' .血液型').text(idol['血液型'] + '型');
@@ -179,12 +183,10 @@ function displayIdol(name, nodes, edges, target_id) {
     links += '<button type="button" class="btn btn-outline-dark m-1">ニコニコ大百科</button></a>'
     links += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">';
     links += '<button type="button" class="btn btn-outline-dark m-1">ピクシブ百科事典</button></a>';
-    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタDB</button></a>';
     // links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
     // links += '<button type="button" class="btn btn-outline-dark m-1">Fantasia</button></a>';
-    links += '<a href="http://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">グリマス日和</button></a>';
+    // links += '<a href="http://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
+    // links += '<button type="button" class="btn btn-outline-dark m-1">グリマス日和</button></a>';
     links += '<a href="https://imasml-theater-wiki.gamerch.com/' + name + '" target="_blank">';
     links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタ攻略まとめwiki</button></a>';
     if (name != '白石紬' && name != '桜守歌織') {
@@ -193,6 +195,8 @@ function displayIdol(name, nodes, edges, target_id) {
     }
     links += '<a href="https://w.atwiki.jp/ml-story/pages/' + story[name] + '.html" target="_blank">';
     links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタストーリーまとめ</button></a>';
+    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタDB</button></a>';
     $('#links_items').append(links);
 
     // 楽曲
@@ -225,16 +229,16 @@ function displayIdol(name, nodes, edges, target_id) {
     $('#links_container').slideDown(400);
     $('#tunes_container').slideDown(400);
     if (target_id == 'result') {
-        console.log('hide selected idol container');
         $('#selected.idol_container').hide();
     }
 }
 
 // 予測
 function predict() {
-    let pr = params['coef']['Pr'][questions.length];
-    let fa = params['coef']['Fa'][questions.length];
-    let an = params['coef']['An'][questions.length];
+    let pr = params['coef']['Pr'][questions.length * 2];
+    let fa = params['coef']['Fa'][questions.length * 2];
+    let an = params['coef']['An'][questions.length * 2];
+    console.log(pr, fa, an);
     for (let i = 0; i < questions.length; i++) {
         let answer = $('#radio_' + i + ' label.active input').val();
         if (answer === 'yes') {
@@ -316,60 +320,64 @@ function updateResult(pr, fa, an) {
 
         // max_scoreの属性と異なるアイドルはスキップ
         if (min_score === max_score) {
+            continue;
         }
         else if (pr === max_score) {
-            if (params['idol'][name]['PrFaAn'] !== 'Pr') {
+            if (params['idol'][name]['PrFaAn'] !== 'Princess') {
                 continue;
             }
         }
         else if (fa === max_score) {
-            if (params['idol'][name]['PrFaAn'] !== 'Fa') {
+            if (params['idol'][name]['PrFaAn'] !== 'Fairy') {
                 continue;
             }
         }
         else {
-            if (params['idol'][name]['PrFaAn'] !== 'An') {
+            if (params['idol'][name]['PrFaAn'] !== 'Angel') {
                 continue;
             }
         }
 
+        // 類似度を算出
         let answers = params['idol'][name]['answer'];
         let similarity = 0;
+        let total_you = 0;
+        let total_idol = 0;
         for (let j = 0; j < answers.length; j++) {
             let answer = $('#radio_' + j + ' label.active input').val();
-            // XXX Noがきちんと与えられたらcosine類似度に変更する
-            if (answers[j] > 0 && answer === 'yes') {
-                similarity++;
-            } else if (answers[j] < 0 && answer === 'no') {
-                similarity++;
+            
+            // yes/noの一致数（cosine類似度に移行して廃止）
+            // if (answers[j] > 0 && answer === 'yes') {
+            //     similarity++;
+            // } else if (answers[j] < 0 && answer === 'no') {
+            //     similarity++;
+            // }
+
+            // cosine類似度
+            if (answer === 'yes') {
+                similarity += answers[j];
+                total_you++;
+            }
+            else if (answer === 'no') {
+                similarity -= answers[j];
+                total_you++;
+            }
+            if (answers[j] !== 0) {
+                total_idol++;
             }
         }
+        similarity = similarity / Math.sqrt(total_you * total_idol);
+
+        // 類似度が最大となるアイドルを記憶
         if (similarity > best_similarity) {
             best_similarity = similarity;
             idol_similar = name;
         }
     }
 
-    // 座標が最も近いアイドル
-    // let idol_nearest = '';
-    // let best_dist = 2.0;
-    // for (let i = 0; i < idol_names.length; i++) {
-    //     let name = idol_names[i];
-    //     let pr_diff = pr - params['idol'][name]['Pr'];
-    //     let fa_diff = fa - params['idol'][name]['Fa'];
-    //     let an_diff = an - params['idol'][name]['An'];
-    //     let dist = pr_diff ** 2 + fa_diff ** 2 + an_diff ** 2;
-    //     if (dist < best_dist) {
-    //         best_dist = dist;
-    //         idol_nearest = name;
-    //     }
-    // }
-
     // ツイート
     if (result_attribute != '') {
         let tweet = '';
-        tweet += '<div class="col-6 text-right" style="padding: 0;">診断結果をつぶやく</div>';
-        tweet += '<div class="col-6" style="padding: 0;">';
         tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
         tweet += 'text=あなたの属性は' + result_attribute + 'です．';
         tweet += 'あなたは' + idol_similar + 'に似ています．';
@@ -377,8 +385,8 @@ function updateResult(pr, fa, an) {
         tweet += '&url=https://submeganep.github.io/attribute/';
         tweet += '" data-size="large" data-lang="ja">Tweet</a>';
         tweet += '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
-        tweet += '</div>';
-        $('#result_tweet').html(tweet);
+        $('#tweet_button').html(tweet);
+        $('#tweet_container').slideDown(400);
     }
 
     return idol_similar;
@@ -410,22 +418,26 @@ $(function(){
     nodes.push({
         id: 'description',
         label: [
-            '枠内を選択後に',
+            'この枠内を選択後に',
             'アイコンを選ぶと',
             'そのアイドルの',
             'プロフィールが',
             '表示されます',
-        ].join("\n"),
-        color: 'white',
+        ].join('\n'),
         shape: 'box',
+        color: {
+            background: 'white',
+            border: 'gray',
+        },
         font: {
             size: 40,
-            color: 'black',
+            color: 'gray',
         },
+        margin: 10,
         chosen: false,
         fixed: true,
         x: -radius * 2/3,
-        y: -radius * 3/4,
+        y: -radius * 5/6,
     });
 
     // 星
@@ -443,19 +455,26 @@ $(function(){
     });
     nodes.push({
         id: 'anata',
-        label: 'あなた',
-        color: 'white',
-        font: {
-            size: 30,
-            color: '#56c7c3',
-            strokeColor: '#56c7c3',
-            strokeWidth: 1,
+        label: [
+            '質問に答えると',
+            'あなたの属性を',
+            '表す星印の位置が',
+            '更新されます',
+        ].join('\n'),
+        color: {
+            background: 'white',
+            border: '#56c7c3',
         },
-        borderWidth: 0,
+        shape: 'box',
+        font: {
+            size: 40,
+            color: '#56c7c3',
+        },
+        margin: 10,
         chosen: false,
         fixed: true,
-        x: radius * sin60 * 2/3,
-        y: -radius * cos60 * 2/3,
+        x: radius * 2/3,
+        y: -radius * 5/6,
     });
     edges.push({
         id: 'you_edge',
@@ -512,8 +531,9 @@ $(function(){
         id: 'Pr',
         label: 'Princess',
         color: 'white',
+        shape: 'box',
         font: {
-            size: 30,
+            size: 40,
             color: '#ff2284',
             strokeColor: '#ff2284',
             strokeWidth: 1,
@@ -528,8 +548,9 @@ $(function(){
         id: 'Fa',
         label: 'Fairy',
         color: 'white',
+        shape: 'box',
         font: {
-            size: 30,
+            size: 40,
             color: '#005eff',
             strokeColor: '#005eff',
             strokeWidth: 1,
@@ -544,8 +565,9 @@ $(function(){
         id: 'An',
         label: 'Angel',
         color: 'white',
+        shape: 'box',
         font: {
-            size: 30,
+            size: 40,
             color: '#ffbb00',
             strokeColor: '#ffbb00',
             strokeWidth: 1,
@@ -616,7 +638,6 @@ $(function(){
         q.append(question);
         q.append(answer);
         $('#questions_container .carousel-inner').append(q);
-        // $('#questions_container .carousel-indicators').append(`<li data-target="#questions_container" data-slide-to="${i + 1}"></li>`);
         $('#questions_container .carousel-indicators').append(`<li data-target="#questions_container"></li>`);
 
         // 回答クリック
@@ -624,6 +645,10 @@ $(function(){
 
             // 次の設問へ
             $('#questions_container').carousel('next');
+
+            // indicatorをクリック可能にする
+            $('#questions_container .carousel-indicators li').eq(i + 2).attr('data-slide-to', i + 2);
+            $('#questions_container .carousel-indicators li').eq(i + 2).css('height', '10px');
 
             // 予測
             let {pr, fa, an} = predict();
@@ -637,6 +662,12 @@ $(function(){
                 id: 'you',
                 x: x,
                 y: y,
+            });
+
+            // 不要な表示を非表示
+            nodes.update({
+                id: 'anata',
+                hidden: true,
             });
 
             // 最後の設問が終わったら結果へ移動
@@ -662,6 +693,8 @@ $(function(){
 
     // 開始ボタン
     $('#start_button').on('click', function () {
+        $('#questions_container .carousel-indicators li').eq(1).attr('data-slide-to', 1);
+        $('#questions_container .carousel-indicators li').eq(1).css('height', '10px');
         $('#questions_container').carousel('next');
     });
 });

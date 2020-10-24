@@ -87,6 +87,11 @@
 /* 非表示 */
 #result_container {
     display: none;
+    /* height: 300px; */
+    /* height: 400px; */
+}
+#tweet_container {
+    display: none;
 }
 #links_container {
     display: none;
