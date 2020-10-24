@@ -2,6 +2,26 @@ let tune_names = Object.keys(tunes);
 let idol_names = Object.keys(params['idol']);
 let questions = params['question'];
 
+// 属性のカラーコード
+const type_colors = {
+    'Pr': '#ff2284',
+    'Fa': '#005eff',
+    'An': '#ffbb00',
+};
+
+// 属性のカラーコードを算出する関数
+function getTypeColor(type, alpha=1) {
+    if (type.slice(0, 2) === 'Pr') {
+        return `rgba(255,34,132,${alpha})`;
+    }
+    else if (type.slice(0, 2) === 'Fa') {
+        return `rgba(0,94,255,${alpha})`;
+    }
+    else if (type.slice(0, 2) === 'An') {
+        return `rgba(255,187,0,${alpha})`;
+    }
+}
+
 // 配置座標算出用の定数
 const sin60 = Math.sin(Math.PI / 3.0);
 const cos60 = Math.cos(Math.PI / 3.0);
@@ -74,6 +94,14 @@ function displayIdol(name, nodes, edges, target_id) {
     $(target + ' .idol_eng').text(idol['Given'] + ' ' + idol['Family']);
     $(target + ' .idol_name').css({'color': idol['カラーコード']}).text(sei_mei);
     $(target + ' .idol_introduction').html(idol['ミリシタ紹介文'].replace(/\r?\n/g, '<br>'));
+
+    // 属性色の線を引く
+    $(target + ' .idol_header').css('border-left', 'solid 20px ' + getTypeColor(idol['PrFaAn'], 0.2));
+    $(target + ' .idol_header').css('border-right', 'solid 20px ' + getTypeColor(idol['PrFaAn'], 0.2));
+    // $(target + ' .idol_header').css(
+    //     'background',
+    //     `linear-gradient(90deg, ${getTypeColor(idol['PrFaAn'])} 0%, ${getTypeColor(idol['PrFaAn'], 0.1)} 10%, ${getTypeColor(idol['PrFaAn'], 0.1)} 90%, ${getTypeColor(idol['PrFaAn'])} 100%)`
+    // );
 
     // 表
     $(target + ' .属性').text(idol['PrFaAn']);

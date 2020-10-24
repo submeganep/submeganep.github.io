@@ -28,7 +28,8 @@
 }
 
 #network {
-    height: 50vh;
+    height: 400px;
+    /* height: 50vh; */
     border: lightgray 1px solid;
 }
 
