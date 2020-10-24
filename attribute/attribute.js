@@ -304,6 +304,68 @@ function updatePercetage(pr, fa, an) {
     $('#bar_an').animate({'width': an_percent + '%'});
 }
 
+// 設問への回答が似たアイドルを取得
+function getSimilarIdol(pr, fa, an) {
+
+    let max_score = Math.max(pr, fa, an);
+    let min_score = Math.min(pr, fa, an);
+
+    let idol_similar = '';
+    let best_similarity = -100;
+    for (let i = 0; i < idol_names.length; i++) {
+        let name = idol_names[i];
+
+        // max_scoreの属性と異なるアイドルはスキップ
+        if (min_score === max_score) {
+            continue;
+        }
+        else if (pr === max_score) {
+            if (params['idol'][name]['PrFaAn'] !== 'Princess') {
+                continue;
+            }
+        }
+        else if (fa === max_score) {
+            if (params['idol'][name]['PrFaAn'] !== 'Fairy') {
+                continue;
+            }
+        }
+        else {
+            if (params['idol'][name]['PrFaAn'] !== 'Angel') {
+                continue;
+            }
+        }
+
+        // cosine類似度を算出
+        let answers = params['idol'][name]['answer'];
+        let similarity = 0;
+        let total_you = 0;
+        let total_idol = 0;
+        for (let j = 0; j < answers.length; j++) {
+            let answer = $('#radio_' + j + ' label.active input').val();
+            if (answer === 'yes') {
+                similarity += answers[j];
+                total_you++;
+            }
+            else if (answer === 'no') {
+                similarity -= answers[j];
+                total_you++;
+            }
+            if (answers[j] !== 0) {
+                total_idol++;
+            }
+        }
+        similarity = similarity / Math.sqrt(total_you * total_idol);
+
+        // 類似度が最大となるアイドルを記憶
+        if (similarity > best_similarity) {
+            best_similarity = similarity;
+            idol_similar = name;
+        }
+    }
+
+    return idol_similar;
+}
+
 // 結果を更新
 function updateResult(pr, fa, an) {
 
@@ -339,68 +401,8 @@ function updateResult(pr, fa, an) {
     $('#result_detail').html(result_detail);
     $('#result_container').slideDown(400);
 
-    // 設問への回答が最も似ているアイドル
-    let idol_similar = '';
-    let best_similarity = -1;
-    for (let i = 0; i < idol_names.length; i++) {
-        let name = idol_names[i];
-
-        // max_scoreの属性と異なるアイドルはスキップ
-        if (min_score === max_score) {
-            continue;
-        }
-        else if (pr === max_score) {
-            if (params['idol'][name]['PrFaAn'] !== 'Princess') {
-                continue;
-            }
-        }
-        else if (fa === max_score) {
-            if (params['idol'][name]['PrFaAn'] !== 'Fairy') {
-                continue;
-            }
-        }
-        else {
-            if (params['idol'][name]['PrFaAn'] !== 'Angel') {
-                continue;
-            }
-        }
-
-        // 類似度を算出
-        let answers = params['idol'][name]['answer'];
-        let similarity = 0;
-        let total_you = 0;
-        let total_idol = 0;
-        for (let j = 0; j < answers.length; j++) {
-            let answer = $('#radio_' + j + ' label.active input').val();
-            
-            // yes/noの一致数（cosine類似度に移行して廃止）
-            // if (answers[j] > 0 && answer === 'yes') {
-            //     similarity++;
-            // } else if (answers[j] < 0 && answer === 'no') {
-            //     similarity++;
-            // }
-
-            // cosine類似度
-            if (answer === 'yes') {
-                similarity += answers[j];
-                total_you++;
-            }
-            else if (answer === 'no') {
-                similarity -= answers[j];
-                total_you++;
-            }
-            if (answers[j] !== 0) {
-                total_idol++;
-            }
-        }
-        similarity = similarity / Math.sqrt(total_you * total_idol);
-
-        // 類似度が最大となるアイドルを記憶
-        if (similarity > best_similarity) {
-            best_similarity = similarity;
-            idol_similar = name;
-        }
-    }
+    // 似たアイドルを表示
+    let idol_similar = getSimilarIdol(pr, fa, an);
 
     // ツイート
     if (result_attribute != '') {
@@ -408,6 +410,7 @@ function updateResult(pr, fa, an) {
         tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
         tweet += 'text=あなたの属性は' + result_attribute + 'です．';
         tweet += 'あなたは' + idol_similar + 'に似ています．';
+        // tweet += ' https://twitter.com/.../status/.../photo/1';
         tweet += '&hashtags=ミリシタ属性診断,ミリシタ,ミリオンライブ';
         tweet += '&url=https://submeganep.github.io/attribute/';
         tweet += '" data-size="large" data-lang="ja">Tweet</a>';
@@ -415,12 +418,6 @@ function updateResult(pr, fa, an) {
         $('#tweet_button').html(tweet);
         $('#tweet_container').slideDown(400);
     }
-
-    return idol_similar;
-}
-
-// 似たアイドルを取得
-function getSimilarIdol(pr, fa, an) {
 }
 
 // HTMLの読み込みが全て完了した後に実行
@@ -683,13 +680,21 @@ $(function(){
             // パーセントを更新
             updatePercetage(pr, fa, an);
 
+            // 似たアイドルを取得
+            let similar_idol = getSimilarIdol(pr, fa, an);
+
             // 星の位置を更新
-            let {x, y} = getPosition(pr, fa, an);
             nodes.update({
                 id: 'you',
-                x: x,
-                y: y,
+                x: params['idol'][similar_idol]['x'],
+                y: params['idol'][similar_idol]['y'],
             });
+            // let {x, y} = getPosition(pr, fa, an);
+            // nodes.update({
+            //     id: 'you',
+            //     x: x,
+            //     y: y,
+            // });
 
             // 不要な表示を非表示
             nodes.update({
@@ -700,7 +705,7 @@ $(function(){
             // 最後の設問が終わったら結果へ移動
             if (i + 1 === questions.length) {
                 // 結果を表示
-                let similar_idol = updateResult(pr, fa, an);
+                updateResult(pr, fa, an);
                 // 似たアイドルを表示
                 displayIdol(similar_idol, nodes, edges, 'result');
                 // スクロール
@@ -708,7 +713,7 @@ $(function(){
                 // 開始ボタンの表示を変更
                 $('#start_button').text('回答を修正する');
 
-                // イベントトラッキング用データを準備
+                // イベントトラッキング
                 let label = similar_idol;
                 for (let j = 0; j < questions.length; j++) {
                     let answer = $('#radio_' + j + ' label.active input').val();
@@ -722,7 +727,6 @@ $(function(){
                         label += ', ';
                     }
                 }
-                // イベントトラッキング
                 gtag('event', '20201024', {
                     'event_category': 'ミリシタ属性診断',
                     'event_label': label,
@@ -731,7 +735,7 @@ $(function(){
             // 一度診断した後は回答を変更するごとに結果を変更
             else if ($('#result_container').is(':visible')) {
                 // 結果を表示
-                let similar_idol = updateResult(pr, fa, an);
+                updateResult(pr, fa, an);
                 // 似たアイドルを表示
                 displayIdol(similar_idol, nodes, edges, 'result');
             }
