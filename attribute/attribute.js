@@ -266,7 +266,6 @@ function predict() {
     let pr = params['coef']['Pr'][questions.length * 2];
     let fa = params['coef']['Fa'][questions.length * 2];
     let an = params['coef']['An'][questions.length * 2];
-    console.log(pr, fa, an);
     for (let i = 0; i < questions.length; i++) {
         let answer = $('#radio_' + i + ' label.active input').val();
         if (answer === 'yes') {
@@ -708,6 +707,27 @@ $(function(){
                 $('html,body').animate({scrollTop: $('#attr_container').offset().top}, 400);
                 // 開始ボタンの表示を変更
                 $('#start_button').text('回答を修正する');
+
+                // イベントトラッキング用データを準備
+                let label = similar_idol;
+                for (let j = 0; j < questions.length; j++) {
+                    let answer = $('#radio_' + j + ' label.active input').val();
+                    if (answer === 'yes') {
+                        label += ',+';
+                    }
+                    else if (answer === 'no') {
+                        label += ',-';
+                    }
+                    else if (answer === 'na') {
+                        label += ', ';
+                    }
+                }
+                // イベントトラッキング
+                ga('send', 'event', {
+                    'eventCategory': 'ミリシタ属性診断',
+                    'eventAction': '20201024',
+                    'eventLabel': label,
+                });
             }
             // 一度診断した後は回答を変更するごとに結果を変更
             else if ($('#result_container').is(':visible')) {
