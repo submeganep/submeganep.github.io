@@ -11,7 +11,7 @@
 
     <!-- OGP -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="ミリシタ属性診断" /> 
+    <meta property="og:title" content="ミリシタ属性診断（β）" /> 
     <meta property="og:description" content="質問に答えるとあなたのミリシタ属性とあなたに似たアイドルが分かります"> 
     <meta property="og:url" content="https://submeganep.github.io/attribute/">
     <meta property="og:image" content="https://submeganep.github.io/attribute/ogp/属性診断.png">
@@ -89,18 +89,16 @@
         <!-- 属性 -->
         <div class="text-center" id="attr_container">
             <div class="d-flex justify-content-center">
-                <div id="bar_fa" style="width: 33.3333%; height: 10px;"></div>
-                <div id="bar_pr" style="width: 33.3333%; height: 10px;"></div>
-                <div id="bar_an" style="width: 33.3333%; height: 10px;"></div>
+                <div id="bar_fa" style="width: 33.3333%; height: 10px; background-color: #005eff;"></div>
+                <div id="bar_pr" style="width: 33.3333%; height: 10px; background-color: #ff2284;"></div>
+                <div id="bar_an" style="width: 33.3333%; height: 10px; background-color: #ffbb00;"></div>
             </div>
             <div class="d-flex justify-content-between font-weight-bold">
                 <div class="fa">Fairy <span id="result_fa">33</span>%</div>
                 <div class="pr">Princess <span id="result_pr">33</span>%</div>
                 <div class="an">Angel <span id="result_an">33</span>%</div>
             </div>
-        </div>
-        <div class="text-center" id="attr_description">
-            <div class="d-flex justify-content-between" style="line-height: 1rem;">
+            <div class="d-flex justify-content-between text-center" style="line-height: 1rem;">
                 <div class="fa"><small>『妖精』<br class="d-inline d-sm-none">みたいに<br class="d-inline d-sm-none">神秘的</small></div>
                 <div class="pr"><small>『お姫様』<br class="d-inline d-sm-none">みたいに<br class="d-inline d-sm-none">カワイイ</small></div>
                 <div class="an"><small>『天使』<br class="d-inline d-sm-none">みたいに<br class="d-inline d-sm-none">自由</small></div>
@@ -124,29 +122,27 @@
                 </div>
                 <div class="row">
                     <div class="col idol_profile">
-                        <table class="table table-sm table-hover profile_table">
-                            <tr><th>属性</th><td class="属性"></td></tr>
-                            <tr><th>年齢</th><td class="年齢"></td></tr>
-                            <tr><th>誕生日</th><td class="誕生日"></td></tr>
-                            <tr><th>星座</th><td class="星座"></td></tr>
-                            <tr><th>身長 / 体重</th><td class="身長体重"></td></tr>
-                            <tr><th>スリーサイズ</th><td class="スリーサイズ"></td></tr>
-                            <tr><th>血液型</th><td class="血液型"></td></tr>
-                            <tr><th>利き手</th><td class="利き手"></td></tr>
-                            <tr><th>出身地</th><td class="出身地"></td></tr>
-                            <tr><th>趣味</th><td class="趣味"></td></tr>
-                            <tr><th>特技</th><td class="特技"></td></tr>
-                            <tr><th>好きなもの</th><td class="好きなもの"></td></tr>
-                            <tr><th>CV</th><td class="CV"></td></tr>
-                        </table>
+                        <div><span class="profile_left badge badge-pill">属性</span><span class="profile_right rounded-lg 属性"></span></div>
+                        <div><span class="profile_left badge badge-pill">年齢</span><span class="profile_right rounded-lg 年齢"></span></div>
+                        <div><span class="profile_left badge badge-pill">誕生日</span><span class="profile_right rounded-lg 誕生日"></span></div>
+                        <div><span class="profile_left badge badge-pill">星座</span><span class="profile_right rounded-lg 星座"></span></div>
+                        <div><span class="profile_left badge badge-pill">身長 / 体重</span><span class="profile_right rounded-lg 身長体重"></span></div>
+                        <div><span class="profile_left badge badge-pill">スリーサイズ</span><span class="profile_right rounded-lg スリーサイズ"></span></div>
+                        <div><span class="profile_left badge badge-pill">血液型</span><span class="profile_right rounded-lg 血液型"></span></div>
+                        <div><span class="profile_left badge badge-pill">利き手</span><span class="profile_right rounded-lg 利き手"></span></div>
+                        <div><span class="profile_left badge badge-pill">出身地</span><span class="profile_right rounded-lg 出身地"></span></div>
+                        <div><span class="profile_left badge badge-pill">趣味</span><span class="profile_right rounded-lg 趣味"></span></div>
+                        <div><span class="profile_left badge badge-pill">特技</span><span class="profile_right rounded-lg 特技"></span></div>
+                        <div><span class="profile_left badge badge-pill">好きなもの</span><span class="profile_right rounded-lg 好きなもの"></span></div>
+                        <div><span class="profile_left badge badge-pill">CV</span><span class="profile_right rounded-lg CV"></span></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- ツイート -->
-        <div id="tweet_container" class="text-center">
-            <div>診断結果をつぶやく</div>
+        <div id="tweet_container" class="text-center mt-2">
+            <div class="font-weight-bold">診断結果をつぶやく</div>
             <div id="tweet_button"></div>
         </div>
 
@@ -158,28 +154,25 @@
             </div>
             <div class="col-12 col-lg-6 idol_container" id="selected">
                 <div class="text-center idol_header">
-                    <!-- <div class="font-weight-bold">あなたが選んだアイドルは…</div> -->
                     <div class="idol_eng"></div>
                     <div class="idol_name h1 font-weight-bold"></div>
                     <div class="idol_introduction h5 font-weight-bold"></div>
                 </div>
                 <div class="row">
                     <div class="col idol_profile">
-                        <table class="table table-sm table-hover profile_table">
-                            <tr><th>属性</th><td class="属性"></td></tr>
-                            <tr><th>年齢</th><td class="年齢"></td></tr>
-                            <tr><th>誕生日</th><td class="誕生日"></td></tr>
-                            <tr><th>星座</th><td class="星座"></td></tr>
-                            <tr><th>身長 / 体重</th><td class="身長体重"></td></tr>
-                            <tr><th>スリーサイズ</th><td class="スリーサイズ"></td></tr>
-                            <tr><th>血液型</th><td class="血液型"></td></tr>
-                            <tr><th>利き手</th><td class="利き手"></td></tr>
-                            <tr><th>出身地</th><td class="出身地"></td></tr>
-                            <tr><th>趣味</th><td class="趣味"></td></tr>
-                            <tr><th>特技</th><td class="特技"></td></tr>
-                            <tr><th>好きなもの</th><td class="好きなもの"></td></tr>
-                            <tr><th>CV</th><td class="CV"></td></tr>
-                        </table>
+                        <div><span class="profile_left badge badge-pill">属性</span><span class="profile_right rounded-lg 属性"></span></div>
+                        <div><span class="profile_left badge badge-pill">年齢</span><span class="profile_right rounded-lg 年齢"></span></div>
+                        <div><span class="profile_left badge badge-pill">誕生日</span><span class="profile_right rounded-lg 誕生日"></span></div>
+                        <div><span class="profile_left badge badge-pill">星座</span><span class="profile_right rounded-lg 星座"></span></div>
+                        <div><span class="profile_left badge badge-pill">身長 / 体重</span><span class="profile_right rounded-lg 身長体重"></span></div>
+                        <div><span class="profile_left badge badge-pill">スリーサイズ</span><span class="profile_right rounded-lg スリーサイズ"></span></div>
+                        <div><span class="profile_left badge badge-pill">血液型</span><span class="profile_right rounded-lg 血液型"></span></div>
+                        <div><span class="profile_left badge badge-pill">利き手</span><span class="profile_right rounded-lg 利き手"></span></div>
+                        <div><span class="profile_left badge badge-pill">出身地</span><span class="profile_right rounded-lg 出身地"></span></div>
+                        <div><span class="profile_left badge badge-pill">趣味</span><span class="profile_right rounded-lg 趣味"></span></div>
+                        <div><span class="profile_left badge badge-pill">特技</span><span class="profile_right rounded-lg 特技"></span></div>
+                        <div><span class="profile_left badge badge-pill">好きなもの</span><span class="profile_right rounded-lg 好きなもの"></span></div>
+                        <div><span class="profile_left badge badge-pill">CV</span><span class="profile_right rounded-lg CV"></span></div>
                     </div>
                 </div>
             </div>
@@ -247,6 +240,7 @@
 
     <h2>更新履歴</h2>
     <ul>
+        <li>2020-10-25 楽曲歌唱メンバーをクリックできるように変更，UIを改良</li>
         <li>2020-10-24 3択回答に対応，ツイート機能を追加，UIを改良</li>
         <li>2020-08-06 UIを改良</li>
         <li>2020-08-02 楽曲視聴機能を追加</li>

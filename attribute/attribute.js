@@ -2,13 +2,6 @@ let tune_names = Object.keys(tunes);
 let idol_names = Object.keys(params['idol']);
 let questions = params['question'];
 
-// 属性のカラーコード
-const type_colors = {
-    'Pr': '#ff2284',
-    'Fa': '#005eff',
-    'An': '#ffbb00',
-};
-
 // 属性のカラーコードを算出する関数
 function getTypeColor(type, alpha=1) {
     if (type.slice(0, 2) === 'Pr') {
@@ -94,16 +87,6 @@ function displayIdol(name, nodes, edges, target_id) {
     $(target + ' .idol_eng').text(idol['Given'] + ' ' + idol['Family']);
     $(target + ' .idol_name').css({'color': idol['カラーコード']}).text(sei_mei);
     $(target + ' .idol_introduction').html(idol['ミリシタ紹介文'].replace(/\r?\n/g, '<br>'));
-
-    // 属性色の線を引く
-    $(target + ' .idol_header').css('border-left', 'solid 20px ' + getTypeColor(idol['PrFaAn'], 0.2));
-    $(target + ' .idol_header').css('border-right', 'solid 20px ' + getTypeColor(idol['PrFaAn'], 0.2));
-    // $(target + ' .idol_header').css(
-    //     'background',
-    //     `linear-gradient(90deg, ${getTypeColor(idol['PrFaAn'])} 0%, ${getTypeColor(idol['PrFaAn'], 0.1)} 10%, ${getTypeColor(idol['PrFaAn'], 0.1)} 90%, ${getTypeColor(idol['PrFaAn'])} 100%)`
-    // );
-
-    // 表
     $(target + ' .属性').text(idol['PrFaAn']);
     // $(target + ' .属性').text(idol['PrFaAn'] + ' / ' + idol['VoDaVi']);
     $(target + ' .年齢').text(idol['年齢'] + '歳');
@@ -118,6 +101,9 @@ function displayIdol(name, nodes, edges, target_id) {
     $(target + ' .特技').text(idol['特技']);
     $(target + ' .好きなもの').text(idol['好きなもの']);
     $(target + ' .CV').text(idol['CV']);
+
+    // 属性色
+    $(target + ' .profile_left').css('background-color', getTypeColor(idol['PrFaAn']));
 
     // 背景
     // idol['ID']  // 03みたいなIDを背景右上に表示するといいかも
@@ -229,6 +215,7 @@ function displayIdol(name, nodes, edges, target_id) {
 
     // 楽曲
     $('#tunes_items').empty();
+    let first_tune = '';
     for (let i = 0; i < tune_names.length; i++) {
         let tune_name = tune_names[i];
         let tune = tunes[tune_name];
@@ -236,21 +223,31 @@ function displayIdol(name, nodes, edges, target_id) {
             if (tune['idol_names'].length > 5) {
                 continue;
             }
+            if (first_tune === '') {
+                first_tune = i;
+            }
             let tune_body = $('<div class="col-lg-4 col-md-6 col-12 p-0 mb-2 mb-2 bg-light border border-white" />');
-            tune_body.append(`<div class="embed-responsive embed-responsive-16by9 bg-secondary text-white d-flex align-items-center justify-content-center" style="cursor: pointer;" id="player_${i}">YouTubeで試聴</div>`);
+            tune_body.append(`<div class="embed-responsive embed-responsive-16by9 bg-secondary text-white d-flex align-items-center justify-content-center" style="cursor: pointer;" id="player_${i}">この楽曲も試聴</div>`);
             tune_body.append('<div class="text-center font-weight-bold">' + tune_name + '</div>');
             let tune_idols = $('<div class="text-center"></div>');
             for (let idol_name of tune['idol_names']) {
-                tune_idols.append('<img src="./icon/' + idol_name + '.png" style="width: 60px;">');
+                tune_idols.append('<img src="./icon/' + idol_name + '.png" style="width: 60px;" class="icon_' + idol_name + '">');
             }
             tune_body.append(tune_idols);
             tune_body.append('<div class="text-center">' + tune['unit_name'] + '</div>');
             $('#tunes_items').append(tune_body);
             $('#player_' + i).on('click', function() {
-                $('#player_' + i).append('<iframe class="embed-responsive-item" src="' + tune['url'] + '" type="text/html"></iframe>');
+               $('#player_' + i).append('<iframe class="embed-responsive-item" src="' + tune['url'] + '" type="text/html"></iframe>');
             });
         }
     }
+    for (let idol_name of idol_names) {
+        $('.icon_' + idol_name).on('click', function() {
+            displayIdol(idol_name, nodes, edges, 'selected');
+        });
+    }
+    $('#player_' + first_tune).trigger('click');
+        
 
     // 表示
     $(target).slideDown(400);
@@ -258,6 +255,11 @@ function displayIdol(name, nodes, edges, target_id) {
     $('#tunes_container').slideDown(400);
     if (target_id == 'result') {
         $('#selected.idol_container').hide();
+    }
+
+    // スクロール
+    if (target_id === 'selected') {
+        $('html,body').animate({scrollTop: $(target).offset().top}, 400);
     }
 }
 
@@ -378,24 +380,27 @@ function updateResult(pr, fa, an) {
     if (min_score === max_score) {
         result_summary = 'あたなはどの属性とも言えないです';
         result_detail = '「どちらでもない」ばかり選んでいませんか？';
-    }
-    else if (pr === max_score) {
-        result_summary = 'あたなはどこからどうみても <span class="attribute pr">Princess</span> です！';
-        result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
-        result_attribute = 'Princess';
-        $('#result_container').css('background', 'rgba(255,34,132,0.2)')
-    }
-    else if (fa === max_score) {
-        result_summary = 'あなたは周囲の人から <span class="attribute fa">Fairy</span> だと思われています！';
-        result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
-        result_attribute = 'Fairy';
-        $('#result_container').css('background', 'rgba(0,94,255,0.2)')
+        $('#result_container').css('background', 'lightgray');
+        $('#result_summary').css('border-bottom', 'solid 2px gray');
     }
     else {
-        result_summary = 'あなたは <span class="attribute an">Angel</span> っぽいところがあるみたいですね～！';
-        result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
-        result_attribute = 'Angel';
-        $('#result_container').css('background', 'rgba(255,187,0,0.2)')
+        if (pr === max_score) {
+            result_summary = 'あたなはどこからどうみても Princess です！';
+            result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
+            result_attribute = 'Princess';
+        }
+        else if (fa === max_score) {
+            result_summary = 'あなたは周囲の人から Fairy だと思われています！';
+            result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
+            result_attribute = 'Fairy';
+        }
+        else {
+            result_summary = 'あなたは Angel っぽいところがあるみたいですね～！';
+            result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
+            result_attribute = 'Angel';
+        }
+        $('#result_container').css('background', getTypeColor(result_attribute, 0.2));
+        $('#result_summary').css('border-bottom', 'solid 2px ' + getTypeColor(result_attribute));
     }
     $('#result_summary').html(result_summary);
     $('#result_detail').html(result_detail);
@@ -409,9 +414,9 @@ function updateResult(pr, fa, an) {
         let tweet = '';
         tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
         tweet += 'text=あなたの属性は' + result_attribute + 'です．';
-        tweet += 'あなたは' + idol_similar + 'に似ています．';
+        tweet += '%0aあなたは' + idol_similar + 'に似ています．';
+        tweet += '%0a%23ミリシタ属性診断%20%23ミリオンライブ';
         // tweet += ' https://twitter.com/.../status/.../photo/1';
-        tweet += '&hashtags=ミリシタ属性診断,ミリシタ,ミリオンライブ';
         tweet += '&url=https://submeganep.github.io/attribute/';
         tweet += '" data-size="large" data-lang="ja">Tweet</a>';
         tweet += '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
@@ -468,7 +473,8 @@ $(function(){
     nodes.push({
         id: 'you',
         shape: 'star',
-        size: 50,
+        // size: 50,
+        size: 100,
         // borderWidth: 0,
         color: '#56c7c3',
         opacity: 0.8,
@@ -684,11 +690,13 @@ $(function(){
             let similar_idol = getSimilarIdol(pr, fa, an);
 
             // 星の位置を更新
-            nodes.update({
-                id: 'you',
-                x: params['idol'][similar_idol]['x'],
-                y: params['idol'][similar_idol]['y'],
-            });
+            if (similar_idol !== '') {
+                nodes.update({
+                    id: 'you',
+                    x: params['idol'][similar_idol]['x'],
+                    y: params['idol'][similar_idol]['y'],
+                });
+            }
             // let {x, y} = getPosition(pr, fa, an);
             // nodes.update({
             //     id: 'you',
