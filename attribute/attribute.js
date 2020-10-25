@@ -371,50 +371,95 @@ function getSimilarIdol(pr, fa, an) {
 // 結果を更新
 function updateResult(pr, fa, an) {
 
-    // 結果を更新
-    let max_score = Math.max(pr, fa, an);
-    let min_score = Math.min(pr, fa, an);
-    let result_summary;
-    let result_detail;
+    // 似たアイドルを表示
+    let idol_similar = getSimilarIdol(pr, fa, an);
+
+    // テキストを取得
     let result_attribute = '';
-    if (min_score === max_score) {
-        result_summary = 'あたなはどの属性とも言えないです';
-        result_detail = '「どちらでもない」ばかり選んでいませんか？';
+    let result_summary = 'あたなはどの属性とも言えないです';
+    let result_detail1 = '「どちらでもない」ばかり選んでいませんか？';
+    let result_detail2 = '';
+    if (idol_similar === '') {
         $('#result_container').css('background', 'lightgray');
         $('#result_summary').css('border-bottom', 'solid 2px gray');
     }
     else {
-        if (pr === max_score) {
-            result_summary = 'あたなはどこからどうみても Princess です！';
-            result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
+        const idol_type = params['idol'][idol_similar]['type'];
+        result_summary = 'あなたは「' + idol_type + '」です！';
+        if (idol_type === 'ハツラツPrincess') {
             result_attribute = 'Princess';
+            result_detail1 = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、根っからのプリンセス属性です。';
+            result_detail2 = '友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
         }
-        else if (fa === max_score) {
-            result_summary = 'あなたは周囲の人から Fairy だと思われています！';
-            result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
+        else if (idol_type === '夢見るPrincess') {
+            result_attribute = 'Princess';
+            result_detail1 = '自分だけの世界観を持ち、時に妄想しがちなあなたは夢見るプリンセス属性。';
+            result_detail2 = '好きなものをまっすぐな気持ちで「好き！」と言えるところが、周囲の人からは好ましく映っているはずです。時には暴走気味になるかもしれませんが、そんなところも魅力のひとつ。これからも「好き」を全力で発信していきましょう！';
+        }
+        else if (idol_type === 'ひたむきPrincess') {
+            result_attribute = 'Princess';
+            result_detail1 = 'まっすぐな努力家、でもちょっと繊細なところのあるあなたは、ちょっとフェアリー寄りなプリンセス属性です。';
+            result_detail2 = '周囲をよく気にかけてる面倒見のいいところがあり、しっかり者と頼りにされているはず。責任感の強いあなたはたまに自分を追い詰めてしまうかもしれませんが、時には仲間に甘えるのもいいかもしれませんよ！';
+        }
+        else if (idol_type === '愛されPrincess') {
+            result_attribute = 'Princess';
+            result_detail1 = '癒やし系のオーラを纏いつつも、芯に強い気持ちを持っているあなたはエンジェルに近いプリンセス属性。';
+            result_detail2 = 'いつも朗らかでみんなに愛されているけれど、時には意外と頑固な面を見せて周囲に驚かれることもあるのでは。「なりたい自分」を明確に持っているあなたなら、成長した姿で回りをもっとびっくりさせることもできるはず！';
+        }
+        else if (idol_type === 'クールFairy') {
             result_attribute = 'Fairy';
+            result_detail1 = 'クールな佇まいに見合うだけの思慮深さを持っているあなたは、まごうことなきフェアリー属性。';
+            result_detail2 = '自他共に妥協を許さない姿勢は、周囲の人へのいい刺激になっているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
         }
-        else {
-            result_summary = 'あなたは Angel っぽいところがあるみたいですね～！';
-            result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
+        else if (idol_type === '気高きFairy') {
+            result_attribute = 'Fairy';
+            result_detail1 = 'プライドに見合うだけのプロフェッショナルさを持つあなたは、フェアリー属性の中でも特に気高い存在。';
+            result_detail2 = 'やると決めたらやり遂げる、求められたことには全力で応えるという姿勢が、周囲のお手本となっていることでしょう。それでいて完璧すぎず、時に隙を見せたり、いじられ役になったりするところも、みんなから愛される理由です。';
+        }
+        else if (idol_type === '情熱Fairy') {
+            result_attribute = 'Fairy';
+            result_detail1 = 'パッと見は取っ付きにくそうだけど、実は仲間思いで情熱に溢れているあなたはプリンセス寄りのフェアリー属性。';
+            result_detail2 = '内に秘めた豊かな感情・熱量は、きっと周囲にも伝わっているはず。チームに一人は欲しい、実力を兼ね備えたモチベーターとして引っ張りだこになるでしょう！';
+        }
+        else if (idol_type === 'クセモノFairy') {
+            result_attribute = 'Fairy';
+            result_detail1 = '気高く個性派、浮世離れした中にかわいさも潜むあなたは、エンジェル的な面も持つフェアリー属性。';
+            result_detail2 = 'その独特なこだわりは人から理解されないこともありますが、「それでもこれが自分なんだ」と信じられる強さがあります。密かにあなたを尊敬している理解者も少なくないのではないでしょうか。';
+        }
+        else if (idol_type === 'ゆるふわAngel') {
             result_attribute = 'Angel';
+            result_detail1 = 'いつも自然体で生きている、笑顔の素敵なあなたはど真ん中のエンジェル属性です。';
+            result_detail2 = '人と違うテンポで生きているからこそ、周りの人が越えられないハードルをあっさり飛び越えることも多いのでは。あなた自身はきっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
+        }
+        else if (idol_type === '元気なAngel') {
+            result_attribute = 'Angel';
+            result_detail1 = '天真爛漫、無邪気で元気いっぱいなあなたはかなりのエンジェル属性。';
+            result_detail2 = 'その素直な性格で周りの人を笑顔にしてくれる、マスコット的存在ではないでしょうか。何事にも好奇心いっぱいに楽しく取り組む姿勢は、見る人にやる気と元気を与えています。だからこそ、いざというときにあなたを支えてくれる人はいっぱいいるはず！';
+        }
+        else if (idol_type === 'あこがれAngel') {
+            result_attribute = 'Angel';
+            result_detail1 = '温かい癒やしのオーラの内側に、夢へと向かう意志を秘めているあなたはプリンセスに近いエンジェル属性。';
+            result_detail2 = '周囲の人から慕われ、愛される存在です。少しお人好しなところがあるので、ついつい流されて寄り道してしまうこともあるかもしれませんが、そんなあなただからこそ応援してくれる人もたくさんいますよ！';
+        }
+        else if (idol_type === 'しっかり者Angel') {
+            result_attribute = 'Angel';
+            result_detail1 = 'チャーミングな愛されキャラだけどしっかり者な面もあるあなたは、フェアリー気味なエンジェル属性。';
+            result_detail2 = '一度会ったら誰もがあなたのことを覚えてくれるような、強い魅力を持っています。みんなに頼られる中で、時に考えすぎてしまうこともあるかもしれませんが、そんなあなたの力になりたいと思っている仲間はきっとたくさんいますよ！';
         }
         $('#result_container').css('background', getTypeColor(result_attribute, 0.2));
         $('#result_summary').css('border-bottom', 'solid 2px ' + getTypeColor(result_attribute));
     }
     $('#result_summary').html(result_summary);
-    $('#result_detail').html(result_detail);
+    $('#result_detail').html(result_detail1 + '<br>' + result_detail2);
     $('#result_container').slideDown(400);
-
-    // 似たアイドルを表示
-    let idol_similar = getSimilarIdol(pr, fa, an);
 
     // ツイート
     if (result_attribute != '') {
         let tweet = '';
         tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
-        tweet += 'text=あなたの属性は' + result_attribute + 'です．';
-        tweet += '%0aあなたは' + idol_similar + 'に似ています．';
+        tweet += 'text=' + result_summary;
+        tweet += '%0a' + result_detail1;
+        tweet += '%0aそんなあなたは' + idol_similar + 'に似ています。';
         tweet += '%0a%23ミリシタ属性診断%20%23ミリオンライブ';
         // tweet += ' https://twitter.com/.../status/.../photo/1';
         tweet += '&url=https://submeganep.github.io/attribute/';
@@ -423,6 +468,56 @@ function updateResult(pr, fa, an) {
         $('#tweet_button').html(tweet);
         $('#tweet_container').slideDown(400);
     }
+
+    // // 結果を更新
+    // let max_score = Math.max(pr, fa, an);
+    // let min_score = Math.min(pr, fa, an);
+    // let result_summary;
+    // let result_detail;
+    // let result_attribute = '';
+    // if (min_score === max_score) {
+    //     result_summary = 'あたなはどの属性とも言えないです';
+    //     result_detail = '「どちらでもない」ばかり選んでいませんか？';
+    //     $('#result_container').css('background', 'lightgray');
+    //     $('#result_summary').css('border-bottom', 'solid 2px gray');
+    // }
+    // else {
+    //     if (pr === max_score) {
+    //         result_summary = 'あたなはどこからどうみても Princess です！';
+    //         result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
+    //         result_attribute = 'Princess';
+    //     }
+    //     else if (fa === max_score) {
+    //         result_summary = 'あなたは周囲の人から Fairy だと思われています！';
+    //         result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
+    //         result_attribute = 'Fairy';
+    //     }
+    //     else {
+    //         result_summary = 'あなたは Angel っぽいところがあるみたいですね～！';
+    //         result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
+    //         result_attribute = 'Angel';
+    //     }
+    //     $('#result_container').css('background', getTypeColor(result_attribute, 0.2));
+    //     $('#result_summary').css('border-bottom', 'solid 2px ' + getTypeColor(result_attribute));
+    // }
+    // $('#result_summary').html(result_summary);
+    // $('#result_detail').html(result_detail);
+    // $('#result_container').slideDown(400);
+
+    // // ツイート
+    // if (result_attribute != '') {
+    //     let tweet = '';
+    //     tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
+    //     tweet += 'text=あなたの属性は' + result_attribute + 'です．';
+    //     tweet += '%0aあなたは' + idol_similar + 'に似ています．';
+    //     tweet += '%0a%23ミリシタ属性診断%20%23ミリオンライブ';
+    //     // tweet += ' https://twitter.com/.../status/.../photo/1';
+    //     tweet += '&url=https://submeganep.github.io/attribute/';
+    //     tweet += '" data-size="large" data-lang="ja">Tweet</a>';
+    //     tweet += '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+    //     $('#tweet_button').html(tweet);
+    //     $('#tweet_container').slideDown(400);
+    // }
 }
 
 // HTMLの読み込みが全て完了した後に実行
