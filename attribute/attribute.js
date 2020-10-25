@@ -459,7 +459,7 @@ function updateResult(pr, fa, an) {
         tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
         tweet += 'text=' + result_summary;
         tweet += '%0a' + result_detail1;
-        tweet += '%0aそんなあなたは' + idol_similar + 'に似ています。';
+        tweet += '%0aそんなあなたは「' + idol_similar + '」に似ています！';
         tweet += '%0a%23ミリシタ属性診断%20%23ミリオンライブ';
         // tweet += ' https://twitter.com/.../status/.../photo/1';
         tweet += '&url=https://submeganep.github.io/attribute/';
@@ -830,7 +830,7 @@ $(function(){
                         label += ', ';
                     }
                 }
-                gtag('event', '20201024', {
+                gtag('event', '20201026', {
                     'event_category': 'ミリシタ属性診断',
                     'event_label': label,
                 });
