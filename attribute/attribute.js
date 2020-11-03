@@ -33,7 +33,7 @@ function getPosition(pr, fa, an) {
 function displayIdol(name, nodes, edges, target_id) {
 
     // 対象
-    target = '#' + target_id + '.idol_container';
+    target = '#' + target_id;
 
     // アイコンをリセット
     for (let i = 0; i < idol_names.length; i++) {
@@ -46,7 +46,8 @@ function displayIdol(name, nodes, edges, target_id) {
 
     // アイドル名が空なら表示を隠して終了
     if (name === '') {
-        $(target).hide();
+        $(target + ' .idol_container').hide();
+        $(target + ' .screenshots_container').hide();
         $('#tunes_container').hide();
         return;
     }
@@ -107,7 +108,7 @@ function displayIdol(name, nodes, edges, target_id) {
 
     // 背景
     // idol['ID']  // 03みたいなIDを背景右上に表示するといいかも
-    $(target).css('background-image', 'url(./standing/' + name + '.png)');
+    $(target + ' .idol_container').css('background-image', 'url(./standing/' + name + '.png)');
 
     // 選択されたアイドル
     $('.selected_idol').text(name);
@@ -190,6 +191,12 @@ function displayIdol(name, nodes, edges, target_id) {
         '桜守歌織': 75,
     };
 
+    // スクショ
+    $(target + ' .screenshots_row').css('background', getTypeColor(idol['PrFaAn'], 0.2));
+    for (let i = 0; i < 4; i++) {
+        $(target + ' .screenshots_row img').eq(i).attr('src', `screenshot/${name}/${i + 1}.jpg`);
+    }
+
     // リンク
     $('#links_items').empty();
     let links = '';
@@ -250,16 +257,18 @@ function displayIdol(name, nodes, edges, target_id) {
         
 
     // 表示
-    $(target).slideDown(400);
+    $(target + ' .idol_container').slideDown(400);
+    $(target + ' .screenshots_container').show();
     $('#links_container').slideDown(400);
     $('#tunes_container').slideDown(400);
     if (target_id == 'result') {
-        $('#selected.idol_container').hide();
+        $('#selected .idol_container').hide();
+        $('#selected .screenshots_container').hide();
     }
 
     // スクロール
     if (target_id === 'selected') {
-        $('html,body').animate({scrollTop: $(target).offset().top}, 400);
+        $('html,body').animate({scrollTop: $(target + ' .idol_container').offset().top}, 400);
     }
 }
 
@@ -382,6 +391,9 @@ function updateResult(pr, fa, an) {
     if (idol_similar === '') {
         $('#result_container').css('background', 'lightgray');
         $('#result_summary').css('border-bottom', 'solid 2px gray');
+        $('#result .idol_container').hide();
+        $('#result .screenshots_container').hide();
+        $('#result .tweet_container').hide();
     }
     else {
         const idol_type = params['idol'][idol_similar]['type'];
@@ -450,7 +462,7 @@ function updateResult(pr, fa, an) {
         $('#result_summary').css('border-bottom', 'solid 2px ' + getTypeColor(result_attribute));
     }
     $('#result_summary').html(result_summary);
-    $('#result_detail').html(result_detail1 + '<br>' + result_detail2);
+    $('#result_detail').html(result_detail1 + result_detail2);
     $('#result_container').slideDown(400);
 
     // ツイート
@@ -461,63 +473,13 @@ function updateResult(pr, fa, an) {
         tweet += '%0a' + result_detail1;
         tweet += '%0aそんなあなたは「' + idol_similar + '」に似ています！';
         tweet += '%0a%23ミリシタ属性診断%20%23ミリオンライブ';
-        // tweet += ' https://twitter.com/.../status/.../photo/1';
-        tweet += '&url=https://submeganep.github.io/attribute/';
+        tweet += '&url=https://submeganep.github.io/attribute/ogp/';
+        tweet += params['idol'][idol_similar]['Given'].toLowerCase();
         tweet += '" data-size="large" data-lang="ja">Tweet</a>';
         tweet += '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
         $('#tweet_button').html(tweet);
         $('#tweet_container').slideDown(400);
     }
-
-    // // 結果を更新
-    // let max_score = Math.max(pr, fa, an);
-    // let min_score = Math.min(pr, fa, an);
-    // let result_summary;
-    // let result_detail;
-    // let result_attribute = '';
-    // if (min_score === max_score) {
-    //     result_summary = 'あたなはどの属性とも言えないです';
-    //     result_detail = '「どちらでもない」ばかり選んでいませんか？';
-    //     $('#result_container').css('background', 'lightgray');
-    //     $('#result_summary').css('border-bottom', 'solid 2px gray');
-    // }
-    // else {
-    //     if (pr === max_score) {
-    //         result_summary = 'あたなはどこからどうみても Princess です！';
-    //         result_detail = '気持ちがまっすぐで周囲を巻き込んでいくパワーを持つあなたは、どうみてもプリンセスです。友達想いのあなたの周りにはいつも楽しい空気が流れているはず。もしかしたら自分では気付いていないかもしれませんが、あなたの一生懸命さにみんな勇気づけられていますよ！';
-    //         result_attribute = 'Princess';
-    //     }
-    //     else if (fa === max_score) {
-    //         result_summary = 'あなたは周囲の人から Fairy だと思われています！';
-    //         result_detail = '全身からかっこよさが溢れ、物事を深く考えがちなあなたは、普段からフェアリーだなと思われています。自他共に妥協を許さない姿勢はなにかと周りのレベルを引き上げているはず。落ち込むことも多いかもしれませんが、あなたの魅力に気付いている人はあなたが思うよりずっとたくさんいますよ！';
-    //         result_attribute = 'Fairy';
-    //     }
-    //     else {
-    //         result_summary = 'あなたは Angel っぽいところがあるみたいですね～！';
-    //         result_detail = '癒やしの空気を纏い自然体で生きるあなたは、エンジェルっぽいです！人と違うテンポで生きているあなたは、周りの人が越えられないハードルも簡単に飛び越えてみせているはず。きっと気にしていないとは思いますが、あなたの楽しく過ごす姿に心が安らいでいる人もいっぱいいますよ！';
-    //         result_attribute = 'Angel';
-    //     }
-    //     $('#result_container').css('background', getTypeColor(result_attribute, 0.2));
-    //     $('#result_summary').css('border-bottom', 'solid 2px ' + getTypeColor(result_attribute));
-    // }
-    // $('#result_summary').html(result_summary);
-    // $('#result_detail').html(result_detail);
-    // $('#result_container').slideDown(400);
-
-    // // ツイート
-    // if (result_attribute != '') {
-    //     let tweet = '';
-    //     tweet += '<a class="twitter-share-button" href="https://twitter.com/intent/tweet?';
-    //     tweet += 'text=あなたの属性は' + result_attribute + 'です．';
-    //     tweet += '%0aあなたは' + idol_similar + 'に似ています．';
-    //     tweet += '%0a%23ミリシタ属性診断%20%23ミリオンライブ';
-    //     // tweet += ' https://twitter.com/.../status/.../photo/1';
-    //     tweet += '&url=https://submeganep.github.io/attribute/';
-    //     tweet += '" data-size="large" data-lang="ja">Tweet</a>';
-    //     tweet += '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
-    //     $('#tweet_button').html(tweet);
-    //     $('#tweet_container').slideDown(400);
-    // }
 }
 
 // HTMLの読み込みが全て完了した後に実行
@@ -811,6 +773,8 @@ $(function(){
                 updateResult(pr, fa, an);
                 // 似たアイドルを表示
                 displayIdol(similar_idol, nodes, edges, 'result');
+                // 表示
+                $('#result').slideDown(400);
                 // スクロール
                 $('html,body').animate({scrollTop: $('#attr_container').offset().top}, 400);
                 // 開始ボタンの表示を変更
@@ -830,7 +794,7 @@ $(function(){
                         label += ', ';
                     }
                 }
-                gtag('event', '20201026', {
+                gtag('event', '20201104', {
                     'event_category': 'ミリシタ属性診断',
                     'event_label': label,
                 });
