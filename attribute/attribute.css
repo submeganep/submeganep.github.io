@@ -25,7 +25,6 @@
 }
 
 .idol_container {
-    /* display: none; */
     min-width: 320px;
     background-repeat: no-repeat;
     background-position: 100% 100%;
@@ -53,26 +52,6 @@
     margin-left: 0.5rem;
     padding: 2px;
     background-color: rgba(255,255,255,0.5);
-}
-
-/* 非表示 */
-#result {
-    display: none;
-}
-#links_container {
-    display: none;
-}
-#tunes_container {
-    display: none;
-}
-#cartoons_container {
-    display: none;
-}
-.idol_container {
-    display: none;
-}
-.screenshots_container {
-    display: none;
 }
 
 .screenshots_row {

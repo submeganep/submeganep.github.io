@@ -815,4 +815,12 @@ $(function(){
         $('#questions_container .carousel-indicators li').eq(1).css('height', '10px');
         $('#questions_container').carousel('next');
     });
+
+    // 非表示
+    $('#result').hide();
+    $('#links_container').hide();
+    $('#tunes_container').hide();
+    $('#cartoons_container').hide();
+    $('.idol_container').hide();
+    $('.screenshots_container').hide();
 });
