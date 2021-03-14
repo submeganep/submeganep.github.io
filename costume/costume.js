@@ -600,7 +600,7 @@ $(function(){
         $('#type_pst').prop('checked', true);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2019-12-17');
+        $('#date_end').val('2020-08-19');
         displayCostumes();
     });
     $('#button_reset').on('click', function() {
