@@ -558,7 +558,22 @@ $(function(){
     });
 
     // 絞込ボタン
-    $('#button_ticket').on('click', function() {
+    $('#button_ticket0').on('click', function() {
+        $('#star').prop('checked', false);
+        $('#unstar').prop('checked', true);
+        $('#normal').prop('checked', true);
+        $('#another').prop('checked', false);
+        $('#another2').prop('checked', false);
+        $('#type_const').prop('checked', true);
+        $('#type_limit').prop('checked', false);
+        $('#type_fes').prop('checked', false);
+        $('#type_pst').prop('checked', false);
+        $('#type_sr').prop('checked', false);
+        $('#date_begin').val('2017-06-29');
+        $('#date_end').val('2020-05-18');
+        displayCostumes();
+    });
+    $('#button_ticket1').on('click', function() {
         $('#star').prop('checked', false);
         $('#unstar').prop('checked', true);
         $('#normal').prop('checked', true);
@@ -600,7 +615,7 @@ $(function(){
         $('#type_pst').prop('checked', true);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2020-08-19');
+        $('#date_end').val('2020-12-01');
         displayCostumes();
     });
     $('#button_reset').on('click', function() {
