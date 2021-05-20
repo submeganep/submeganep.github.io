@@ -222,30 +222,42 @@ function displayIdol(name, nodes, edges, target_id) {
 
     // 楽曲
     $('#tunes_items').empty();
-    let first_tune = '';
-    for (let i = 0; i < tune_names.length; i++) {
-        let tune_name = tune_names[i];
-        let tune = tunes[tune_name];
-        if (tune['idol_names'].includes(name)) {
-            if (tune['idol_names'].length > 5) {
-                continue;
+    // let first_tune = '';
+    for (let temp = 0; temp < 2; temp++) {  // ソロ曲を優先表示するための暫定的なforループ
+        for (let i = 0; i < tune_names.length; i++) {
+            let tune_name = tune_names[i];
+            let tune = tunes[tune_name];
+            if (tune['idol_names'].includes(name)) {
+                if (tune['idol_names'].length > 5) {
+                    continue;
+                }
+                if (tune['idol_names'].length > 1 && temp == 0) {  // ソロ曲を優先表示するための暫定的なif文
+                    continue;
+                }
+                if (tune['idol_names'].length == 1 && temp == 1) {  // ソロ曲を優先表示するための暫定的なif文
+                    continue;
+                }
+                // if (first_tune === '') {
+                //     first_tune = i;
+                // }
+                let tune_body = $('<div class="col-lg-4 col-md-6 col-12 p-0 mb-2 mb-2 bg-light border border-white" />');
+                tune_body.append(`<div class="embed-responsive embed-responsive-16by9 bg-secondary text-white d-flex align-items-center justify-content-center" style="cursor: pointer;" id="player_${i}">この楽曲も試聴</div>`);
+                tune_body.append('<div class="text-center font-weight-bold">' + tune_name + '</div>');
+                let tune_idols = $('<div class="text-center"></div>');
+                for (let idol_name of tune['idol_names']) {
+                    tune_idols.append('<img src="./icon/' + idol_name + '.png" style="width: 60px;" class="icon_' + idol_name + '">');
+                }
+                tune_body.append(tune_idols);
+                tune_body.append('<div class="text-center">' + tune['unit_name'] + '</div>');
+                $('#tunes_items').append(tune_body);
+                $('#player_' + i).on('click', function() {
+                $('#player_' + i).append('<iframe class="embed-responsive-item" src="' + tune['url'] + '" type="text/html"></iframe>');
+                });
+
+                if (tune['idol_names'].length == 1) {  // ソロ曲はプレイヤーを開いておく
+                    $('#player_' + i).trigger('click');
+                }
             }
-            if (first_tune === '') {
-                first_tune = i;
-            }
-            let tune_body = $('<div class="col-lg-4 col-md-6 col-12 p-0 mb-2 mb-2 bg-light border border-white" />');
-            tune_body.append(`<div class="embed-responsive embed-responsive-16by9 bg-secondary text-white d-flex align-items-center justify-content-center" style="cursor: pointer;" id="player_${i}">この楽曲も試聴</div>`);
-            tune_body.append('<div class="text-center font-weight-bold">' + tune_name + '</div>');
-            let tune_idols = $('<div class="text-center"></div>');
-            for (let idol_name of tune['idol_names']) {
-                tune_idols.append('<img src="./icon/' + idol_name + '.png" style="width: 60px;" class="icon_' + idol_name + '">');
-            }
-            tune_body.append(tune_idols);
-            tune_body.append('<div class="text-center">' + tune['unit_name'] + '</div>');
-            $('#tunes_items').append(tune_body);
-            $('#player_' + i).on('click', function() {
-               $('#player_' + i).append('<iframe class="embed-responsive-item" src="' + tune['url'] + '" type="text/html"></iframe>');
-            });
         }
     }
     for (let idol_name of idol_names) {
@@ -253,7 +265,7 @@ function displayIdol(name, nodes, edges, target_id) {
             displayIdol(idol_name, nodes, edges, 'selected');
         });
     }
-    $('#player_' + first_tune).trigger('click');
+    // $('#player_' + first_tune).trigger('click');
         
 
     // 表示
@@ -794,7 +806,7 @@ $(function(){
                         label += ', ';
                     }
                 }
-                gtag('event', '20201104', {
+                gtag('event', '20210521', {
                     'event_category': 'ミリシタ属性診断',
                     'event_label': label,
                 });
