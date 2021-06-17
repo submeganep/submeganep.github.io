@@ -585,7 +585,7 @@ $(function(){
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2021-01-19');
+        $('#date_end').val('2021-05-18');
         displayCostumes();
     });
     $('#button_ticket2').on('click', function() {
