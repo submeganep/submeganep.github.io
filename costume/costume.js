@@ -236,6 +236,11 @@ function filterCostumes() {
                 continue;
             }
         }
+        else if (type == 'SHS限定') {
+            if (!$('#type_shs').prop('checked')) {
+                continue;
+            }
+        }
         else if (type == 'FES限定') {
             if (!$('#type_fes').prop('checked')) {
                 continue;
@@ -566,6 +571,7 @@ $(function(){
         $('#another2').prop('checked', false);
         $('#type_const').prop('checked', true);
         $('#type_limit').prop('checked', false);
+        $('#type_shs').prop('checked', false);
         $('#type_fes').prop('checked', false);
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
@@ -581,6 +587,7 @@ $(function(){
         $('#another2').prop('checked', false);
         $('#type_const').prop('checked', true);
         $('#type_limit').prop('checked', false);
+        $('#type_shs').prop('checked', false);
         $('#type_fes').prop('checked', false);
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
@@ -596,11 +603,12 @@ $(function(){
         $('#another2').prop('checked', false);
         $('#type_const').prop('checked', true);
         $('#type_limit').prop('checked', true);
+        $('#type_shs').prop('checked', false);
         $('#type_fes').prop('checked', false);
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2019-12-17');
+        $('#date_end').val('2020-06-18');
         displayCostumes();
     });
     $('#button_psp').on('click', function() {
@@ -611,11 +619,12 @@ $(function(){
         $('#another2').prop('checked', true);
         $('#type_const').prop('checked', false);
         $('#type_limit').prop('checked', false);
+        $('#type_shs').prop('checked', false);
         $('#type_fes').prop('checked', false);
         $('#type_pst').prop('checked', true);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2020-12-01');
+        $('#date_end').val('2020-12-18');
         displayCostumes();
     });
     $('#button_reset').on('click', function() {
@@ -626,6 +635,7 @@ $(function(){
         $('#another2').prop('checked', true);
         $('#type_const').prop('checked', true);
         $('#type_limit').prop('checked', true);
+        $('#type_shs').prop('checked', true);
         $('#type_fes').prop('checked', true);
         $('#type_pst').prop('checked', true);
         $('#type_sr').prop('checked', true);
