@@ -592,7 +592,7 @@ $(function(){
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2021-05-18');
+        $('#date_end').val('2021-09-30');
         displayCostumes();
     });
     $('#button_ticket2').on('click', function() {
@@ -624,7 +624,7 @@ $(function(){
         $('#type_pst').prop('checked', true);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2020-12-18');
+        $('#date_end').val('2021-03-19');
         displayCostumes();
     });
     $('#button_reset').on('click', function() {
