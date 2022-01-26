@@ -172,14 +172,6 @@ function filterCostumes() {
 
     for (let i of indices) {
 
-        // 未実装衣装をスキップ
-        if (keys[i] == '043nor0193') {
-            continue;
-        }
-        if (keys[i] == '043nor0193_v') {
-            continue;
-        }
-
         // アイドルで絞込
         const idol = data[keys[i]]['idol'][0];
         if (idols.indexOf(idol) == -1) {
@@ -608,7 +600,7 @@ $(function(){
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2020-06-18');
+        $('#date_end').val('2020-12-18');
         displayCostumes();
     });
     $('#button_psp').on('click', function() {
