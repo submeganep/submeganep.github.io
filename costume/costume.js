@@ -172,6 +172,11 @@ function filterCostumes() {
 
     for (let i of indices) {
 
+        // 2023-05-02 イベント終了前なので除外
+        if (keys[i].startsWith('050jul0383')) {
+            continue;
+        }
+
         // アイドルで絞込
         const idol = data[keys[i]]['idol'][0];
         if (idols.indexOf(idol) == -1) {
