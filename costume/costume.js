@@ -172,11 +172,6 @@ function filterCostumes() {
 
     for (let i of indices) {
 
-        // 2023-05-02 イベント終了前なので除外
-        if (keys[i].startsWith('050jul0383')) {
-            continue;
-        }
-
         // アイドルで絞込
         const idol = data[keys[i]]['idol'][0];
         if (idols.indexOf(idol) == -1) {
@@ -589,7 +584,7 @@ $(function(){
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2022-05-10');
+        $('#date_end').val('2023-01-18');
         displayCostumes();
     });
     $('#button_ticket2').on('click', function() {
@@ -605,7 +600,23 @@ $(function(){
         $('#type_pst').prop('checked', false);
         $('#type_sr').prop('checked', false);
         $('#date_begin').val('2017-06-29');
-        $('#date_end').val('2020-12-18');
+        $('#date_end').val('2021-12-17');
+        displayCostumes();
+    });
+    $('#button_ticket3').on('click', function() {
+        $('#star').prop('checked', false);
+        $('#unstar').prop('checked', true);
+        $('#normal').prop('checked', true);
+        $('#another').prop('checked', false);
+        $('#another2').prop('checked', false);
+        $('#type_const').prop('checked', false);
+        $('#type_limit').prop('checked', false);
+        $('#type_shs').prop('checked', true);
+        $('#type_fes').prop('checked', false);
+        $('#type_pst').prop('checked', false);
+        $('#type_sr').prop('checked', false);
+        $('#date_begin').val('2017-06-29');
+        $('#date_end').val('2022-07-31');
         displayCostumes();
     });
     $('#button_psp').on('click', function() {
