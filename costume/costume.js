@@ -522,7 +522,7 @@ $(function(){
         let names = names_list[i];
         let group = $('<div class="idol_group" style="border-left: solid 10px ' + type_colors[i] + ';"></div>');
         for (let name of names) {
-            let icon_img = 'https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/icon/3rd/' + name + '.png';
+            let icon_img = 'https://raw.githubusercontent.com/submeganep/submeganep.github.io/master/icon/Crossing/' + name + '.png';
             let icon = $('<div class="idol_icon ' + name + '"><a><img class="icon_image" src="' + icon_img + '" title="' + name + '"></a></div>');
             group.append(icon);
         }
