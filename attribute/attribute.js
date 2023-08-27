@@ -48,6 +48,7 @@ function displayIdol(name, nodes, edges, target_id) {
     if (name === '') {
         $(target + ' .idol_container').hide();
         $(target + ' .screenshots_container').hide();
+        $('#videos_container').hide();
         $('#tunes_container').hide();
         return;
     }
@@ -112,6 +113,7 @@ function displayIdol(name, nodes, edges, target_id) {
 
     // 選択されたアイドル
     $('.selected_idol').text(name);
+    let name_given = idol['Given'].toLowerCase();
     let name_niconico = name;
     let name_pixiv = name;
     let name_wiki = name;
@@ -200,25 +202,44 @@ function displayIdol(name, nodes, edges, target_id) {
     // リンク
     $('#links_items').empty();
     let links = '';
-    links += '<a href="https://dic.nicovideo.jp/a/' + name_niconico + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">ニコニコ大百科</button></a>'
-    links += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">ピクシブ百科事典</button></a>';
-    // links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
-    // links += '<button type="button" class="btn btn-outline-dark m-1">Fantasia</button></a>';
-    // links += '<a href="http://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
-    // links += '<button type="button" class="btn btn-outline-dark m-1">グリマス日和</button></a>';
+    links += '<a href="https://millionlive-theaterdays.idolmaster-official.jp/idol/' + name_given + '/" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタ公式</b><br><small>アイドル紹介</small></button></a>';
+    if (idol['AS'] != '1') {
+        links += '<a href="https://millionlive-anime.idolmaster-official.jp/character/' + name_given + '/" target="_blank">';
+        links += '<button type="button" class="btn btn-outline-dark m-1"><b>TVアニメ公式</b><br><small>アイドル紹介</small></button></a>';
+    }
+    links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>Fantasia</b><br><small>アイドルのカード情報</small></button></a>';
+    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタDB</b><br><small>アイドルのカード他情報</small></button></a>';
+    links += '<a href="https://tankarup.github.io/ML-4koma-viewer/4koma.html?idol1=' + idol['名'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタ4コマ検索</b><br><small>アイドルが登場する4コマ</small></button></a>';
+    links += '<a href="https://w.atwiki.jp/ml-story/pages/' + story[name] + '.html" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタストーリーまとめ</b><br><small>アイドルが登場するコミュ</small></button></a>';
     links += '<a href="https://imasml-theater-wiki.gamerch.com/' + name + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタ攻略まとめwiki</button></a>';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタ攻略まとめwiki</b><br><small>スマホアプリの攻略まとめwiki</small></button></a>';
     if (name != '白石紬' && name != '桜守歌織') {
         links += '<a href="https://millionlive.info/?' + name_wiki + '" target="_blank">';
-        links += '<button type="button" class="btn btn-outline-dark m-1">ミリオンライブWiki</button></a>';
+        links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリオンライブWiki</b><br><small>GREE版ゲームの攻略まとめwiki</small></button></a>';
     }
-    links += '<a href="https://w.atwiki.jp/ml-story/pages/' + story[name] + '.html" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタストーリーまとめ</button></a>';
-    links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
-    links += '<button type="button" class="btn btn-outline-dark m-1">ミリシタDB</button></a>';
+    links += '<a href="https://greemas.doorblog.jp/tag/' + name + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>グリマス日和</b><br><small>アイドルのタグが付いた記事</small></button></a>';
+    links += '<a href="https://dic.nicovideo.jp/a/' + name_niconico + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ニコニコ大百科</b><br><small>アイドルの記事</small></button></a>'
+    links += '<a href="https://dic.pixiv.net/a/' + name_pixiv + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ピクシブ百科事典</b><br><small>アイドルの記事</small></button></a>';
     $('#links_items').append(links);
+
+    // 動画
+    $('#videos_items').empty();
+    let videos = ''
+    videos += '<div class="col-lg-6 col-md-6 col-12 p-0 mb-2 mb-2 bg-light border border-white">'
+    videos += '<div class="embed-responsive embed-responsive-16by9 bg-secondary text-white d-flex align-items-center justify-content-center" style="cursor: pointer;">'
+    videos += '<iframe class="embed-responsive-item" src="' + idol['ミリシタアイドル紹介動画'] + '" type="text/html"></iframe></div></div>'
+    videos += '<div class="col-lg-6 col-md-6 col-12 p-0 mb-2 mb-2 bg-light border border-white">'
+    videos += '<div class="embed-responsive embed-responsive-16by9 bg-secondary text-white d-flex align-items-center justify-content-center" style="cursor: pointer;">'
+    videos += '<iframe class="embed-responsive-item" src="' + idol['Birthday特別動画'] + '" type="text/html"></iframe></div></div>'
+    $('#videos_items').append(videos);
 
     // 楽曲
     $('#tunes_items').empty();
@@ -272,6 +293,7 @@ function displayIdol(name, nodes, edges, target_id) {
     $(target + ' .idol_container').slideDown(400);
     $(target + ' .screenshots_container').show();
     $('#links_container').slideDown(400);
+    $('#videos_container').slideDown(400);
     $('#tunes_container').slideDown(400);
     if (target_id == 'result') {
         $('#selected .idol_container').hide();
@@ -831,6 +853,7 @@ $(function(){
     // 非表示
     $('#result').hide();
     $('#links_container').hide();
+    $('#videos_container').hide();
     $('#tunes_container').hide();
     $('#cartoons_container').hide();
     $('.idol_container').hide();
