@@ -202,6 +202,8 @@ function displayIdol(name, nodes, edges, target_id) {
     // リンク
     $('#links_items').empty();
     let links = '';
+    links += '<a href="' + idol['ミリシタMV集'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタMV集</b><br><small>アイドルが登場するMV</small></button></a>';
     links += '<a href="https://millionlive-theaterdays.idolmaster-official.jp/idol/' + name_given + '/" target="_blank">';
     links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタ公式</b><br><small>アイドル紹介</small></button></a>';
     if (idol['AS'] != '1') {
