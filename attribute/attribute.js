@@ -210,6 +210,10 @@ function displayIdol(name, nodes, edges, target_id) {
         links += '<a href="https://millionlive-anime.idolmaster-official.jp/character/' + name_given + '/" target="_blank">';
         links += '<button type="button" class="btn btn-outline-dark m-1"><b>TVアニメ公式</b><br><small>アイドル紹介</small></button></a>';
     }
+    links += '<a href="https://fujiwarahaji.me/idol/765/' + idol['Given'] + idol['Family'] + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>アイマス楽曲DB</b><br><small>アイドルが歌う楽曲</small></button></a>';
+    links += '<a href="https://mltdai.web.app/music?idol=' + name + '" target="_blank">';
+    links += '<button type="button" class="btn btn-outline-dark m-1"><b>ミリシタ楽曲推薦</b><br><small>アイドルが歌う楽曲</small></button></a>';
     links += '<a href="https://mltd.matsurihi.me/cards/' + id_fantasia + '" target="_blank">';
     links += '<button type="button" class="btn btn-outline-dark m-1"><b>Fantasia</b><br><small>アイドルのカード情報</small></button></a>';
     links += '<a href="https://imas.gamedbs.jp/mlth/chara/show/' + idol['ID'] + '" target="_blank">';
